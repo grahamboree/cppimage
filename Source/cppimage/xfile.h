@@ -38,8 +38,7 @@
 	3. This notice may not be removed or altered from any source distribution.
   --------------------------------------------------------------------------------
  */
-#if !defined(__xfile_h)
-#define __xfile_h
+#pragma once
 
 #if defined (WIN32) || defined (_WIN32_WCE)
  #include <windows.h>
@@ -66,14 +65,12 @@ public:
 	virtual bool	Eof() = 0;
 	virtual int32_t	Error() = 0;
 	virtual bool	PutC(uint8_t c)
-		{
+	{
 		// Default implementation
 		size_t nWrote = Write(&c, 1, 1);
 		return (bool)(nWrote == 1);
-		}
+	}
 	virtual int32_t	GetC() = 0;
 	virtual char *	GetS(char *string, int32_t n) = 0;
 	virtual int32_t	Scanf(const char *format, void* output) = 0;
 };
-
-#endif //__xfile_h
