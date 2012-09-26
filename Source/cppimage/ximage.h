@@ -46,7 +46,9 @@
   --------------------------------------------------------------------------------
  */
 
-#pragma once 
+//#pragma once
+#if !defined(__CXIMAGE_H)
+#define __CXIMAGE_H
 
 #ifdef _LINUX
 #define _XOPEN_SOURCE
@@ -814,3 +816,4 @@ protected:
 //@}
 };
 
+#endif

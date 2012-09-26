@@ -367,7 +367,7 @@ void CxImage::Clear(uint8_t bval)
  * \return true if everything is ok
  */
 bool CxImage::Transfer(CxImage& from, bool bTransferFrames /*=true*/)
-
+{
 	if (!Destroy())
 		return false;
 
