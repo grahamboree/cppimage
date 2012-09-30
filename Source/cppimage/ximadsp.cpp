@@ -6,7 +6,8 @@
 #include "ximage.h"
 
 #include "ximaiter.h"
-#include "Types.h"
+//#include "Types.h"
+#include "ximadef.h"
 
 #if CXIMAGE_SUPPORT_DSP
 

@@ -332,7 +332,7 @@ int32_t CxImage::GetSize()
  */
 bool CxImage::IsInside(int32_t x, int32_t y)
 {
-  return (0 <= y && y < head.biHeight && 0 <= x && x < head.biWidth);
+	return (0 <= y && y < head.biHeight && 0 <= x && x < head.biWidth);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -463,8 +463,8 @@ void CxImage::Bitfield2RGB(uint8_t* src, uint32_t redmask, uint32_t greenmask, u
 					p[2 + x3] = (uint8_t)((w & redmask)   >> ns[2]);
 				}
 			}
-			break;
 		}
+		break;
 	case 32:
 		{
 			uint32_t ns[3] = {0, 0, 0};
@@ -486,10 +486,12 @@ void CxImage::Bitfield2RGB(uint8_t* src, uint32_t redmask, uint32_t greenmask, u
 			int32_t x3;
 			uint8_t* p = info.pImage;
 			// scan the buffer in reverse direction to avoid reallocations
-			for (int32_t y = head.biHeight - 1; y >= 0; y--){
+			for (int32_t y = head.biHeight - 1; y >= 0; y--)
+			{
 				y4 = effwidth4 * y;
 				y3 = info.dwEffWidth * y;
-				for (int32_t x = head.biWidth - 1; x >= 0; x--){
+				for (int32_t x = head.biWidth - 1; x >= 0; x--)
+				{
 					x4 = 4 *x+y4;
 					x3 = 3 *x+y3;
 					p[    x3] = src[ns[2] + x4];
@@ -544,8 +546,10 @@ bool CxImage::CreateFromArray(uint8_t* pArray, uint32_t dwWidth, uint32_t dwHeig
 	{
 		dst = info.pImage + (bFlipImage ? (dwHeight - 1 - y) : y) * info.dwEffWidth;
 		src = pArray + y * dwBytesperline;
-		if (dwBitsperpixel == 32){
-			for(uint32_t x = 0; x < dwWidth; x++){
+		if (dwBitsperpixel == 32)
+		{
+			for(uint32_t x = 0; x < dwWidth; x++)
+			{
 				*dst++=src[0];
 				*dst++=src[1];
 				*dst++=src[2];
@@ -595,7 +599,8 @@ bool CxImage::CreateFromMatrix(uint8_t** ppMatrix, uint32_t dwWidth, uint32_t dw
 	uint8_t* dst;
 	uint8_t* src;
 
-	for (uint32_t y = 0; y < dwHeight; y++) {
+	for (uint32_t y = 0; y < dwHeight; y++)
+	{
 		dst = info.pImage + (bFlipImage ? (dwHeight - 1 - y) : y) * info.dwEffWidth;
 		src = ppMatrix[y];
 		if (src)

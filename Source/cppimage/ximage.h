@@ -271,24 +271,30 @@ public:
 	CxImage(CxFile* stream, uint32_t imagetype);
 	CxImage(uint8_t* buffer, uint32_t size, uint32_t imagetype);
 #endif
+//@}
+
+/** \addtogroup Destructors */ //@{
 	virtual ~CxImage() { DestroyFrames(); Destroy(); };
-	CxImage& operator = (const CxImage&);
+//@}
+
+/** \addtogroup Operators */ //@{
+	CxImage& operator=(const CxImage&);
 //@}
 
 /** \addtogroup Initialization */ //@{
-	void*	Create(uint32_t dwWidth, uint32_t dwHeight, uint32_t wBpp, uint32_t imagetype = 0);
-	bool	Destroy();
-	bool	DestroyFrames();
 	void	Clear(uint8_t bval = 0);
 	void	Copy(const CxImage& src, bool copypixels = true, bool copyselection = true, bool copyalpha = true);
-	bool	Transfer(CxImage& from, bool bTransferFrames = true);
+	void*	Create(uint32_t dwWidth, uint32_t dwHeight, uint32_t wBpp, uint32_t imagetype = 0);
 	bool	CreateFromArray(uint8_t* pArray, uint32_t dwWidth, uint32_t dwHeight, uint32_t dwBitsperpixel, uint32_t dwBytesperline, bool bFlipImage);
 	bool	CreateFromMatrix(uint8_t** ppMatrix, uint32_t dwWidth, uint32_t dwHeight, uint32_t dwBitsperpixel, uint32_t dwBytesperline, bool bFlipImage);
+	bool	Destroy();
+	bool	DestroyFrames();
 	void	FreeMemory(void* memblock);
+	bool	Transfer(CxImage& from, bool bTransferFrames = true);
 
 	uint32_t Dump(uint8_t* dst);
-	uint32_t UnDump(const uint8_t* src);
 	uint32_t DumpSize();
+	uint32_t UnDump(const uint8_t* src);
 //@}
 
 /** \addtogroup Attributes */ //@{

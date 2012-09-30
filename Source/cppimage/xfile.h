@@ -61,7 +61,7 @@ public:
 	virtual int32_t	Error() = 0;
 	virtual bool	Flush() = 0;
 	virtual int32_t	GetC()  = 0;
-	virtual char *	GetS(char *string, int32_t n) = 0;
+	virtual char*	GetS(char* string, int32_t n) = 0;
 	virtual bool	PutC(uint8_t c)
 	{
 		// Default implementation
@@ -73,5 +73,5 @@ public:
 	virtual bool	Seek(int32_t offset, int32_t origin) = 0;
 	virtual int32_t	Size() = 0;
 	virtual int32_t	Tell() = 0;
-	virtual size_t	Write(const void *buffer, size_t size, size_t count) = 0;
+	virtual size_t	Write(const void* buffer, size_t size, size_t count) = 0;
 };
