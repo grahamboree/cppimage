@@ -7,7 +7,7 @@
 
 #include "CImageIterator.h"
 //#include "Types.h"
-#include "ximadef.h"
+#include "CxDefines.h"
 
 #if CXIMAGE_SUPPORT_DSP
 

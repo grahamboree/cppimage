@@ -47,7 +47,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "ximadef.h"
+#include "CxDefines.h"
 
 class CxFile
 {

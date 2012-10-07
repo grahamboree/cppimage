@@ -29,7 +29,7 @@
 #pragma once
 
 #include "CxImage.h"
-#include "ximadef.h"
+#include "CxDefines.h"
 
 //////////////////////////////////////////////////////////////////////////
 class CImageIterator

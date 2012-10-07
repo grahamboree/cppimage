@@ -60,9 +60,9 @@
 #include "CxFile.h"
 #include "CxIOFile.h"
 #include "CxMemfile.h"
-#include "ximadef.h"
+#include "CxDefines.h"
 
-/* see "ximacfg.h" for CxImage configuration options */
+/* see "CxConfig.h" for CxImage configuration options */
 
 /////////////////////////////////////////////////////////////////////////////
 // CxImage formats enumerator

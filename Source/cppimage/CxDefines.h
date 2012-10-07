@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ximacfg.h"
+#include "CxConfig.h"
 
 #if /*defined(_AFXDLL)||*/ defined(_USRDLL)
 #	define DLL_EXP __declspec(dllexport)
