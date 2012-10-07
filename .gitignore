@@ -1,12 +1,7 @@
 .DS_Store
 *.swp
+*.swo
 *~
-.DS_Store
-
 *.xcuserstate
-
-*.xcuserstate
-
-cppimage.xcodeproj/project.xcworkspace/xcuserdata/pentheny.xcuserdatad/UserInterfaceState.xcuserstate
-
 *.xcbkptlist
+
