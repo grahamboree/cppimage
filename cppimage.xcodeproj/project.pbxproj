@@ -12,58 +12,57 @@
 		C92685A516215C6800D4EB54 /* CxIOFile.h in Headers */ = {isa = PBXBuildFile; fileRef = C92685A216215C6800D4EB54 /* CxIOFile.h */; };
 		C92685A616215C6800D4EB54 /* CxMemFile.h in Headers */ = {isa = PBXBuildFile; fileRef = C92685A316215C6800D4EB54 /* CxMemFile.h */; };
 		C92685A816215C8600D4EB54 /* CImageIterator.h in Headers */ = {isa = PBXBuildFile; fileRef = C92685A716215C8600D4EB54 /* CImageIterator.h */; };
+		C92685CA1621667300D4EB54 /* ximabmp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C92685AA1621667300D4EB54 /* ximabmp.cpp */; };
+		C92685CB1621667300D4EB54 /* ximabmp.h in Headers */ = {isa = PBXBuildFile; fileRef = C92685AB1621667300D4EB54 /* ximabmp.h */; };
+		C92685CC1621667300D4EB54 /* ximagif.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C92685AC1621667300D4EB54 /* ximagif.cpp */; };
+		C92685CD1621667300D4EB54 /* ximagif.h in Headers */ = {isa = PBXBuildFile; fileRef = C92685AD1621667300D4EB54 /* ximagif.h */; };
+		C92685CE1621667300D4EB54 /* ximaico.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C92685AE1621667300D4EB54 /* ximaico.cpp */; };
+		C92685CF1621667300D4EB54 /* ximaico.h in Headers */ = {isa = PBXBuildFile; fileRef = C92685AF1621667300D4EB54 /* ximaico.h */; };
+		C92685D01621667300D4EB54 /* ximajas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C92685B01621667300D4EB54 /* ximajas.cpp */; };
+		C92685D11621667300D4EB54 /* ximajas.h in Headers */ = {isa = PBXBuildFile; fileRef = C92685B11621667300D4EB54 /* ximajas.h */; };
+		C92685D21621667300D4EB54 /* ximajbg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C92685B21621667300D4EB54 /* ximajbg.cpp */; };
+		C92685D31621667300D4EB54 /* ximajbg.h in Headers */ = {isa = PBXBuildFile; fileRef = C92685B31621667300D4EB54 /* ximajbg.h */; };
+		C92685D41621667300D4EB54 /* ximajpg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C92685B41621667300D4EB54 /* ximajpg.cpp */; };
+		C92685D51621667300D4EB54 /* ximajpg.h in Headers */ = {isa = PBXBuildFile; fileRef = C92685B51621667300D4EB54 /* ximajpg.h */; };
+		C92685D61621667300D4EB54 /* ximamng.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C92685B61621667300D4EB54 /* ximamng.cpp */; };
+		C92685D71621667300D4EB54 /* ximamng.h in Headers */ = {isa = PBXBuildFile; fileRef = C92685B71621667300D4EB54 /* ximamng.h */; };
+		C92685D81621667300D4EB54 /* ximapcx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C92685B81621667300D4EB54 /* ximapcx.cpp */; };
+		C92685D91621667300D4EB54 /* ximapcx.h in Headers */ = {isa = PBXBuildFile; fileRef = C92685B91621667300D4EB54 /* ximapcx.h */; };
+		C92685DA1621667300D4EB54 /* ximapng.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C92685BA1621667300D4EB54 /* ximapng.cpp */; };
+		C92685DB1621667300D4EB54 /* ximapng.h in Headers */ = {isa = PBXBuildFile; fileRef = C92685BB1621667300D4EB54 /* ximapng.h */; };
+		C92685DC1621667300D4EB54 /* ximapsd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C92685BC1621667300D4EB54 /* ximapsd.cpp */; };
+		C92685DD1621667300D4EB54 /* ximapsd.h in Headers */ = {isa = PBXBuildFile; fileRef = C92685BD1621667300D4EB54 /* ximapsd.h */; };
+		C92685DE1621667300D4EB54 /* ximaraw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C92685BE1621667300D4EB54 /* ximaraw.cpp */; };
+		C92685DF1621667300D4EB54 /* ximaraw.h in Headers */ = {isa = PBXBuildFile; fileRef = C92685BF1621667300D4EB54 /* ximaraw.h */; };
+		C92685E01621667300D4EB54 /* ximaska.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C92685C01621667300D4EB54 /* ximaska.cpp */; };
+		C92685E11621667300D4EB54 /* ximaska.h in Headers */ = {isa = PBXBuildFile; fileRef = C92685C11621667300D4EB54 /* ximaska.h */; };
+		C92685E21621667300D4EB54 /* ximatga.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C92685C21621667300D4EB54 /* ximatga.cpp */; };
+		C92685E31621667300D4EB54 /* ximatga.h in Headers */ = {isa = PBXBuildFile; fileRef = C92685C31621667300D4EB54 /* ximatga.h */; };
+		C92685E41621667300D4EB54 /* ximatif.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C92685C41621667300D4EB54 /* ximatif.cpp */; };
+		C92685E51621667300D4EB54 /* ximatif.h in Headers */ = {isa = PBXBuildFile; fileRef = C92685C51621667300D4EB54 /* ximatif.h */; };
+		C92685E61621667300D4EB54 /* ximawbmp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C92685C61621667300D4EB54 /* ximawbmp.cpp */; };
+		C92685E71621667300D4EB54 /* ximawbmp.h in Headers */ = {isa = PBXBuildFile; fileRef = C92685C71621667300D4EB54 /* ximawbmp.h */; };
+		C92685E81621667300D4EB54 /* ximawmf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C92685C81621667300D4EB54 /* ximawmf.cpp */; };
+		C92685E91621667300D4EB54 /* ximawmf.h in Headers */ = {isa = PBXBuildFile; fileRef = C92685C91621667300D4EB54 /* ximawmf.h */; };
 		C935CA6C1612A6EF00C72CD1 /* Types.h in Headers */ = {isa = PBXBuildFile; fileRef = C935CA6B1612A6EE00C72CD1 /* Types.h */; };
 		C9FA107A16102B9E0010C75D /* tif_xfile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA104216102B9E0010C75D /* tif_xfile.cpp */; };
-		C9FA107C16102B9E0010C75D /* ximabmp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA104416102B9E0010C75D /* ximabmp.cpp */; };
-		C9FA107D16102B9E0010C75D /* ximabmp.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FA104516102B9E0010C75D /* ximabmp.h */; };
 		C9FA107E16102B9E0010C75D /* ximacfg.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FA104616102B9E0010C75D /* ximacfg.h */; };
 		C9FA107F16102B9E0010C75D /* ximadef.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FA104716102B9E0010C75D /* ximadef.h */; };
 		C9FA108016102B9E0010C75D /* ximadsp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA104816102B9E0010C75D /* ximadsp.cpp */; };
 		C9FA108116102B9E0010C75D /* ximaenc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA104916102B9E0010C75D /* ximaenc.cpp */; };
 		C9FA108216102B9E0010C75D /* ximaexif.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA104A16102B9E0010C75D /* ximaexif.cpp */; };
 		C9FA108316102B9E0010C75D /* ximage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA104B16102B9E0010C75D /* ximage.cpp */; };
-		C9FA108516102B9E0010C75D /* ximagif.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA104D16102B9E0010C75D /* ximagif.cpp */; };
-		C9FA108616102B9E0010C75D /* ximagif.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FA104E16102B9E0010C75D /* ximagif.h */; };
 		C9FA108716102B9E0010C75D /* ximahist.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA104F16102B9E0010C75D /* ximahist.cpp */; };
-		C9FA108816102B9E0010C75D /* ximaico.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA105016102B9E0010C75D /* ximaico.cpp */; };
-		C9FA108916102B9E0010C75D /* ximaico.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FA105116102B9E0010C75D /* ximaico.h */; };
 		C9FA108A16102B9E0010C75D /* ximainfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA105216102B9E0010C75D /* ximainfo.cpp */; };
 		C9FA108B16102B9E0010C75D /* ximaint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA105316102B9E0010C75D /* ximaint.cpp */; };
-		C9FA108D16102B9E0010C75D /* ximajas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA105516102B9E0010C75D /* ximajas.cpp */; };
-		C9FA108E16102B9E0010C75D /* ximajas.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FA105616102B9E0010C75D /* ximajas.h */; };
-		C9FA108F16102B9E0010C75D /* ximajbg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA105716102B9E0010C75D /* ximajbg.cpp */; };
-		C9FA109016102B9E0010C75D /* ximajbg.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FA105816102B9E0010C75D /* ximajbg.h */; };
-		C9FA109116102B9E0010C75D /* ximajpg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA105916102B9E0010C75D /* ximajpg.cpp */; };
-		C9FA109216102B9E0010C75D /* ximajpg.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FA105A16102B9E0010C75D /* ximajpg.h */; };
 		C9FA109316102B9E0010C75D /* ximalpha.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA105B16102B9E0010C75D /* ximalpha.cpp */; };
 		C9FA109416102B9E0010C75D /* ximalyr.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA105C16102B9E0010C75D /* ximalyr.cpp */; };
-		C9FA109516102B9E0010C75D /* ximamng.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA105D16102B9E0010C75D /* ximamng.cpp */; };
-		C9FA109616102B9E0010C75D /* ximamng.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FA105E16102B9E0010C75D /* ximamng.h */; };
 		C9FA109716102B9E0010C75D /* ximapal.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA105F16102B9E0010C75D /* ximapal.cpp */; };
-		C9FA109816102B9E0010C75D /* ximapcx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA106016102B9E0010C75D /* ximapcx.cpp */; };
-		C9FA109916102B9E0010C75D /* ximapcx.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FA106116102B9E0010C75D /* ximapcx.h */; };
-		C9FA109A16102B9E0010C75D /* ximapng.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA106216102B9E0010C75D /* ximapng.cpp */; };
-		C9FA109B16102B9E0010C75D /* ximapng.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FA106316102B9E0010C75D /* ximapng.h */; };
-		C9FA109C16102B9E0010C75D /* ximapsd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA106416102B9E0010C75D /* ximapsd.cpp */; };
-		C9FA109D16102B9E0010C75D /* ximapsd.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FA106516102B9E0010C75D /* ximapsd.h */; };
-		C9FA109E16102B9E0010C75D /* ximaraw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA106616102B9E0010C75D /* ximaraw.cpp */; };
-		C9FA109F16102B9E0010C75D /* ximaraw.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FA106716102B9E0010C75D /* ximaraw.h */; };
 		C9FA10A016102B9E0010C75D /* ximasel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA106816102B9E0010C75D /* ximasel.cpp */; };
-		C9FA10A116102B9E0010C75D /* ximaska.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA106916102B9E0010C75D /* ximaska.cpp */; };
-		C9FA10A216102B9E0010C75D /* ximaska.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FA106A16102B9E0010C75D /* ximaska.h */; };
-		C9FA10A316102B9E0010C75D /* ximatga.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA106B16102B9E0010C75D /* ximatga.cpp */; };
-		C9FA10A416102B9E0010C75D /* ximatga.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FA106C16102B9E0010C75D /* ximatga.h */; };
 		C9FA10A516102B9E0010C75D /* ximath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA106D16102B9E0010C75D /* ximath.cpp */; };
 		C9FA10A616102B9E0010C75D /* ximath.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FA106E16102B9E0010C75D /* ximath.h */; };
-		C9FA10A716102B9E0010C75D /* ximatif.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA106F16102B9E0010C75D /* ximatif.cpp */; };
-		C9FA10A816102B9E0010C75D /* ximatif.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FA107016102B9E0010C75D /* ximatif.h */; };
 		C9FA10A916102B9E0010C75D /* ximatran.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA107116102B9E0010C75D /* ximatran.cpp */; };
-		C9FA10AA16102B9E0010C75D /* ximawbmp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA107216102B9E0010C75D /* ximawbmp.cpp */; };
-		C9FA10AB16102B9E0010C75D /* ximawbmp.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FA107316102B9E0010C75D /* ximawbmp.h */; };
-		C9FA10AC16102B9E0010C75D /* ximawmf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA107416102B9E0010C75D /* ximawmf.cpp */; };
-		C9FA10AD16102B9E0010C75D /* ximawmf.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FA107516102B9E0010C75D /* ximawmf.h */; };
 		C9FA10AE16102B9E0010C75D /* ximawnd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA107616102B9E0010C75D /* ximawnd.cpp */; };
-		C9FA10B016102B9E0010C75D /* xmemfile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA107816102B9E0010C75D /* xmemfile.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,59 +71,58 @@
 		C92685A216215C6800D4EB54 /* CxIOFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CxIOFile.h; path = Source/cppimage/CxIOFile.h; sourceTree = "<group>"; };
 		C92685A316215C6800D4EB54 /* CxMemFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CxMemFile.h; path = Source/cppimage/CxMemFile.h; sourceTree = "<group>"; };
 		C92685A716215C8600D4EB54 /* CImageIterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CImageIterator.h; path = Source/cppimage/CImageIterator.h; sourceTree = "<group>"; };
+		C92685AA1621667300D4EB54 /* ximabmp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ximabmp.cpp; sourceTree = "<group>"; };
+		C92685AB1621667300D4EB54 /* ximabmp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ximabmp.h; sourceTree = "<group>"; };
+		C92685AC1621667300D4EB54 /* ximagif.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ximagif.cpp; sourceTree = "<group>"; };
+		C92685AD1621667300D4EB54 /* ximagif.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ximagif.h; sourceTree = "<group>"; };
+		C92685AE1621667300D4EB54 /* ximaico.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ximaico.cpp; sourceTree = "<group>"; };
+		C92685AF1621667300D4EB54 /* ximaico.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ximaico.h; sourceTree = "<group>"; };
+		C92685B01621667300D4EB54 /* ximajas.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ximajas.cpp; sourceTree = "<group>"; };
+		C92685B11621667300D4EB54 /* ximajas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ximajas.h; sourceTree = "<group>"; };
+		C92685B21621667300D4EB54 /* ximajbg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ximajbg.cpp; sourceTree = "<group>"; };
+		C92685B31621667300D4EB54 /* ximajbg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ximajbg.h; sourceTree = "<group>"; };
+		C92685B41621667300D4EB54 /* ximajpg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ximajpg.cpp; sourceTree = "<group>"; };
+		C92685B51621667300D4EB54 /* ximajpg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ximajpg.h; sourceTree = "<group>"; };
+		C92685B61621667300D4EB54 /* ximamng.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ximamng.cpp; sourceTree = "<group>"; };
+		C92685B71621667300D4EB54 /* ximamng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ximamng.h; sourceTree = "<group>"; };
+		C92685B81621667300D4EB54 /* ximapcx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ximapcx.cpp; sourceTree = "<group>"; };
+		C92685B91621667300D4EB54 /* ximapcx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ximapcx.h; sourceTree = "<group>"; };
+		C92685BA1621667300D4EB54 /* ximapng.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ximapng.cpp; sourceTree = "<group>"; };
+		C92685BB1621667300D4EB54 /* ximapng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ximapng.h; sourceTree = "<group>"; };
+		C92685BC1621667300D4EB54 /* ximapsd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ximapsd.cpp; sourceTree = "<group>"; };
+		C92685BD1621667300D4EB54 /* ximapsd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ximapsd.h; sourceTree = "<group>"; };
+		C92685BE1621667300D4EB54 /* ximaraw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ximaraw.cpp; sourceTree = "<group>"; };
+		C92685BF1621667300D4EB54 /* ximaraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ximaraw.h; sourceTree = "<group>"; };
+		C92685C01621667300D4EB54 /* ximaska.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ximaska.cpp; sourceTree = "<group>"; };
+		C92685C11621667300D4EB54 /* ximaska.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ximaska.h; sourceTree = "<group>"; };
+		C92685C21621667300D4EB54 /* ximatga.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ximatga.cpp; sourceTree = "<group>"; };
+		C92685C31621667300D4EB54 /* ximatga.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ximatga.h; sourceTree = "<group>"; };
+		C92685C41621667300D4EB54 /* ximatif.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ximatif.cpp; sourceTree = "<group>"; };
+		C92685C51621667300D4EB54 /* ximatif.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ximatif.h; sourceTree = "<group>"; };
+		C92685C61621667300D4EB54 /* ximawbmp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ximawbmp.cpp; sourceTree = "<group>"; };
+		C92685C71621667300D4EB54 /* ximawbmp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ximawbmp.h; sourceTree = "<group>"; };
+		C92685C81621667300D4EB54 /* ximawmf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ximawmf.cpp; sourceTree = "<group>"; };
+		C92685C91621667300D4EB54 /* ximawmf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ximawmf.h; sourceTree = "<group>"; };
 		C935CA6B1612A6EE00C72CD1 /* Types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Types.h; path = Source/cppimage/Types.h; sourceTree = "<group>"; };
 		C9FA0F541610296F0010C75D /* libcppimage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libcppimage.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9FA104216102B9E0010C75D /* tif_xfile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tif_xfile.cpp; path = Source/cppimage/tif_xfile.cpp; sourceTree = "<group>"; };
-		C9FA104416102B9E0010C75D /* ximabmp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximabmp.cpp; path = Source/cppimage/ximabmp.cpp; sourceTree = "<group>"; };
-		C9FA104516102B9E0010C75D /* ximabmp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ximabmp.h; path = Source/cppimage/ximabmp.h; sourceTree = "<group>"; };
 		C9FA104616102B9E0010C75D /* ximacfg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ximacfg.h; path = Source/cppimage/ximacfg.h; sourceTree = "<group>"; };
 		C9FA104716102B9E0010C75D /* ximadef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ximadef.h; path = Source/cppimage/ximadef.h; sourceTree = "<group>"; };
 		C9FA104816102B9E0010C75D /* ximadsp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximadsp.cpp; path = Source/cppimage/ximadsp.cpp; sourceTree = "<group>"; };
 		C9FA104916102B9E0010C75D /* ximaenc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximaenc.cpp; path = Source/cppimage/ximaenc.cpp; sourceTree = "<group>"; };
 		C9FA104A16102B9E0010C75D /* ximaexif.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximaexif.cpp; path = Source/cppimage/ximaexif.cpp; sourceTree = "<group>"; };
 		C9FA104B16102B9E0010C75D /* ximage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximage.cpp; path = Source/cppimage/ximage.cpp; sourceTree = "<group>"; };
-		C9FA104D16102B9E0010C75D /* ximagif.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximagif.cpp; path = Source/cppimage/ximagif.cpp; sourceTree = "<group>"; };
-		C9FA104E16102B9E0010C75D /* ximagif.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ximagif.h; path = Source/cppimage/ximagif.h; sourceTree = "<group>"; };
 		C9FA104F16102B9E0010C75D /* ximahist.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximahist.cpp; path = Source/cppimage/ximahist.cpp; sourceTree = "<group>"; };
-		C9FA105016102B9E0010C75D /* ximaico.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximaico.cpp; path = Source/cppimage/ximaico.cpp; sourceTree = "<group>"; };
-		C9FA105116102B9E0010C75D /* ximaico.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ximaico.h; path = Source/cppimage/ximaico.h; sourceTree = "<group>"; };
 		C9FA105216102B9E0010C75D /* ximainfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximainfo.cpp; path = Source/cppimage/ximainfo.cpp; sourceTree = "<group>"; };
 		C9FA105316102B9E0010C75D /* ximaint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximaint.cpp; path = Source/cppimage/ximaint.cpp; sourceTree = "<group>"; };
-		C9FA105516102B9E0010C75D /* ximajas.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximajas.cpp; path = Source/cppimage/ximajas.cpp; sourceTree = "<group>"; };
-		C9FA105616102B9E0010C75D /* ximajas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ximajas.h; path = Source/cppimage/ximajas.h; sourceTree = "<group>"; };
-		C9FA105716102B9E0010C75D /* ximajbg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximajbg.cpp; path = Source/cppimage/ximajbg.cpp; sourceTree = "<group>"; };
-		C9FA105816102B9E0010C75D /* ximajbg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ximajbg.h; path = Source/cppimage/ximajbg.h; sourceTree = "<group>"; };
-		C9FA105916102B9E0010C75D /* ximajpg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximajpg.cpp; path = Source/cppimage/ximajpg.cpp; sourceTree = "<group>"; };
-		C9FA105A16102B9E0010C75D /* ximajpg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ximajpg.h; path = Source/cppimage/ximajpg.h; sourceTree = "<group>"; };
 		C9FA105B16102B9E0010C75D /* ximalpha.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximalpha.cpp; path = Source/cppimage/ximalpha.cpp; sourceTree = "<group>"; };
 		C9FA105C16102B9E0010C75D /* ximalyr.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximalyr.cpp; path = Source/cppimage/ximalyr.cpp; sourceTree = "<group>"; };
-		C9FA105D16102B9E0010C75D /* ximamng.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximamng.cpp; path = Source/cppimage/ximamng.cpp; sourceTree = "<group>"; };
-		C9FA105E16102B9E0010C75D /* ximamng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ximamng.h; path = Source/cppimage/ximamng.h; sourceTree = "<group>"; };
 		C9FA105F16102B9E0010C75D /* ximapal.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximapal.cpp; path = Source/cppimage/ximapal.cpp; sourceTree = "<group>"; };
-		C9FA106016102B9E0010C75D /* ximapcx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximapcx.cpp; path = Source/cppimage/ximapcx.cpp; sourceTree = "<group>"; };
-		C9FA106116102B9E0010C75D /* ximapcx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ximapcx.h; path = Source/cppimage/ximapcx.h; sourceTree = "<group>"; };
-		C9FA106216102B9E0010C75D /* ximapng.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximapng.cpp; path = Source/cppimage/ximapng.cpp; sourceTree = "<group>"; };
-		C9FA106316102B9E0010C75D /* ximapng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ximapng.h; path = Source/cppimage/ximapng.h; sourceTree = "<group>"; };
-		C9FA106416102B9E0010C75D /* ximapsd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximapsd.cpp; path = Source/cppimage/ximapsd.cpp; sourceTree = "<group>"; };
-		C9FA106516102B9E0010C75D /* ximapsd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ximapsd.h; path = Source/cppimage/ximapsd.h; sourceTree = "<group>"; };
-		C9FA106616102B9E0010C75D /* ximaraw.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximaraw.cpp; path = Source/cppimage/ximaraw.cpp; sourceTree = "<group>"; };
-		C9FA106716102B9E0010C75D /* ximaraw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ximaraw.h; path = Source/cppimage/ximaraw.h; sourceTree = "<group>"; };
 		C9FA106816102B9E0010C75D /* ximasel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximasel.cpp; path = Source/cppimage/ximasel.cpp; sourceTree = "<group>"; };
-		C9FA106916102B9E0010C75D /* ximaska.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximaska.cpp; path = Source/cppimage/ximaska.cpp; sourceTree = "<group>"; };
-		C9FA106A16102B9E0010C75D /* ximaska.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ximaska.h; path = Source/cppimage/ximaska.h; sourceTree = "<group>"; };
-		C9FA106B16102B9E0010C75D /* ximatga.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximatga.cpp; path = Source/cppimage/ximatga.cpp; sourceTree = "<group>"; };
-		C9FA106C16102B9E0010C75D /* ximatga.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ximatga.h; path = Source/cppimage/ximatga.h; sourceTree = "<group>"; };
 		C9FA106D16102B9E0010C75D /* ximath.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximath.cpp; path = Source/cppimage/ximath.cpp; sourceTree = "<group>"; };
 		C9FA106E16102B9E0010C75D /* ximath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ximath.h; path = Source/cppimage/ximath.h; sourceTree = "<group>"; };
-		C9FA106F16102B9E0010C75D /* ximatif.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximatif.cpp; path = Source/cppimage/ximatif.cpp; sourceTree = "<group>"; };
-		C9FA107016102B9E0010C75D /* ximatif.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ximatif.h; path = Source/cppimage/ximatif.h; sourceTree = "<group>"; };
 		C9FA107116102B9E0010C75D /* ximatran.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximatran.cpp; path = Source/cppimage/ximatran.cpp; sourceTree = "<group>"; };
-		C9FA107216102B9E0010C75D /* ximawbmp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximawbmp.cpp; path = Source/cppimage/ximawbmp.cpp; sourceTree = "<group>"; };
-		C9FA107316102B9E0010C75D /* ximawbmp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ximawbmp.h; path = Source/cppimage/ximawbmp.h; sourceTree = "<group>"; };
-		C9FA107416102B9E0010C75D /* ximawmf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximawmf.cpp; path = Source/cppimage/ximawmf.cpp; sourceTree = "<group>"; };
-		C9FA107516102B9E0010C75D /* ximawmf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ximawmf.h; path = Source/cppimage/ximawmf.h; sourceTree = "<group>"; };
 		C9FA107616102B9E0010C75D /* ximawnd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximawnd.cpp; path = Source/cppimage/ximawnd.cpp; sourceTree = "<group>"; };
-		C9FA107816102B9E0010C75D /* xmemfile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xmemfile.cpp; path = Source/cppimage/xmemfile.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +136,46 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C92685A91621667300D4EB54 /* formatSpecific */ = {
+			isa = PBXGroup;
+			children = (
+				C92685AA1621667300D4EB54 /* ximabmp.cpp */,
+				C92685AB1621667300D4EB54 /* ximabmp.h */,
+				C92685AC1621667300D4EB54 /* ximagif.cpp */,
+				C92685AD1621667300D4EB54 /* ximagif.h */,
+				C92685AE1621667300D4EB54 /* ximaico.cpp */,
+				C92685AF1621667300D4EB54 /* ximaico.h */,
+				C92685B01621667300D4EB54 /* ximajas.cpp */,
+				C92685B11621667300D4EB54 /* ximajas.h */,
+				C92685B21621667300D4EB54 /* ximajbg.cpp */,
+				C92685B31621667300D4EB54 /* ximajbg.h */,
+				C92685B41621667300D4EB54 /* ximajpg.cpp */,
+				C92685B51621667300D4EB54 /* ximajpg.h */,
+				C92685B61621667300D4EB54 /* ximamng.cpp */,
+				C92685B71621667300D4EB54 /* ximamng.h */,
+				C92685B81621667300D4EB54 /* ximapcx.cpp */,
+				C92685B91621667300D4EB54 /* ximapcx.h */,
+				C92685BA1621667300D4EB54 /* ximapng.cpp */,
+				C92685BB1621667300D4EB54 /* ximapng.h */,
+				C92685BC1621667300D4EB54 /* ximapsd.cpp */,
+				C92685BD1621667300D4EB54 /* ximapsd.h */,
+				C92685BE1621667300D4EB54 /* ximaraw.cpp */,
+				C92685BF1621667300D4EB54 /* ximaraw.h */,
+				C92685C01621667300D4EB54 /* ximaska.cpp */,
+				C92685C11621667300D4EB54 /* ximaska.h */,
+				C92685C21621667300D4EB54 /* ximatga.cpp */,
+				C92685C31621667300D4EB54 /* ximatga.h */,
+				C92685C41621667300D4EB54 /* ximatif.cpp */,
+				C92685C51621667300D4EB54 /* ximatif.h */,
+				C92685C61621667300D4EB54 /* ximawbmp.cpp */,
+				C92685C71621667300D4EB54 /* ximawbmp.h */,
+				C92685C81621667300D4EB54 /* ximawmf.cpp */,
+				C92685C91621667300D4EB54 /* ximawmf.h */,
+			);
+			name = formatSpecific;
+			path = Source/cppimage/formatSpecific;
+			sourceTree = "<group>";
+		};
 		C9FA0F491610296F0010C75D = {
 			isa = PBXGroup;
 			children = (
@@ -157,62 +195,30 @@
 		C9FA0F5B1610297E0010C75D /* CppImage */ = {
 			isa = PBXGroup;
 			children = (
+				C92685A91621667300D4EB54 /* formatSpecific */,
 				C92685A716215C8600D4EB54 /* CImageIterator.h */,
 				C92685A116215C6800D4EB54 /* CxImage.h */,
 				C92685A216215C6800D4EB54 /* CxIOFile.h */,
 				C92685A316215C6800D4EB54 /* CxMemFile.h */,
 				C926859E16215C5500D4EB54 /* CxFile.h */,
 				C9FA104216102B9E0010C75D /* tif_xfile.cpp */,
-				C9FA104416102B9E0010C75D /* ximabmp.cpp */,
-				C9FA104516102B9E0010C75D /* ximabmp.h */,
 				C9FA104616102B9E0010C75D /* ximacfg.h */,
 				C9FA104716102B9E0010C75D /* ximadef.h */,
 				C9FA104816102B9E0010C75D /* ximadsp.cpp */,
 				C9FA104916102B9E0010C75D /* ximaenc.cpp */,
 				C9FA104A16102B9E0010C75D /* ximaexif.cpp */,
 				C9FA104B16102B9E0010C75D /* ximage.cpp */,
-				C9FA104D16102B9E0010C75D /* ximagif.cpp */,
-				C9FA104E16102B9E0010C75D /* ximagif.h */,
 				C9FA104F16102B9E0010C75D /* ximahist.cpp */,
-				C9FA105016102B9E0010C75D /* ximaico.cpp */,
-				C9FA105116102B9E0010C75D /* ximaico.h */,
 				C9FA105216102B9E0010C75D /* ximainfo.cpp */,
 				C9FA105316102B9E0010C75D /* ximaint.cpp */,
-				C9FA105516102B9E0010C75D /* ximajas.cpp */,
-				C9FA105616102B9E0010C75D /* ximajas.h */,
-				C9FA105716102B9E0010C75D /* ximajbg.cpp */,
-				C9FA105816102B9E0010C75D /* ximajbg.h */,
-				C9FA105916102B9E0010C75D /* ximajpg.cpp */,
-				C9FA105A16102B9E0010C75D /* ximajpg.h */,
 				C9FA105B16102B9E0010C75D /* ximalpha.cpp */,
 				C9FA105C16102B9E0010C75D /* ximalyr.cpp */,
-				C9FA105D16102B9E0010C75D /* ximamng.cpp */,
-				C9FA105E16102B9E0010C75D /* ximamng.h */,
 				C9FA105F16102B9E0010C75D /* ximapal.cpp */,
-				C9FA106016102B9E0010C75D /* ximapcx.cpp */,
-				C9FA106116102B9E0010C75D /* ximapcx.h */,
-				C9FA106216102B9E0010C75D /* ximapng.cpp */,
-				C9FA106316102B9E0010C75D /* ximapng.h */,
-				C9FA106416102B9E0010C75D /* ximapsd.cpp */,
-				C9FA106516102B9E0010C75D /* ximapsd.h */,
-				C9FA106616102B9E0010C75D /* ximaraw.cpp */,
-				C9FA106716102B9E0010C75D /* ximaraw.h */,
 				C9FA106816102B9E0010C75D /* ximasel.cpp */,
-				C9FA106916102B9E0010C75D /* ximaska.cpp */,
-				C9FA106A16102B9E0010C75D /* ximaska.h */,
-				C9FA106B16102B9E0010C75D /* ximatga.cpp */,
-				C9FA106C16102B9E0010C75D /* ximatga.h */,
 				C9FA106D16102B9E0010C75D /* ximath.cpp */,
 				C9FA106E16102B9E0010C75D /* ximath.h */,
-				C9FA106F16102B9E0010C75D /* ximatif.cpp */,
-				C9FA107016102B9E0010C75D /* ximatif.h */,
 				C9FA107116102B9E0010C75D /* ximatran.cpp */,
-				C9FA107216102B9E0010C75D /* ximawbmp.cpp */,
-				C9FA107316102B9E0010C75D /* ximawbmp.h */,
-				C9FA107416102B9E0010C75D /* ximawmf.cpp */,
-				C9FA107516102B9E0010C75D /* ximawmf.h */,
 				C9FA107616102B9E0010C75D /* ximawnd.cpp */,
-				C9FA107816102B9E0010C75D /* xmemfile.cpp */,
 				C935CA6B1612A6EE00C72CD1 /* Types.h */,
 			);
 			name = CppImage;
@@ -225,31 +231,31 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9FA107D16102B9E0010C75D /* ximabmp.h in Headers */,
 				C9FA107E16102B9E0010C75D /* ximacfg.h in Headers */,
 				C9FA107F16102B9E0010C75D /* ximadef.h in Headers */,
-				C9FA108616102B9E0010C75D /* ximagif.h in Headers */,
-				C9FA108916102B9E0010C75D /* ximaico.h in Headers */,
-				C9FA108E16102B9E0010C75D /* ximajas.h in Headers */,
-				C9FA109016102B9E0010C75D /* ximajbg.h in Headers */,
-				C9FA109216102B9E0010C75D /* ximajpg.h in Headers */,
-				C9FA109616102B9E0010C75D /* ximamng.h in Headers */,
-				C9FA109916102B9E0010C75D /* ximapcx.h in Headers */,
-				C9FA109B16102B9E0010C75D /* ximapng.h in Headers */,
-				C9FA109D16102B9E0010C75D /* ximapsd.h in Headers */,
-				C9FA109F16102B9E0010C75D /* ximaraw.h in Headers */,
-				C9FA10A216102B9E0010C75D /* ximaska.h in Headers */,
-				C9FA10A416102B9E0010C75D /* ximatga.h in Headers */,
 				C9FA10A616102B9E0010C75D /* ximath.h in Headers */,
-				C9FA10A816102B9E0010C75D /* ximatif.h in Headers */,
-				C9FA10AB16102B9E0010C75D /* ximawbmp.h in Headers */,
-				C9FA10AD16102B9E0010C75D /* ximawmf.h in Headers */,
 				C935CA6C1612A6EF00C72CD1 /* Types.h in Headers */,
 				C926859F16215C5500D4EB54 /* CxFile.h in Headers */,
 				C92685A416215C6800D4EB54 /* CxImage.h in Headers */,
 				C92685A516215C6800D4EB54 /* CxIOFile.h in Headers */,
 				C92685A616215C6800D4EB54 /* CxMemFile.h in Headers */,
 				C92685A816215C8600D4EB54 /* CImageIterator.h in Headers */,
+				C92685CB1621667300D4EB54 /* ximabmp.h in Headers */,
+				C92685CD1621667300D4EB54 /* ximagif.h in Headers */,
+				C92685CF1621667300D4EB54 /* ximaico.h in Headers */,
+				C92685D11621667300D4EB54 /* ximajas.h in Headers */,
+				C92685D31621667300D4EB54 /* ximajbg.h in Headers */,
+				C92685D51621667300D4EB54 /* ximajpg.h in Headers */,
+				C92685D71621667300D4EB54 /* ximamng.h in Headers */,
+				C92685D91621667300D4EB54 /* ximapcx.h in Headers */,
+				C92685DB1621667300D4EB54 /* ximapng.h in Headers */,
+				C92685DD1621667300D4EB54 /* ximapsd.h in Headers */,
+				C92685DF1621667300D4EB54 /* ximaraw.h in Headers */,
+				C92685E11621667300D4EB54 /* ximaska.h in Headers */,
+				C92685E31621667300D4EB54 /* ximatga.h in Headers */,
+				C92685E51621667300D4EB54 /* ximatif.h in Headers */,
+				C92685E71621667300D4EB54 /* ximawbmp.h in Headers */,
+				C92685E91621667300D4EB54 /* ximawmf.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,37 +311,36 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9FA107A16102B9E0010C75D /* tif_xfile.cpp in Sources */,
-				C9FA107C16102B9E0010C75D /* ximabmp.cpp in Sources */,
 				C9FA108016102B9E0010C75D /* ximadsp.cpp in Sources */,
 				C9FA108116102B9E0010C75D /* ximaenc.cpp in Sources */,
 				C9FA108216102B9E0010C75D /* ximaexif.cpp in Sources */,
 				C9FA108316102B9E0010C75D /* ximage.cpp in Sources */,
-				C9FA108516102B9E0010C75D /* ximagif.cpp in Sources */,
 				C9FA108716102B9E0010C75D /* ximahist.cpp in Sources */,
-				C9FA108816102B9E0010C75D /* ximaico.cpp in Sources */,
 				C9FA108A16102B9E0010C75D /* ximainfo.cpp in Sources */,
 				C9FA108B16102B9E0010C75D /* ximaint.cpp in Sources */,
-				C9FA108D16102B9E0010C75D /* ximajas.cpp in Sources */,
-				C9FA108F16102B9E0010C75D /* ximajbg.cpp in Sources */,
-				C9FA109116102B9E0010C75D /* ximajpg.cpp in Sources */,
 				C9FA109316102B9E0010C75D /* ximalpha.cpp in Sources */,
 				C9FA109416102B9E0010C75D /* ximalyr.cpp in Sources */,
-				C9FA109516102B9E0010C75D /* ximamng.cpp in Sources */,
 				C9FA109716102B9E0010C75D /* ximapal.cpp in Sources */,
-				C9FA109816102B9E0010C75D /* ximapcx.cpp in Sources */,
-				C9FA109A16102B9E0010C75D /* ximapng.cpp in Sources */,
-				C9FA109C16102B9E0010C75D /* ximapsd.cpp in Sources */,
-				C9FA109E16102B9E0010C75D /* ximaraw.cpp in Sources */,
 				C9FA10A016102B9E0010C75D /* ximasel.cpp in Sources */,
-				C9FA10A116102B9E0010C75D /* ximaska.cpp in Sources */,
-				C9FA10A316102B9E0010C75D /* ximatga.cpp in Sources */,
 				C9FA10A516102B9E0010C75D /* ximath.cpp in Sources */,
-				C9FA10A716102B9E0010C75D /* ximatif.cpp in Sources */,
 				C9FA10A916102B9E0010C75D /* ximatran.cpp in Sources */,
-				C9FA10AA16102B9E0010C75D /* ximawbmp.cpp in Sources */,
-				C9FA10AC16102B9E0010C75D /* ximawmf.cpp in Sources */,
 				C9FA10AE16102B9E0010C75D /* ximawnd.cpp in Sources */,
-				C9FA10B016102B9E0010C75D /* xmemfile.cpp in Sources */,
+				C92685CA1621667300D4EB54 /* ximabmp.cpp in Sources */,
+				C92685CC1621667300D4EB54 /* ximagif.cpp in Sources */,
+				C92685CE1621667300D4EB54 /* ximaico.cpp in Sources */,
+				C92685D01621667300D4EB54 /* ximajas.cpp in Sources */,
+				C92685D21621667300D4EB54 /* ximajbg.cpp in Sources */,
+				C92685D41621667300D4EB54 /* ximajpg.cpp in Sources */,
+				C92685D61621667300D4EB54 /* ximamng.cpp in Sources */,
+				C92685D81621667300D4EB54 /* ximapcx.cpp in Sources */,
+				C92685DA1621667300D4EB54 /* ximapng.cpp in Sources */,
+				C92685DC1621667300D4EB54 /* ximapsd.cpp in Sources */,
+				C92685DE1621667300D4EB54 /* ximaraw.cpp in Sources */,
+				C92685E01621667300D4EB54 /* ximaska.cpp in Sources */,
+				C92685E21621667300D4EB54 /* ximatga.cpp in Sources */,
+				C92685E41621667300D4EB54 /* ximatif.cpp in Sources */,
+				C92685E61621667300D4EB54 /* ximawbmp.cpp in Sources */,
+				C92685E81621667300D4EB54 /* ximawmf.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
