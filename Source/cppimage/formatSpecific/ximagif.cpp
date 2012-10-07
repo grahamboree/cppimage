@@ -68,7 +68,7 @@ bool CxImageGIF::Decode(CxFile *fp)
 
 	fp->Read(&dscgif,/*sizeof(dscgif)*/13,1);
 	//if (strncmp(dscgif.header,"GIF8",3)!=0) {
-	if (strncmp(dscgif.header,"GIF8",4)!=0) return FALSE;
+	if (strncmp(dscgif.header,"GIF8",4)!=0) return false;
 
 	// Avoid Byte order problem with Mac <AMSN>
 	dscgif.scrheight = m_ntohs(dscgif.scrheight);
@@ -89,14 +89,14 @@ bool CxImageGIF::Decode(CxFile *fp)
 	// assume that the image is a truecolor-gif if
 	// 1) no global color map found
 	// 2) (image.w, image.h) of the 1st image != (dscgif.scrwidth, dscgif.scrheight)
-	int32_t bTrueColor=0;
+	int32_t btrueColor=0;
 	CxImage* imaRGB=NULL;
 
 	// Global colour map?
 	if (dscgif.pflds & 0x80)
 		fp->Read(TabCol.paleta,sizeof(struct rgb_color)*TabCol.sogct,1);
 	else 
-		bTrueColor++;	//first chance for a truecolor gif
+		btrueColor++;	//first chance for a truecolor gif
 
 	int32_t first_transparent_index = 0;
 
@@ -107,14 +107,14 @@ bool CxImageGIF::Decode(CxFile *fp)
 
 	//it cannot be a true color GIF with only one frame
 	if (info.nNumFrames == 1)
-		bTrueColor=0;
+		btrueColor=0;
 
 	char ch;
 	bool bPreviousWasNull = true;
 	int32_t  prevdispmeth = 0;
 	CxImage *previousFrame = NULL;
 
-	for (BOOL bContinue = TRUE; bContinue; )
+	for (bool bContinue = true; bContinue; )
 	{
 		if (fp->Read(&ch, sizeof(ch), 1) != 1) {break;}
 
@@ -143,7 +143,7 @@ bool CxImageGIF::Decode(CxFile *fp)
 
 				// check if it could be a truecolor gif
 				if ((iImage==0) && (image.w != dscgif.scrwidth) && (image.h != dscgif.scrheight))
-					bTrueColor++;
+					btrueColor++;
 
 				rgb_color  locpal[256];				//Local Palette 
 				rgb_color* pcurpal = TabCol.paleta;	//Current Palette 
@@ -255,7 +255,7 @@ bool CxImageGIF::Decode(CxFile *fp)
 
 				if (info.nEscape) return false; // <vho> - cancel decoding
 
-				if (bTrueColor<2 ){ //standard GIF: mix frame with background
+				if (btrueColor<2 ){ //standard GIF: mix frame with background
 					backimage.IncreaseBpp(bpp);
 					backimage.GifMix(*this,image);
 					backimage.SetTransIndex(first_transparent_index);
@@ -314,7 +314,7 @@ bool CxImageGIF::Decode(CxFile *fp)
 		}
 	}
 
-	if (bTrueColor>=2 && imaRGB){
+	if (btrueColor>=2 && imaRGB){
 		if (gifgce.flags & 0x1){
 			imaRGB->SetTransColor(GetPaletteColor((uint8_t)info.nBkgndIndex));
 			imaRGB->SetTransIndex(0);
@@ -472,7 +472,7 @@ bool CxImageGIF::Encode(CxFile * fp)
 
 	if(head.biBitCount > 8)	{
 		//strcpy(info.szLastError,"GIF Images must be 8 bit or less");
-		//return FALSE;
+		//return false;
 		return EncodeRGB(fp);
 	}
 
@@ -1271,7 +1271,7 @@ int32_t CxImageGIF::get_num_frames(CxFile *fp,struct_TabCol* TabColSrc,struct_ds
 	char ch;
 	bool bPreviousWasNull = true;
 
-	for (BOOL bContinue = TRUE; bContinue; )
+	for (bool bContinue = true; bContinue; )
 	{
 		if (fp->Read(&ch, sizeof(ch), 1) != 1) {break;}
 

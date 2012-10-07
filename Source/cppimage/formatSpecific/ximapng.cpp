@@ -543,10 +543,10 @@ bool CxImagePNG::Encode(CxFile *hFile)
 
   } cx_catch {
 	if (strcmp(message,"")) strncpy(info.szLastError,message,255);
-	return FALSE;
+	return false;
   }
 	/* that's it */
-	return TRUE;
+	return true;
 }
 ////////////////////////////////////////////////////////////////////////////////
 #endif // CXIMAGE_SUPPORT_ENCODE

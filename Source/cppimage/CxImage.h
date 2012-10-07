@@ -250,7 +250,7 @@ public: //public structures
 		int32_t	align;      ///< DT_CENTER, DT_RIGHT, DT_LEFT aligment for multiline text
 		uint8_t	smooth;     ///< text smoothing option. Default is false.
 		uint8_t	opaque;     ///< text has background or hasn't. Default is true.
-							///< data for background (ignored if .opaque==FALSE) 
+							///< data for background (ignored if .opaque==false) 
 		COLORREF bcolor;    ///< background color
 		float	b_opacity;	///< opacity value for background between 0.0-1.0 Default is 0. (opaque)
 		uint8_t	b_outline;	///< outline width for background (zero: no outline)

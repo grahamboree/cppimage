@@ -32,9 +32,9 @@ static void mymngfree(mng_ptr p, mng_size_t size)
 // Stream open/close:
 // since the user is responsible for opening and closing the file,
 // we leave the default implementation open
-static mng_bool mymngopenstream(mng_handle mng)      { return MNG_TRUE; }
-static mng_bool mymngopenstreamwrite(mng_handle mng) { return MNG_TRUE; }
-static mng_bool mymngclosestream(mng_handle mng)     { return MNG_TRUE; }
+static mng_bool mymngopenstream(mng_handle mng)      { return MNG_true; }
+static mng_bool mymngopenstreamwrite(mng_handle mng) { return MNG_true; }
+static mng_bool mymngclosestream(mng_handle mng)     { return MNG_true; }
 
 ////////////////////////////////////////////////////////////////////////////////
 // feed data to the decoder
@@ -43,7 +43,7 @@ static mng_bool mymngreadstream(mng_handle mng, mng_ptr buffer, mng_uint32 size,
 	mngstuff *mymng = (mngstuff *)mng_get_userdata(mng);
 	// read the requested amount of data from the file
 	*bytesread = mymng->file->Read( buffer, sizeof(uint8_t), size);
-	return MNG_TRUE;
+	return MNG_true;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -52,7 +52,7 @@ static mng_bool mymngwritestream (mng_handle mng, mng_ptr pBuf, mng_uint32 iSize
 	mngstuff *mymng = (mngstuff *)mng_get_userdata(mng);
 	// write it
 	*iWritten = mymng->file->Write (pBuf, 1, iSize);
-	return MNG_TRUE;
+	return MNG_true;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -87,7 +87,7 @@ static mng_bool mymngprocessheader( mng_handle mng, mng_uint32 width, mng_uint32
 	mng_set_canvasstyle( mng, MNG_CANVAS_BGR8);
 	mymng->alpha = NULL;
 #endif
-	return MNG_TRUE;
+	return MNG_true;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -121,7 +121,7 @@ static mng_uint32 mymnggetticks(mng_handle mng)
 static mng_bool mymngrefresh(mng_handle mng, mng_uint32 x, mng_uint32 y, mng_uint32 w, mng_uint32 h)
 {
 //	mngstuff *mymng = (mngstuff *)mng_get_userdata(mng);
-	return MNG_TRUE;
+	return MNG_true;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -130,7 +130,7 @@ static mng_bool mymngsettimer(mng_handle mng, mng_uint32 msecs)
 {
 	mngstuff *mymng = (mngstuff *)mng_get_userdata(mng);
 	mymng->delay = msecs; 	// set the timer for when the decoder wants to be woken
-	return MNG_TRUE;
+	return MNG_true;
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -210,18 +210,18 @@ bool CxImageMNG::Decode(CxFile *hFile)
 		mnginfo.file = hFile;
 
 		// Set the colorprofile, lcms uses this:
-		mng_set_srgb(hmng, MNG_TRUE );
+		mng_set_srgb(hmng, MNG_true );
 		// Set white as background color:
 		uint16_t Red,Green,Blue;
 		Red = Green = Blue = (255 << 8) + 255;
 		mng_set_bgcolor(hmng, Red, Green, Blue );
 		// If PNG Background is available, use it:
-		mng_set_usebkgd(hmng, MNG_TRUE );
+		mng_set_usebkgd(hmng, MNG_true );
 
 		// No need to store chunks:
-		mng_set_storechunks(hmng, MNG_FALSE);
+		mng_set_storechunks(hmng, MNG_false);
 		// No need to wait: straight reading
-		mng_set_suspensionmode(hmng, MNG_FALSE);
+		mng_set_suspensionmode(hmng, MNG_false);
 
 		SetCallbacks(hmng);
 
@@ -354,7 +354,7 @@ void CxImageMNG::WritePNG( mng_handle hMNG, int32_t Frame, int32_t FrameCount )
 	if( tmpbuffer == 0 ) return;
 
 	// Write DEFI chunk.
-	mng_putchunk_defi( hMNG, 0, 0, 0, MNG_TRUE, OffsetX, OffsetY, MNG_FALSE, 0, 0, 0, 0 );
+	mng_putchunk_defi( hMNG, 0, 0, 0, MNG_true, OffsetX, OffsetY, MNG_false, 0, 0, 0, 0 );
  		 
 	// Write Header:
 	mng_putchunk_ihdr(

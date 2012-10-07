@@ -62,7 +62,7 @@ bool CxImageWBMP::Decode(CxFile *hFile)
 
   } cx_catch {
 	if (strcmp(message,"")) strncpy(info.szLastError,message,255);
-	return FALSE;
+	return false;
   }
     return true;
 }

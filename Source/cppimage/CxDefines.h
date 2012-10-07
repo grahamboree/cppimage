@@ -108,6 +108,7 @@ typedef void*      HANDLE;
 typedef void*      HRGN;
 typedef unsigned char BYTE;
 
+/*
 #	ifndef BOOL
 #		define	BOOL bool
 #	endif
@@ -119,6 +120,7 @@ typedef unsigned char BYTE;
 #	ifndef FALSE
 #		define	FALSE false
 #	endif
+*/
 
 #	ifndef TCHAR
 #		define TCHAR char

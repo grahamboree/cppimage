@@ -51,7 +51,7 @@ int32_t NumColorEntries(int32_t nBitsPerPixel, int32_t nCompression, uint32_t bi
 	case 32:
 		nColors = 3;  break; // I've found that PocketPCs need this regardless of BI_RGB or BI_BITFIELDS
 	default:
-		ASSERT(FALSE);
+		ASSERT(false);
 	}
 	// If biClrUsed is provided, and it is a legal value, use it
 	if (biClrUsed > 0 && biClrUsed <= (uint32_t)nColors)
@@ -120,12 +120,12 @@ int32_t GetDIBits(
 	//4.1 Create 2 device contexts
 	HDC memDc = CreateCompatibleDC(NULL);
 	if (!memDc) {
-		ASSERT(FALSE);
+		ASSERT(false);
 	}
 	
 	HDC targetDc = CreateCompatibleDC(NULL);
 	if (!targetDc) {
-		ASSERT(FALSE);
+		ASSERT(false);
 	}
 
 	//4.2 Select source bitmap into one DC, target into another
@@ -325,10 +325,10 @@ bool CxImage::CreateFromHANDLE(HANDLE hMem)
 							uint8_t second_byte = 0;
 							int32_t scanline = 0;
 							int32_t bits = 0;
-							BOOL low_nibble = FALSE;
+							bool low_nibble = false;
 							CImageIterator iter(this);
 
-							for (BOOL bContinue = TRUE; bContinue; ) {
+							for (bool bContinue = true; bContinue; ) {
 								status_byte = *(lpDIBBits++);
 								switch (status_byte) {
 								case RLE_COMMAND :
@@ -337,10 +337,10 @@ bool CxImage::CreateFromHANDLE(HANDLE hMem)
 									case RLE_ENDOFLINE :
 										bits = 0;
 										scanline++;
-										low_nibble = FALSE;
+										low_nibble = false;
 										break;
 									case RLE_ENDOFBITMAP :
-										bContinue = FALSE;
+										bContinue = false;
 										break;
 									case RLE_DELTA :
 										{
@@ -418,7 +418,7 @@ bool CxImage::CreateFromHANDLE(HANDLE hMem)
 							int32_t bits = 0;
 							CImageIterator iter(this);
 
-							for (BOOL bContinue = TRUE; bContinue; ) {
+							for (bool bContinue = true; bContinue; ) {
 								status_byte = *(lpDIBBits++);
 								if (status_byte==RLE_COMMAND) {
 									status_byte = *(lpDIBBits++);
@@ -428,7 +428,7 @@ bool CxImage::CreateFromHANDLE(HANDLE hMem)
 										scanline++;
 										break;
 									case RLE_ENDOFBITMAP :
-										bContinue = FALSE;
+										bContinue = false;
 										break;
 									case RLE_DELTA :
 										{
@@ -460,7 +460,7 @@ bool CxImage::CreateFromHANDLE(HANDLE hMem)
 											*(sline + bits) = second_byte;
 											bits++;
 										} else {
-											bContinue = FALSE; //don't delete: we are in memory, it is not as with files
+											bContinue = false; //don't delete: we are in memory, it is not as with files
 											break;
 										}
 									}
@@ -505,7 +505,7 @@ HICON CxImage::MakeIcon(HDC hdc, bool bTransparency)
 
 	ICONINFO csDest;
 
-	csDest.fIcon = TRUE;
+	csDest.fIcon = true;
 	csDest.xHotspot = 0;
 	csDest.yHotspot = 0;
 
@@ -1755,7 +1755,7 @@ int32_t CxImage::DrawStringEx(HDC hdc, int32_t x, int32_t y, CXTEXTINFO *pTextTy
 	itext.Negative();
 
 #if CXIMAGE_SUPPORT_DSP
-	if (pTextType->smooth==FALSE){
+	if (pTextType->smooth==false){
 		itext.Threshold(128);
 	} else {
 		//itext.TextBlur();
@@ -1849,9 +1849,9 @@ void CxImage::InitTextInfo( CXTEXTINFO *txt )
     txt->lfont.lfWidth         = 0; 
     txt->lfont.lfEscapement    = 0; 
     txt->lfont.lfOrientation   = 0; 
-    txt->lfont.lfItalic        = FALSE; 
-    txt->lfont.lfUnderline     = FALSE; 
-    txt->lfont.lfStrikeOut     = FALSE; 
+    txt->lfont.lfItalic        = false; 
+    txt->lfont.lfUnderline     = false; 
+    txt->lfont.lfStrikeOut     = false; 
     txt->lfont.lfOutPrecision  = OUT_DEFAULT_PRECIS; 
     txt->lfont.lfClipPrecision = CLIP_DEFAULT_PRECIS; 
     txt->lfont.lfQuality       = PROOF_QUALITY; 
@@ -1863,8 +1863,8 @@ void CxImage::InitTextInfo( CXTEXTINFO *txt )
     txt->bcolor = RGB(   0, 80,160 );  // default background: light blue
 
     // background
-    txt->opaque    = TRUE;  // text has a non-transparent background;
-	txt->smooth    = TRUE;
+    txt->opaque    = true;  // text has a non-transparent background;
+	txt->smooth    = true;
     txt->b_opacity = 0.0;   // default: opaque background
     txt->b_outline = 0;     // default: no outline (OUTLINE NOT IMPLEMENTED AT THIS TIME)
     txt->b_round   = 20;    // default: rounding radius is 20% of the rectangle height

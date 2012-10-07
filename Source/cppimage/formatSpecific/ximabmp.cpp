@@ -278,10 +278,10 @@ bool CxImageBMP::Decode(CxFile * hFile)
 					uint8_t second_byte = 0;
 					int32_t scanline = 0;
 					int32_t bits = 0;
-					BOOL low_nibble = FALSE;
+					bool low_nibble = false;
 					CImageIterator iter(this);
 
-					for (BOOL bContinue = TRUE; bContinue && hFile->Read(&status_byte, sizeof(uint8_t), 1);)
+					for (bool bContinue = true; bContinue && hFile->Read(&status_byte, sizeof(uint8_t), 1);)
 					{
 						switch (status_byte)
 						{
@@ -292,10 +292,10 @@ bool CxImageBMP::Decode(CxFile * hFile)
 							case RLE_ENDOFLINE :
 								bits = 0;
 								scanline++;
-								low_nibble = FALSE;
+								low_nibble = false;
 								break;
 							case RLE_ENDOFBITMAP :
-								bContinue = FALSE;
+								bContinue = false;
 								break;
 							case RLE_DELTA :
 								{
@@ -382,7 +382,7 @@ bool CxImageBMP::Decode(CxFile * hFile)
 					int32_t bits = 0;
 					CImageIterator iter(this);
 
-					for (BOOL bContinue = TRUE; bContinue && hFile->Read(&status_byte, sizeof(uint8_t), 1);)
+					for (bool bContinue = true; bContinue && hFile->Read(&status_byte, sizeof(uint8_t), 1);)
 					{
 						switch (status_byte)
 						{
@@ -395,7 +395,7 @@ bool CxImageBMP::Decode(CxFile * hFile)
 								scanline++;
 								break;
 							case RLE_ENDOFBITMAP :
-								bContinue = FALSE;
+								bContinue = false;
 								break;
 							case RLE_DELTA :
 								{

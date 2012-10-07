@@ -190,12 +190,12 @@ bool CxImageWMF::Decode(CxFile *hFile, int32_t nForceWidth, int32_t nForceHeight
 				hPal = CreatePalette(plogPal); 
 				GlobalFree(plogPal); 
 
-				SelectPalette(hDC, hPal, FALSE); 
+				SelectPalette(hDC, hPal, false); 
 				RealizePalette(hDC); 
 			} 
 			
 			// Play the Metafile into Memory DC
-			BOOL bRet = PlayEnhMetaFile(hDC,	// handle to a device context 
+			bool bRet = PlayEnhMetaFile(hDC,	// handle to a device context 
 									hMeta,	// handle to an enhanced metafile  
 									&rc); 	// pointer to bounding rectangle
 
@@ -249,7 +249,7 @@ bool CxImageWMF::Decode(CxFile *hFile, int32_t nForceWidth, int32_t nForceHeight
  Function:	CheckMetafileHeader
  Purpose:	Check if the Metafileheader of a file is valid
 **********************************************************************/
-BOOL CxImageWMF::CheckMetafileHeader(METAFILEHEADER *metafileheader)
+bool CxImageWMF::CheckMetafileHeader(METAFILEHEADER *metafileheader)
 {
 	uint16_t	*pw;
 	uint16_t	cs;
@@ -416,7 +416,7 @@ HENHMETAFILE CxImageWMF::ConvertEmfFiletoEmf(CxFile *pFile, ENHMETAHEADER *pemfh
 	pFile->Seek(pos,SEEK_SET);
 
 	uint8_t* pBuff = (uint8_t *)malloc(iLen);
-	if (!pBuff)	return (FALSE);
+	if (!pBuff)	return (false);
 
 	// Read the Enhanced Metafile
 	iLenRead = pFile->Read(pBuff, 1, iLen);

@@ -48,7 +48,7 @@ bool CxImageTIF::Decode(CxFile * hFile)
 	uint16 res_unit; //<Trifon>
 	uint32 x, y;
 	float resolution, offset;
-	BOOL isRGB;
+	bool isRGB;
 	uint8_t *bits;		//pointer to source data
 	uint8_t *bits2;	//pointer to destination data
 
@@ -236,12 +236,12 @@ bool CxImageTIF::Decode(CxFile * hFile)
 				TIFFGetField(m_tif, TIFFTAG_COLORMAP, &red, &green, &blue); 
 
 				// Is the palette 16 or 8 bits ?
-				BOOL Palette16Bits = /*FALSE*/ BIG_palette;
+				bool Palette16Bits = /*false*/ BIG_palette;
 				if (!BIG_palette) {
 					int32_t n= 1<<bpp;
 					while (n-- > 0) {
 						if (red[n] >= 256 || green[n] >= 256 || blue[n] >= 256) {
-							Palette16Bits=TRUE;
+							Palette16Bits=true;
 							break;
 						}
 					}
