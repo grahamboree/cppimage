@@ -12,10 +12,10 @@
 #ifdef _LINUX
  #include <jmorecfg.h>
 #else
- #include "../jpeg/jmorecfg.h"
+ #include "../../jpeg/jmorecfg.h"
 #endif
 
-#include "ximaiter.h"
+#include "CImageIterator.h"
 
 #include <setjmp.h>
 

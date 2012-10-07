@@ -33,10 +33,20 @@
 #define SIZEOF_LONG 4
 
 /* Signed 64-bit type */
-#define TIFF_INT64_T signed __int64
+//#define TIFF_INT64_T signed __int64
+#ifdef WIN32
+typedef __int64 TIFF_INT64_T;
+#else
+typedef __int64_t TIFF_INT64_T;
+#endif
 
 /* Unsigned 64-bit type */
-#define TIFF_UINT64_T unsigned __int64
+//#define TIFF_UINT64_T unsigned __int64
+#ifdef WIN32
+typedef __uint64 TIFF_UINT64_T;
+#else
+typedef __uint64_t TIFF_UINT64_T;
+#endif
 
 /* Set the native cpu bit order */
 #define HOST_FILLORDER FILLORDER_LSB2MSB

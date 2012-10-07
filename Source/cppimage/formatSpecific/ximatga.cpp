@@ -9,7 +9,7 @@
 
 #if CXIMAGE_SUPPORT_TGA
 
-#include "ximaiter.h"
+#include "CImageIterator.h"
 
 // Definitions for image types.
 #define TGA_Null 0

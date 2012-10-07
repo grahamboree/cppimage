@@ -9,7 +9,7 @@
 
 #if CXIMAGE_SUPPORT_GIF
 
-#include "ximaiter.h"
+#include "CImageIterator.h"
 
 #if defined (_WIN32_WCE)
 	#define assert(s)

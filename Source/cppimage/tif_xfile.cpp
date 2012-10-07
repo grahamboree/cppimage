@@ -14,7 +14,7 @@
 #	include "../tiff/tiffiop.h"
 #	include "../tiff/tiffvers.h"
 
-#	include "xfile.h"
+#	include "CxFile.h"
 
 //////////////////////////////////////////////////////////////////////////
 static tsize_t _tiffReadProcEx(thandle_t fd, tdata_t buf, tsize_t size)
@@ -98,7 +98,9 @@ TIFF* _TIFFFdOpen(void* fd, const char* name, const char* mode)
 	    _tiffSizeProcEx, _tiffMapProcEx, _tiffUnmapProcEx);
 	if (tif)
 	{
-		tif->tif_fd = (int)fd;
+		tif->tif_fd = static_cast<int>(reinterpret_cast<long>(fd));
+		//@HACK
+		//tif->tif_fd = (int)fd;
 	}
 	return (tif);
 }

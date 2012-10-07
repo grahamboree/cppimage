@@ -795,8 +795,10 @@ public:
 	CxImage*	GetLayer(int32_t position);
 	CxImage*	GetParent() const;
 	int32_t		GetNumLayers() const;
+#ifdef WIN32 //@HACK
 	int32_t		LayerDrawAll(HDC hdc, int32_t x = 0, int32_t y = 0, int32_t cx = -1, int32_t cy = -1, RECT* pClipRect = 0, bool bSmooth = false);
 	int32_t		LayerDrawAll(HDC hdc, const RECT& rect, RECT* pClipRect = NULL, bool bSmooth = false);
+#endif
 //@}
 #endif //CXIMAGE_SUPPORT_LAYERS
 

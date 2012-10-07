@@ -9,7 +9,7 @@
 
 #if CXIMAGE_SUPPORT_BMP
 
-#include "ximaiter.h" 
+#include "CImageIterator.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 #if CXIMAGE_SUPPORT_ENCODE
@@ -142,9 +142,14 @@ bool CxImageBMP::Decode(CxFile * hFile)
 				hFile->Read(reinterpret_cast<void*>(pRgb), DibNumColors(&bmpHeader) * sizeof(RGBTRIPLE), 1);
 				for (int32_t i = DibNumColors(&head) - 1; i >= 0; i--)
 				{
-					pRgb[i].rgbRed      = (static_cast<RGBTRIPLE*>(pRgb))[i].rgbtRed;
-					pRgb[i].rgbBlue     = (static_cast<RGBTRIPLE*>(pRgb))[i].rgbtBlue;
-					pRgb[i].rgbGreen    = (static_cast<RGBTRIPLE*>(pRgb))[i].rgbtGreen;
+					pRgb[i].rgbRed      = (reinterpret_cast<RGBTRIPLE*>(pRgb))[i].rgbtRed;
+					pRgb[i].rgbBlue     = (reinterpret_cast<RGBTRIPLE*>(pRgb))[i].rgbtBlue;
+					pRgb[i].rgbGreen    = (reinterpret_cast<RGBTRIPLE*>(pRgb))[i].rgbtGreen;
+					/*
+					pRgb[i].rgbRed      = ((RGBTRIPLE*)(pRgb))[i].rgbtRed;
+					pRgb[i].rgbBlue     = ((RGBTRIPLE*)(pRgb))[i].rgbtBlue;
+					pRgb[i].rgbGreen    = ((RGBTRIPLE*)(pRgb))[i].rgbtGreen;
+					 */
 					pRgb[i].rgbReserved = static_cast<uint8_t>(0);
 				}
 			}

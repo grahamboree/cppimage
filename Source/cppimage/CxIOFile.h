@@ -93,17 +93,18 @@ inline bool CxIOFile::Seek(int32_t offset, int32_t origin)
 inline int32_t CxIOFile::Tell()
 {
 	if (!m_fp) return 0;
-	return ftell(m_fp);
+	return static_cast<int32_t>(ftell(m_fp));
 }
 
 //////////////////////////////////////////////////////////
 inline int32_t CxIOFile::Size()
 {
 	if (!m_fp) return -1;
-	int32_t pos,size;
-	pos = ftell(m_fp);
+	int32_t pos;
+	int32_t size;
+	pos = static_cast<int32_t>(ftell(m_fp));
 	fseek(m_fp, 0, SEEK_END);
-	size = ftell(m_fp);
+	size = static_cast<int32_t>(ftell(m_fp));
 	fseek(m_fp, pos,SEEK_SET);
 	return size;
 }

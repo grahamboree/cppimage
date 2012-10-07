@@ -965,7 +965,7 @@ bool CxImage::Decode(CxFile* hFile, uint32_t imagetype)
 			strcpy(info.szLastError, newima->GetLastError());
 			hFile->Seek(pos, SEEK_SET);
 			delete newima;
-			if (CXIMAGE_FORMAT_UNKNOWN! = imagetype)
+			if (CXIMAGE_FORMAT_UNKNOWN != imagetype)
 			{
 				return false;
 			}
@@ -991,7 +991,7 @@ bool CxImage::Decode(CxFile* hFile, uint32_t imagetype)
 			strcpy(info.szLastError, newima->GetLastError());
 			hFile->Seek(pos, SEEK_SET);
 			delete newima;
-			if (CXIMAGE_FORMAT_UNKNOWN! = imagetype)
+			if (CXIMAGE_FORMAT_UNKNOWN != imagetype)
 			{
 				return false;
 			}
@@ -1042,7 +1042,7 @@ bool CxImage::Decode(CxFile* hFile, uint32_t imagetype)
 			strcpy(info.szLastError, newima->GetLastError());
 			hFile->Seek(pos, SEEK_SET);
 			delete newima;
-			if (CXIMAGE_FORMAT_UNKNOWN! = imagetype)
+			if (CXIMAGE_FORMAT_UNKNOWN != imagetype)
 			{
 				return false;
 			}
@@ -1068,7 +1068,7 @@ bool CxImage::Decode(CxFile* hFile, uint32_t imagetype)
 			strcpy(info.szLastError, newima->GetLastError());
 			hFile->Seek(pos, SEEK_SET);
 			delete newima;
-			if (CXIMAGE_FORMAT_UNKNOWN! = imagetype)
+			if (CXIMAGE_FORMAT_UNKNOWN != imagetype)
 			{
 				return false;
 			}
@@ -1093,7 +1093,7 @@ bool CxImage::Decode(CxFile* hFile, uint32_t imagetype)
 			strcpy(info.szLastError, newima->GetLastError());
 			hFile->Seek(pos, SEEK_SET);
 			delete newima;
-			if (CXIMAGE_FORMAT_UNKNOWN! = imagetype)
+			if (CXIMAGE_FORMAT_UNKNOWN != imagetype)
 			{
 				return false;
 			}
@@ -1118,7 +1118,7 @@ bool CxImage::Decode(CxFile* hFile, uint32_t imagetype)
 			strcpy(info.szLastError, newima->GetLastError());
 			hFile->Seek(pos, SEEK_SET);
 			delete newima;
-			if (CXIMAGE_FORMAT_UNKNOWN! = imagetype)
+			if (CXIMAGE_FORMAT_UNKNOWN != imagetype)
 			{
 				return false;
 			}
@@ -1143,7 +1143,7 @@ bool CxImage::Decode(CxFile* hFile, uint32_t imagetype)
 			strcpy(info.szLastError, newima->GetLastError());
 			hFile->Seek(pos, SEEK_SET);
 			delete newima;
-			if (CXIMAGE_FORMAT_UNKNOWN! = imagetype)
+			if (CXIMAGE_FORMAT_UNKNOWN != imagetype)
 			{
 				return false;
 			}
@@ -1168,7 +1168,7 @@ bool CxImage::Decode(CxFile* hFile, uint32_t imagetype)
 			strcpy(info.szLastError, newima->GetLastError());
 			hFile->Seek(pos, SEEK_SET);
 			delete newima;
-			if (CXIMAGE_FORMAT_UNKNOWN! = imagetype)
+			if (CXIMAGE_FORMAT_UNKNOWN != imagetype)
 			{
 				return false;
 			}
@@ -1193,7 +1193,7 @@ bool CxImage::Decode(CxFile* hFile, uint32_t imagetype)
 			strcpy(info.szLastError, newima->GetLastError());
 			hFile->Seek(pos, SEEK_SET);
 			delete newima;
-			if (CXIMAGE_FORMAT_UNKNOWN! = imagetype)
+			if (CXIMAGE_FORMAT_UNKNOWN != imagetype)
 			{
 				return false;
 			}
@@ -1259,7 +1259,7 @@ bool CxImage::Decode(CxFile* hFile, uint32_t imagetype)
 			strcpy(info.szLastError, newima->GetLastError());
 			hFile->Seek(pos, SEEK_SET);
 			delete newima;
-			if (CXIMAGE_FORMAT_UNKNOWN! = imagetype)
+			if (CXIMAGE_FORMAT_UNKNOWN != imagetype)
 			{
 				return false;
 			}
@@ -1284,7 +1284,7 @@ bool CxImage::Decode(CxFile* hFile, uint32_t imagetype)
 			strcpy(info.szLastError, newima->GetLastError());
 			hFile->Seek(pos, SEEK_SET);
 			delete newima;
-			if (CXIMAGE_FORMAT_UNKNOWN! = imagetype)
+			if (CXIMAGE_FORMAT_UNKNOWN != imagetype)
 			{
 				return false;
 			}
@@ -1309,7 +1309,7 @@ bool CxImage::Decode(CxFile* hFile, uint32_t imagetype)
 			strcpy(info.szLastError, newima->GetLastError());
 			hFile->Seek(pos, SEEK_SET);
 			delete newima;
-			if (CXIMAGE_FORMAT_UNKNOWN! = imagetype)
+			if (CXIMAGE_FORMAT_UNKNOWN != imagetype)
 			{
 				return false;
 			}

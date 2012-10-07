@@ -9,7 +9,7 @@
 
 #if CXIMAGE_SUPPORT_WBMP
 
-#include "ximaiter.h"
+#include "CImageIterator.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 #if CXIMAGE_SUPPORT_DECODE

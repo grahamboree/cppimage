@@ -61,8 +61,13 @@ extern void *lfind(const void *, const void *, size_t *, size_t,
   Libtiff itself does not require a 64-bit type, but bundled TIFF
   utilities may use it.
 */
+#ifndef int64
 typedef TIFF_INT64_T  int64;
+#endif
+
+#ifndef uint64
 typedef TIFF_UINT64_T uint64;
+#endif
 
 #include "tiffio.h"
 #include "tif_dir.h"

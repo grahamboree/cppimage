@@ -21,7 +21,7 @@
 #if CXIMAGE_SUPPORT_RAW
 
 extern "C" {
- #include "../raw/libdcr.h"
+ #include "../../raw/libdcr.h"
 }
 
 class CxImageRAW: public CxImage

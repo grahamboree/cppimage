@@ -13,7 +13,7 @@
 
 #if CXIMAGE_SUPPORT_PCX
 
-#include "xmemfile.h"
+#include "CxMemFile.h"
 
 #define PCX_MAGIC 0X0A  // PCX magic number
 #define PCX_256_COLORS 0X0C  // magic number for 256 colors

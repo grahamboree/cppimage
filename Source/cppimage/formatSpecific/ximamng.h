@@ -31,9 +31,9 @@
 #define MNG_STORE_CHUNKS
 
 extern "C" {
-#include "../mng/libmng.h"
-#include "../mng/libmng_data.h"
-#include "../mng/libmng_error.h"
+#include "../../mng/libmng.h"
+#include "../../mng/libmng_data.h"
+#include "../../mng/libmng_error.h"
 }
 
 //uint32_t _stdcall RunMNGThread(void *lpParam);

@@ -1,0 +1,158 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXFileReference section */
+		C92685F71622077700D4EB54 /* copying.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = copying.txt; sourceTree = "<group>"; };
+		C92685F81622077800D4EB54 /* jbig.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = jbig.c; sourceTree = "<group>"; };
+		C92685F91622077800D4EB54 /* jbig.doc */ = {isa = PBXFileReference; lastKnownFileType = text; path = jbig.doc; sourceTree = "<group>"; };
+		C92685FA1622077800D4EB54 /* jbig.dsp */ = {isa = PBXFileReference; lastKnownFileType = text; path = jbig.dsp; sourceTree = "<group>"; };
+		C92685FB1622077800D4EB54 /* jbig.dsw */ = {isa = PBXFileReference; lastKnownFileType = text; path = jbig.dsw; sourceTree = "<group>"; };
+		C92685FC1622077800D4EB54 /* jbig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = jbig.h; sourceTree = "<group>"; };
+		C92685FD1622077800D4EB54 /* jbig.vcproj */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = jbig.vcproj; sourceTree = "<group>"; };
+		C92685FE1622077800D4EB54 /* jbig_tab.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = jbig_tab.c; sourceTree = "<group>"; };
+		C92685FF1622077800D4EB54 /* jbig_wince.sln */ = {isa = PBXFileReference; lastKnownFileType = text; path = jbig_wince.sln; sourceTree = "<group>"; };
+		C92686001622077800D4EB54 /* jbig_wince.vcproj */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = jbig_wince.vcproj; sourceTree = "<group>"; };
+		C92686011622077800D4EB54 /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		C92686021622077800D4EB54 /* patents.htm */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = patents.htm; sourceTree = "<group>"; };
+		C92686031622077800D4EB54 /* tstcodec.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = tstcodec.c; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		C92685EF1622077700D4EB54 = {
+			isa = PBXGroup;
+			children = (
+				C92685F71622077700D4EB54 /* copying.txt */,
+				C92685F81622077800D4EB54 /* jbig.c */,
+				C92685F91622077800D4EB54 /* jbig.doc */,
+				C92685FA1622077800D4EB54 /* jbig.dsp */,
+				C92685FB1622077800D4EB54 /* jbig.dsw */,
+				C92685FC1622077800D4EB54 /* jbig.h */,
+				C92685FD1622077800D4EB54 /* jbig.vcproj */,
+				C92685FE1622077800D4EB54 /* jbig_tab.c */,
+				C92685FF1622077800D4EB54 /* jbig_wince.sln */,
+				C92686001622077800D4EB54 /* jbig_wince.vcproj */,
+				C92686011622077800D4EB54 /* Makefile */,
+				C92686021622077800D4EB54 /* patents.htm */,
+				C92686031622077800D4EB54 /* tstcodec.c */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		C92685F61622077700D4EB54 /* jbig */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = C92686041622077800D4EB54 /* Build configuration list for PBXLegacyTarget "jbig" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = /Users/pentheny/Documents/workspace/cppimage/Source/jbig;
+			dependencies = (
+			);
+			name = jbig;
+			passBuildSettingsInEnvironment = 1;
+			productName = jbig;
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXProject section */
+		C92685F11622077700D4EB54 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C92685F41622077700D4EB54 /* Build configuration list for PBXProject "jbig" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = C92685EF1622077700D4EB54;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C92685F61622077700D4EB54 /* jbig */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		C92685F21622077700D4EB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx10.6;
+			};
+			name = Debug;
+		};
+		C92685F31622077700D4EB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				SDKROOT = macosx10.6;
+			};
+			name = Release;
+		};
+		C92686051622077800D4EB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = jbig;
+			};
+			name = Debug;
+		};
+		C92686061622077800D4EB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = jbig;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C92685F41622077700D4EB54 /* Build configuration list for PBXProject "jbig" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C92685F21622077700D4EB54 /* Debug */,
+				C92685F31622077700D4EB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C92686041622077800D4EB54 /* Build configuration list for PBXLegacyTarget "jbig" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C92686051622077800D4EB54 /* Debug */,
+				C92686061622077800D4EB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C92685F11622077700D4EB54 /* Project object */;
+}

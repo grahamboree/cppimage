@@ -21,7 +21,7 @@
 
 #if CXIMAGE_USE_LIBPSD
  extern "C" {
-  #include "../libpsd/libpsd.h"
+  #include "../../libpsd/libpsd.h"
  }
 #endif
 

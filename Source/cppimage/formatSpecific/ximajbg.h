@@ -17,7 +17,7 @@
 #if CXIMAGE_SUPPORT_JBG
 
 extern "C" {
-#include "../jbig/jbig.h"
+#include "../../jbig/jbig.h"
 };
 
 class CxImageJBG: public CxImage

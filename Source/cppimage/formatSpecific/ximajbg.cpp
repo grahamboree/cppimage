@@ -9,7 +9,7 @@
 
 #if CXIMAGE_SUPPORT_JBG
 
-#include "ximaiter.h"
+#include "CImageIterator.h"
 
 #define JBIG_BUFSIZE 8192
 
