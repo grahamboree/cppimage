@@ -184,9 +184,17 @@
 			name = Source;
 			sourceTree = "<group>";
 		};
+		C92689B01622156600D4EB54 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		C9FA0F491610296F0010C75D = {
 			isa = PBXGroup;
 			children = (
+				C92689B01622156600D4EB54 /* Resources */,
 				C92685EE1622074900D4EB54 /* Source */,
 				C9FA0F551610296F0010C75D /* Products */,
 			);
