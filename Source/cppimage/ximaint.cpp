@@ -4,7 +4,7 @@
  */
 
 #include "CxImage.h"
-#include "ximath.h"
+#include "CxMath.h"
 
 #if CXIMAGE_SUPPORT_INTERPOLATION
 

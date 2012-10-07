@@ -1,5 +1,7 @@
+
+#include "CxMath.h"
+
 #include "CxImage.h"
-#include "ximath.h"
 #include <math.h>
 
 //this module should contain some classes for geometrical transformations
