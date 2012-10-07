@@ -3368,7 +3368,7 @@ int32_t  CxImage::OptimalThreshold(int32_t method, RECT * pBox, CxImage* pContra
 		for (k=gray_min; k<=i; k++)
 			if (p[k] > 0)
 				L -= p[k]*log(p[k] / w1) / w1;
-		for (k; k <= gray_max; k++)
+		for (; k <= gray_max; k++)
 			if (p[k] > 0)
 				L -= p[k] * log(p[k] / w2) / w2;
 		if (L3max < L || th3 < 0) {
@@ -3383,7 +3383,7 @@ int32_t  CxImage::OptimalThreshold(int32_t method, RECT * pBox, CxImage* pContra
 		for (k=gray_min;k<=i;k++)
 			vdiff += p[k]*(i-k)*(i-k);
 		double vsum = vdiff;
-		for (k;k<=gray_max;k++){
+		for (;k<=gray_max;k++){
 			double dv = p[k]*(k-i)*(k-i);
 			vdiff -= dv;
 			vsum += dv;
