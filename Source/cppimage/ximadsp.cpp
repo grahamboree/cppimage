@@ -3,9 +3,9 @@
  * CxImage version 7.0.1 07/Jan/2011
  */
 
-#include "ximage.h"
+#include "CxImage.h"
 
-#include "ximaiter.h"
+#include "CImageIterator.h"
 //#include "Types.h"
 #include "ximadef.h"
 
@@ -20,21 +20,27 @@
  */
 bool CxImage::Threshold(uint8_t level)
 {
-	if (!pDib) return false;
-	if (head.biBitCount == 1) return true;
+	if (!pDib)
+		return false;
+	if (head.biBitCount == 1)
+		return true;
 
 	GrayScale();
 
 	CxImage tmp(head.biWidth,head.biHeight,1);
-	if (!tmp.IsValid()){
+	if (!tmp.IsValid())
+	{
 		strcpy(info.szLastError,tmp.GetLastError());
 		return false;
 	}
 
-	for (int32_t y=0;y<head.biHeight;y++){
+	for (int32_t y=0;y<head.biHeight;y++)
+	{
 		info.nProgress = (int32_t)(100*y/head.biHeight);
-		if (info.nEscape) break;
-		for (int32_t x=0;x<head.biWidth;x++){
+		if (info.nEscape)
+			break;
+		for (int32_t x=0;x<head.biWidth;x++)
+		{
 			if (BlindGetPixelIndex(x,y)>level)
 				tmp.BlindSetPixelIndex(x,y,1);
 			else
@@ -55,15 +61,19 @@ bool CxImage::Threshold(uint8_t level)
  */
 bool CxImage::Threshold(CxImage* pThresholdMask)
 {
-	if (!pDib) return false;
-	if (head.biBitCount == 1) return true;
+	if (!pDib)
+		return false;
+	if (head.biBitCount == 1)
+		return true;
 
-	if (!pThresholdMask) return false;
+	if (!pThresholdMask)
+		return false;
 	
 	if (!pThresholdMask->IsValid() ||
 		!pThresholdMask->IsGrayScale() ||
-		pThresholdMask->GetWidth() != GetWidth() ||
-		pThresholdMask->GetHeight() != GetHeight()){
+		 pThresholdMask->GetWidth() != GetWidth() ||
+		 pThresholdMask->GetHeight() != GetHeight())
+	{
 		strcpy(info.szLastError,"invalid ThresholdMask");
 		return false;
 	}
@@ -71,15 +81,18 @@ bool CxImage::Threshold(CxImage* pThresholdMask)
 	GrayScale();
 
 	CxImage tmp(head.biWidth,head.biHeight,1);
-	if (!tmp.IsValid()){
+	if (!tmp.IsValid())
+	{
 		strcpy(info.szLastError,tmp.GetLastError());
 		return false;
 	}
 
-	for (int32_t y=0;y<head.biHeight;y++){
+	for (int32_t y=0;y<head.biHeight;y++)
+	{
 		info.nProgress = (int32_t)(100*y/head.biHeight);
 		if (info.nEscape) break;
-		for (int32_t x=0;x<head.biWidth;x++){
+		for (int32_t x=0;x<head.biWidth;x++)
+		{
 			if (BlindGetPixelIndex(x,y)>pThresholdMask->BlindGetPixelIndex(x,y))
 				tmp.BlindSetPixelIndex(x,y,1);
 			else
@@ -1236,9 +1249,9 @@ void CxImage::Mix(CxImage & imgsrc2, ImageOpType op, int32_t lXOffset, int32_t l
 								// New transparency assume (a0 == 0 is the restriction s.o. (range 5-250) intercepted) 
 								if (bEditAlpha) rgbDest.rgbReserved = a0;
 								// each color channel to calculate
-								rgbDest.rgbBlue		= (BYTE)((rgb2.rgbBlue	* a2	+ a1 * rgb1.rgbBlue	)/a0);
-								rgbDest.rgbGreen	= (BYTE)((rgb2.rgbGreen * a2	+ a1 * rgb1.rgbGreen)/a0);
-								rgbDest.rgbRed		= (BYTE)((rgb2.rgbRed	* a2	+ a1 * rgb1.rgbRed	)/a0);
+								rgbDest.rgbBlue	 = (BYTE)((rgb2.rgbBlue	 * a2 + a1 * rgb1.rgbBlue ) / a0);
+								rgbDest.rgbGreen = (BYTE)((rgb2.rgbGreen * a2 + a1 * rgb1.rgbGreen) / a0);
+								rgbDest.rgbRed	 = (BYTE)((rgb2.rgbRed	 * a2 + a1 * rgb1.rgbRed  ) / a0);
 							}
 						} else {
 							rgbDest = rgb1;
@@ -3325,12 +3338,12 @@ int32_t  CxImage::OptimalThreshold(int32_t method, RECT * pBox, CxImage* pContra
 	for (i = gray_min; i < gray_max; i++){
 		w1 += p[i];
 		w2 = w_tot - w1;
-		m1 += i*p[i];
+		m1 += i * p[i];
 		m2 = m_tot - m1;
-		q1 += i*i*p[i];
+		q1 += i * i * p[i];
 		q2 = q_tot - q1;
-		s1 = q1/w1-m1*m1/w1/w1; //s1 = q1/w1-pow(m1/w1,2);
-		s2 = q2/w2-m2*m2/w2/w2; //s2 = q2/w2-pow(m2/w2,2);
+		s1 = q1 / w1 - m1 * m1 / w1 / w1; //s1 = q1/w1-pow(m1/w1,2);
+		s2 = q2 / w2 - m2 * m2 / w2 / w2; //s2 = q2/w2-pow(m2/w2,2);
 
 		//Otsu
 		L = -(s1*w1 + s2*w2); //implemented as definition
@@ -3352,9 +3365,13 @@ int32_t  CxImage::OptimalThreshold(int32_t method, RECT * pBox, CxImage* pContra
 
 		//max entropy
 		L = 0;
-		for (k=gray_min;k<=i;k++) if (p[k] > 0)	L -= p[k]*log(p[k]/w1)/w1;
-		for (k;k<=gray_max;k++) if (p[k] > 0)	L -= p[k]*log(p[k]/w2)/w2;
-		if (L3max < L || th3<0){
+		for (k=gray_min; k<=i; k++)
+			if (p[k] > 0)
+				L -= p[k]*log(p[k] / w1) / w1;
+		for (k; k <= gray_max; k++)
+			if (p[k] > 0)
+				L -= p[k] * log(p[k] / w2) / w2;
+		if (L3max < L || th3 < 0) {
 			L3max = L;
 			th3 = i;
 		}
@@ -3481,7 +3498,7 @@ bool CxImage::AdaptiveThreshold(int32_t method, int32_t nBoxSize, CxImage* pCont
 			r.top = r.bottom + nBoxSize;
 			int32_t threshold = OptimalThreshold(method, &r, pContrastMask);
 			if (threshold <0) return false;
-			mask.SetPixelIndex(x,y,(uint8_t)max(0,min(255,nBias+((1.0f-fGlobalLocalBalance)*threshold + fGlobalLocalBalance*globalthreshold))));
+			mask.SetPixelIndex(x,y,(uint8_t)max(0, min(255,nBias+((1.0f-fGlobalLocalBalance)*threshold + fGlobalLocalBalance*globalthreshold))));
 		}
 	}
 
@@ -3593,8 +3610,7 @@ bool CxImage::Trace(RGBQUAD color_target, RGBQUAD color_trace)
  * Note: nOpacity=0 && bSelectFilledArea=true act as a "magic wand"
  * \return true if everything is ok
  */
-bool CxImage::FloodFill(const int32_t xStart, const int32_t yStart, const RGBQUAD cFillColor, const uint8_t nTolerance,
-						uint8_t nOpacity, const bool bSelectFilledArea, const uint8_t nSelectionLevel)
+bool CxImage::FloodFill(const int32_t xStart, const int32_t yStart, const RGBQUAD cFillColor, const uint8_t nTolerance,	uint8_t nOpacity, const bool bSelectFilledArea, const uint8_t nSelectionLevel)
 {
 	if (!pDib)
 		return false;
@@ -3610,7 +3626,8 @@ bool CxImage::FloodFill(const int32_t xStart, const int32_t yStart, const RGBQUA
 	RGBQUAD* pPalette=NULL;
 	uint16_t bpp = GetBpp();
 	//nTolerance or nOpacity implemented only for grayscale or 24bpp images
-	if ((nTolerance || nOpacity != 255) &&	!(head.biBitCount == 24 || IsGrayScale())){
+	if ((nTolerance || nOpacity != 255) && !(head.biBitCount == 24 || IsGrayScale()))
+	{
 		pPalette = new RGBQUAD[head.biClrUsed];
 		memcpy(pPalette, GetPalette(),GetPaletteSize());
 		if (!IncreaseBpp(24))
@@ -3627,96 +3644,108 @@ bool CxImage::FloodFill(const int32_t xStart, const int32_t yStart, const RGBQUA
 	POINT point = {xStart,yStart};
 	q.push(point);
 
-	if (IsIndexed()){ //--- Generic indexed image, no tolerance OR Grayscale image with tolerance
+	if (IsIndexed())
+	{ //--- Generic indexed image, no tolerance OR Grayscale image with tolerance
 		uint8_t idxRef = GetPixelIndex(xStart,yStart);
 		uint8_t idxFill = GetNearestIndex(cFillColor);
-		uint8_t idxMin = (uint8_t)min(255, max(0,(int32_t)(idxRef - nTolerance)));
-		uint8_t idxMax = (uint8_t)min(255, max(0,(int32_t)(idxRef + nTolerance)));
+		uint8_t idxMin = (uint8_t) MIN(255, MAX(0, (int32_t)(idxRef - nTolerance)));
+		uint8_t idxMax = (uint8_t) MIN(255, MAX(0, (int32_t)(idxRef + nTolerance)));
 
 		while(!q.empty())
 		{
 			point = q.front();
 			q.pop();
 
-			for (int32_t z=0; z<4; z++){
+			for (int32_t z=0; z<4; z++)
+			{
 				int32_t x = point.x + offset[z].x;
 				int32_t y = point.y + offset[z].y;
-				if(IsInside(x,y)){
+				if(IsInside(x,y))
+				{
 #if CXIMAGE_SUPPORT_SELECTION
-				  if (BlindSelectionIsInside(x,y))
+					if (BlindSelectionIsInside(x,y))
 #endif //CXIMAGE_SUPPORT_SELECTION
-				  {
-					uint8_t idx = BlindGetPixelIndex(x, y);
-					uint8_t* pFill = pFillMask + x + y * head.biWidth;
-					if (*pFill==0 && idxMin <= idx && idx <= idxMax )
 					{
-						if (nOpacity>0){
-							if (nOpacity == 255)
-								BlindSetPixelIndex(x, y, idxFill);
-							else
-								BlindSetPixelIndex(x, y, (uint8_t)((idxFill * nOpacity + idx * (255-nOpacity))>>8));
-						}
-						POINT pt = {x,y};
-						q.push(pt);
-						*pFill = 1;
-					}
-				  }
-				}
-			}
-		}
-	} else { //--- RGB image
-		RGBQUAD cRef = GetPixelColor(xStart,yStart);
-		RGBQUAD cRefMin, cRefMax;
-		cRefMin.rgbRed   = (uint8_t)min(255, max(0,(int32_t)(cRef.rgbRed   - nTolerance)));
-		cRefMin.rgbGreen = (uint8_t)min(255, max(0,(int32_t)(cRef.rgbGreen - nTolerance)));
-		cRefMin.rgbBlue  = (uint8_t)min(255, max(0,(int32_t)(cRef.rgbBlue  - nTolerance)));
-		cRefMax.rgbRed   = (uint8_t)min(255, max(0,(int32_t)(cRef.rgbRed   + nTolerance)));
-		cRefMax.rgbGreen = (uint8_t)min(255, max(0,(int32_t)(cRef.rgbGreen + nTolerance)));
-		cRefMax.rgbBlue  = (uint8_t)min(255, max(0,(int32_t)(cRef.rgbBlue  + nTolerance)));
-
-		while(!q.empty())
-		{
-			point = q.front();
-			q.pop();
-
-			for (int32_t z=0; z<4; z++){
-				int32_t x = point.x + offset[z].x;
-				int32_t y = point.y + offset[z].y;
-				if(IsInside(x,y)){
-#if CXIMAGE_SUPPORT_SELECTION
-				  if (BlindSelectionIsInside(x,y))
-#endif //CXIMAGE_SUPPORT_SELECTION
-				  {
-					RGBQUAD cc = BlindGetPixelColor(x, y);
-					uint8_t* pFill = pFillMask + x + y * head.biWidth;
-					if (*pFill==0 &&
-						cRefMin.rgbRed   <= cc.rgbRed   && cc.rgbRed   <= cRefMax.rgbRed   &&
-						cRefMin.rgbGreen <= cc.rgbGreen && cc.rgbGreen <= cRefMax.rgbGreen &&
-						cRefMin.rgbBlue  <= cc.rgbBlue  && cc.rgbBlue  <= cRefMax.rgbBlue )
-					{
-						if (nOpacity>0){
-							if (nOpacity == 255)
-								BlindSetPixelColor(x, y, cFillColor);
-							else
+						uint8_t idx = BlindGetPixelIndex(x, y);
+						uint8_t* pFill = pFillMask + x + y * head.biWidth;
+						if (*pFill==0 && idxMin <= idx && idx <= idxMax )
+						{
+							if (nOpacity>0)
 							{
-								cc.rgbRed   = (uint8_t)((cFillColor.rgbRed   * nOpacity + cc.rgbRed   * (255-nOpacity))>>8);
-								cc.rgbGreen = (uint8_t)((cFillColor.rgbGreen * nOpacity + cc.rgbGreen * (255-nOpacity))>>8);
-								cc.rgbBlue  = (uint8_t)((cFillColor.rgbBlue  * nOpacity + cc.rgbBlue  * (255-nOpacity))>>8);
-								BlindSetPixelColor(x, y, cc);
+								if (nOpacity == 255)
+									BlindSetPixelIndex(x, y, idxFill);
+								else
+									BlindSetPixelIndex(x, y, (uint8_t)((idxFill * nOpacity + idx * (255-nOpacity))>>8));
 							}
+							POINT pt = {x,y};
+							q.push(pt);
+							*pFill = 1;
 						}
-						POINT pt = {x,y};
-						q.push(pt);
-						*pFill = 1;
 					}
-				  }
 				}
 			}
 		}
 	}
-	if (pFillMask[xStart+yStart*head.biWidth] == 0 && nOpacity>0){
+	else
+	{ //--- RGB image
+		RGBQUAD cRef = GetPixelColor(xStart,yStart);
+		RGBQUAD cRefMin, cRefMax;
+		cRefMin.rgbRed   = (uint8_t) fmin(255, fmax(0, (int32_t)(cRef.rgbRed   - nTolerance)));
+		cRefMin.rgbGreen = (uint8_t) fmin(255, fmax(0, (int32_t)(cRef.rgbGreen - nTolerance)));
+		cRefMin.rgbBlue  = (uint8_t) fmin(255, fmax(0, (int32_t)(cRef.rgbBlue  - nTolerance)));
+		cRefMax.rgbRed   = (uint8_t) fmin(255, fmax(0, (int32_t)(cRef.rgbRed   + nTolerance)));
+		cRefMax.rgbGreen = (uint8_t) fmin(255, fmax(0, (int32_t)(cRef.rgbGreen + nTolerance)));
+		cRefMax.rgbBlue  = (uint8_t) fmin(255, fmax(0, (int32_t)(cRef.rgbBlue  + nTolerance)));
+
+		while(!q.empty())
+		{
+			point = q.front();
+			q.pop();
+
+			for (int32_t z=0; z<4; z++)
+			{
+				int32_t x = point.x + offset[z].x;
+				int32_t y = point.y + offset[z].y;
+				if(IsInside(x,y))
+				{
+#if CXIMAGE_SUPPORT_SELECTION
+					if (BlindSelectionIsInside(x,y))
+#endif //CXIMAGE_SUPPORT_SELECTION
+					{
+						RGBQUAD cc = BlindGetPixelColor(x, y);
+						uint8_t* pFill = pFillMask + x + y * head.biWidth;
+						if (*pFill==0 &&
+							cRefMin.rgbRed   <= cc.rgbRed   && cc.rgbRed   <= cRefMax.rgbRed   &&
+							cRefMin.rgbGreen <= cc.rgbGreen && cc.rgbGreen <= cRefMax.rgbGreen &&
+							cRefMin.rgbBlue  <= cc.rgbBlue  && cc.rgbBlue  <= cRefMax.rgbBlue )
+						{
+							if (nOpacity>0)
+							{
+								if (nOpacity == 255)
+									BlindSetPixelColor(x, y, cFillColor);
+								else
+								{
+									cc.rgbRed   = (uint8_t)((cFillColor.rgbRed   * nOpacity + cc.rgbRed   * (255-nOpacity))>>8);
+									cc.rgbGreen = (uint8_t)((cFillColor.rgbGreen * nOpacity + cc.rgbGreen * (255-nOpacity))>>8);
+									cc.rgbBlue  = (uint8_t)((cFillColor.rgbBlue  * nOpacity + cc.rgbBlue  * (255-nOpacity))>>8);
+									BlindSetPixelColor(x, y, cc);
+								}
+							}
+							POINT pt = {x,y};
+							q.push(pt);
+							*pFill = 1;
+						}
+					}
+				}
+			}
+		}
+	}
+	if (pFillMask[xStart+yStart*head.biWidth] == 0 && nOpacity>0)
+	{
 		if (nOpacity == 255)
+		{
 			BlindSetPixelColor(xStart, yStart, cFillColor);
+		}
 		else
 		{
 			RGBQUAD cc = BlindGetPixelColor(xStart, yStart);
@@ -3730,15 +3759,19 @@ bool CxImage::FloodFill(const int32_t xStart, const int32_t yStart, const RGBQUA
 //------------------------------------- End of Flood Fill
 
 	//if necessary, restore the original BPP and palette
-	if (pPalette){
+	if (pPalette)
+	{
 		DecreaseBpp(bpp, false, pPalette);
 		delete [] pPalette;
 	}
 
 #if CXIMAGE_SUPPORT_SELECTION
-	if (bSelectFilledArea){
-		if (!SelectionIsValid()){
-			if (!SelectionCreate()){
+	if (bSelectFilledArea)
+	{
+		if (!SelectionIsValid())
+		{
+			if (!SelectionCreate())
+			{
 				return false;
 			}
 			SelectionClear();
@@ -3748,10 +3781,13 @@ bool CxImage::FloodFill(const int32_t xStart, const int32_t yStart, const RGBQUA
 		}
 		RECT r;
 		SelectionGetBox(r);
-		for (int32_t y = r.bottom; y < r.top; y++){
+		for (int32_t y = r.bottom; y < r.top; y++)
+		{
 			uint8_t* pFill = pFillMask + r.left + y * head.biWidth;
-			for (int32_t x = r.left; x<r.right; x++){
-				if (*pFill)	SelectionSet(x,y,nSelectionLevel);
+			for (int32_t x = r.left; x<r.right; x++)
+			{
+				if (*pFill)
+					SelectionSet(x,y,nSelectionLevel);
 				pFill++;
 			}
 		}

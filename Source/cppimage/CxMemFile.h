@@ -1,6 +1,6 @@
 #pragma once
 
-#include "xfile.h"
+#include "CxFile.h"
 
 //////////////////////////////////////////////////////////
 class DLL_EXP CxMemFile : public CxFile

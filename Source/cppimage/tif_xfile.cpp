@@ -7,7 +7,7 @@
 #endif
 #include <stdio.h>
 
-#include "ximage.h"
+#include "CxImage.h"
 
 #if CXIMAGE_SUPPORT_TIF
 

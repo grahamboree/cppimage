@@ -3,7 +3,7 @@
  * CxImage version 7.0.1 07/Jan/2011
  */
 
-#include "ximage.h"
+#include "CxImage.h"
 #include "ximath.h"
 
 #if CXIMAGE_SUPPORT_BASICTRANSFORMATIONS

@@ -22,7 +22,7 @@
 #if !defined(__ximaJPEG_h)
 #define __ximaJPEG_h
 
-#include "ximage.h"
+#include "CxImage.h"
 
 #if CXIMAGE_SUPPORT_JPG
 

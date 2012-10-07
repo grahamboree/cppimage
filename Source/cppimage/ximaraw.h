@@ -16,7 +16,7 @@
 #if !defined(__ximaRAW_h)
 #define __ximaRAW_h
 
-#include "ximage.h"
+#include "CxImage.h"
 
 #if CXIMAGE_SUPPORT_RAW
 

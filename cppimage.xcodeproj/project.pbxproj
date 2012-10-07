@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C926859F16215C5500D4EB54 /* CxFile.h in Headers */ = {isa = PBXBuildFile; fileRef = C926859E16215C5500D4EB54 /* CxFile.h */; };
+		C92685A416215C6800D4EB54 /* CxImage.h in Headers */ = {isa = PBXBuildFile; fileRef = C92685A116215C6800D4EB54 /* CxImage.h */; };
+		C92685A516215C6800D4EB54 /* CxIOFile.h in Headers */ = {isa = PBXBuildFile; fileRef = C92685A216215C6800D4EB54 /* CxIOFile.h */; };
+		C92685A616215C6800D4EB54 /* CxMemFile.h in Headers */ = {isa = PBXBuildFile; fileRef = C92685A316215C6800D4EB54 /* CxMemFile.h */; };
+		C92685A816215C8600D4EB54 /* CImageIterator.h in Headers */ = {isa = PBXBuildFile; fileRef = C92685A716215C8600D4EB54 /* CImageIterator.h */; };
 		C935CA6C1612A6EF00C72CD1 /* Types.h in Headers */ = {isa = PBXBuildFile; fileRef = C935CA6B1612A6EE00C72CD1 /* Types.h */; };
 		C9FA107A16102B9E0010C75D /* tif_xfile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA104216102B9E0010C75D /* tif_xfile.cpp */; };
-		C9FA107B16102B9E0010C75D /* xfile.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FA104316102B9E0010C75D /* xfile.h */; };
 		C9FA107C16102B9E0010C75D /* ximabmp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA104416102B9E0010C75D /* ximabmp.cpp */; };
 		C9FA107D16102B9E0010C75D /* ximabmp.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FA104516102B9E0010C75D /* ximabmp.h */; };
 		C9FA107E16102B9E0010C75D /* ximacfg.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FA104616102B9E0010C75D /* ximacfg.h */; };
@@ -18,7 +22,6 @@
 		C9FA108116102B9E0010C75D /* ximaenc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA104916102B9E0010C75D /* ximaenc.cpp */; };
 		C9FA108216102B9E0010C75D /* ximaexif.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA104A16102B9E0010C75D /* ximaexif.cpp */; };
 		C9FA108316102B9E0010C75D /* ximage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA104B16102B9E0010C75D /* ximage.cpp */; };
-		C9FA108416102B9E0010C75D /* ximage.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FA104C16102B9E0010C75D /* ximage.h */; };
 		C9FA108516102B9E0010C75D /* ximagif.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA104D16102B9E0010C75D /* ximagif.cpp */; };
 		C9FA108616102B9E0010C75D /* ximagif.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FA104E16102B9E0010C75D /* ximagif.h */; };
 		C9FA108716102B9E0010C75D /* ximahist.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA104F16102B9E0010C75D /* ximahist.cpp */; };
@@ -26,7 +29,6 @@
 		C9FA108916102B9E0010C75D /* ximaico.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FA105116102B9E0010C75D /* ximaico.h */; };
 		C9FA108A16102B9E0010C75D /* ximainfo.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA105216102B9E0010C75D /* ximainfo.cpp */; };
 		C9FA108B16102B9E0010C75D /* ximaint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA105316102B9E0010C75D /* ximaint.cpp */; };
-		C9FA108C16102B9E0010C75D /* ximaiter.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FA105416102B9E0010C75D /* ximaiter.h */; };
 		C9FA108D16102B9E0010C75D /* ximajas.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA105516102B9E0010C75D /* ximajas.cpp */; };
 		C9FA108E16102B9E0010C75D /* ximajas.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FA105616102B9E0010C75D /* ximajas.h */; };
 		C9FA108F16102B9E0010C75D /* ximajbg.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA105716102B9E0010C75D /* ximajbg.cpp */; };
@@ -61,16 +63,18 @@
 		C9FA10AC16102B9E0010C75D /* ximawmf.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA107416102B9E0010C75D /* ximawmf.cpp */; };
 		C9FA10AD16102B9E0010C75D /* ximawmf.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FA107516102B9E0010C75D /* ximawmf.h */; };
 		C9FA10AE16102B9E0010C75D /* ximawnd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA107616102B9E0010C75D /* ximawnd.cpp */; };
-		C9FA10AF16102B9E0010C75D /* xiofile.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FA107716102B9E0010C75D /* xiofile.h */; };
 		C9FA10B016102B9E0010C75D /* xmemfile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA107816102B9E0010C75D /* xmemfile.cpp */; };
-		C9FA10B116102B9E0010C75D /* xmemfile.h in Headers */ = {isa = PBXBuildFile; fileRef = C9FA107916102B9E0010C75D /* xmemfile.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C926859E16215C5500D4EB54 /* CxFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CxFile.h; path = Source/cppimage/CxFile.h; sourceTree = "<group>"; };
+		C92685A116215C6800D4EB54 /* CxImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CxImage.h; path = Source/cppimage/CxImage.h; sourceTree = "<group>"; };
+		C92685A216215C6800D4EB54 /* CxIOFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CxIOFile.h; path = Source/cppimage/CxIOFile.h; sourceTree = "<group>"; };
+		C92685A316215C6800D4EB54 /* CxMemFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CxMemFile.h; path = Source/cppimage/CxMemFile.h; sourceTree = "<group>"; };
+		C92685A716215C8600D4EB54 /* CImageIterator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CImageIterator.h; path = Source/cppimage/CImageIterator.h; sourceTree = "<group>"; };
 		C935CA6B1612A6EE00C72CD1 /* Types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Types.h; path = Source/cppimage/Types.h; sourceTree = "<group>"; };
 		C9FA0F541610296F0010C75D /* libcppimage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libcppimage.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9FA104216102B9E0010C75D /* tif_xfile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tif_xfile.cpp; path = Source/cppimage/tif_xfile.cpp; sourceTree = "<group>"; };
-		C9FA104316102B9E0010C75D /* xfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xfile.h; path = Source/cppimage/xfile.h; sourceTree = "<group>"; };
 		C9FA104416102B9E0010C75D /* ximabmp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximabmp.cpp; path = Source/cppimage/ximabmp.cpp; sourceTree = "<group>"; };
 		C9FA104516102B9E0010C75D /* ximabmp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ximabmp.h; path = Source/cppimage/ximabmp.h; sourceTree = "<group>"; };
 		C9FA104616102B9E0010C75D /* ximacfg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ximacfg.h; path = Source/cppimage/ximacfg.h; sourceTree = "<group>"; };
@@ -79,7 +83,6 @@
 		C9FA104916102B9E0010C75D /* ximaenc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximaenc.cpp; path = Source/cppimage/ximaenc.cpp; sourceTree = "<group>"; };
 		C9FA104A16102B9E0010C75D /* ximaexif.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximaexif.cpp; path = Source/cppimage/ximaexif.cpp; sourceTree = "<group>"; };
 		C9FA104B16102B9E0010C75D /* ximage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximage.cpp; path = Source/cppimage/ximage.cpp; sourceTree = "<group>"; };
-		C9FA104C16102B9E0010C75D /* ximage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ximage.h; path = Source/cppimage/ximage.h; sourceTree = "<group>"; };
 		C9FA104D16102B9E0010C75D /* ximagif.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximagif.cpp; path = Source/cppimage/ximagif.cpp; sourceTree = "<group>"; };
 		C9FA104E16102B9E0010C75D /* ximagif.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ximagif.h; path = Source/cppimage/ximagif.h; sourceTree = "<group>"; };
 		C9FA104F16102B9E0010C75D /* ximahist.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximahist.cpp; path = Source/cppimage/ximahist.cpp; sourceTree = "<group>"; };
@@ -87,7 +90,6 @@
 		C9FA105116102B9E0010C75D /* ximaico.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ximaico.h; path = Source/cppimage/ximaico.h; sourceTree = "<group>"; };
 		C9FA105216102B9E0010C75D /* ximainfo.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximainfo.cpp; path = Source/cppimage/ximainfo.cpp; sourceTree = "<group>"; };
 		C9FA105316102B9E0010C75D /* ximaint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximaint.cpp; path = Source/cppimage/ximaint.cpp; sourceTree = "<group>"; };
-		C9FA105416102B9E0010C75D /* ximaiter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ximaiter.h; path = Source/cppimage/ximaiter.h; sourceTree = "<group>"; };
 		C9FA105516102B9E0010C75D /* ximajas.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximajas.cpp; path = Source/cppimage/ximajas.cpp; sourceTree = "<group>"; };
 		C9FA105616102B9E0010C75D /* ximajas.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ximajas.h; path = Source/cppimage/ximajas.h; sourceTree = "<group>"; };
 		C9FA105716102B9E0010C75D /* ximajbg.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximajbg.cpp; path = Source/cppimage/ximajbg.cpp; sourceTree = "<group>"; };
@@ -122,9 +124,7 @@
 		C9FA107416102B9E0010C75D /* ximawmf.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximawmf.cpp; path = Source/cppimage/ximawmf.cpp; sourceTree = "<group>"; };
 		C9FA107516102B9E0010C75D /* ximawmf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ximawmf.h; path = Source/cppimage/ximawmf.h; sourceTree = "<group>"; };
 		C9FA107616102B9E0010C75D /* ximawnd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximawnd.cpp; path = Source/cppimage/ximawnd.cpp; sourceTree = "<group>"; };
-		C9FA107716102B9E0010C75D /* xiofile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xiofile.h; path = Source/cppimage/xiofile.h; sourceTree = "<group>"; };
 		C9FA107816102B9E0010C75D /* xmemfile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = xmemfile.cpp; path = Source/cppimage/xmemfile.cpp; sourceTree = "<group>"; };
-		C9FA107916102B9E0010C75D /* xmemfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = xmemfile.h; path = Source/cppimage/xmemfile.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,8 +157,12 @@
 		C9FA0F5B1610297E0010C75D /* CppImage */ = {
 			isa = PBXGroup;
 			children = (
+				C92685A716215C8600D4EB54 /* CImageIterator.h */,
+				C92685A116215C6800D4EB54 /* CxImage.h */,
+				C92685A216215C6800D4EB54 /* CxIOFile.h */,
+				C92685A316215C6800D4EB54 /* CxMemFile.h */,
+				C926859E16215C5500D4EB54 /* CxFile.h */,
 				C9FA104216102B9E0010C75D /* tif_xfile.cpp */,
-				C9FA104316102B9E0010C75D /* xfile.h */,
 				C9FA104416102B9E0010C75D /* ximabmp.cpp */,
 				C9FA104516102B9E0010C75D /* ximabmp.h */,
 				C9FA104616102B9E0010C75D /* ximacfg.h */,
@@ -167,7 +171,6 @@
 				C9FA104916102B9E0010C75D /* ximaenc.cpp */,
 				C9FA104A16102B9E0010C75D /* ximaexif.cpp */,
 				C9FA104B16102B9E0010C75D /* ximage.cpp */,
-				C9FA104C16102B9E0010C75D /* ximage.h */,
 				C9FA104D16102B9E0010C75D /* ximagif.cpp */,
 				C9FA104E16102B9E0010C75D /* ximagif.h */,
 				C9FA104F16102B9E0010C75D /* ximahist.cpp */,
@@ -175,7 +178,6 @@
 				C9FA105116102B9E0010C75D /* ximaico.h */,
 				C9FA105216102B9E0010C75D /* ximainfo.cpp */,
 				C9FA105316102B9E0010C75D /* ximaint.cpp */,
-				C9FA105416102B9E0010C75D /* ximaiter.h */,
 				C9FA105516102B9E0010C75D /* ximajas.cpp */,
 				C9FA105616102B9E0010C75D /* ximajas.h */,
 				C9FA105716102B9E0010C75D /* ximajbg.cpp */,
@@ -210,9 +212,7 @@
 				C9FA107416102B9E0010C75D /* ximawmf.cpp */,
 				C9FA107516102B9E0010C75D /* ximawmf.h */,
 				C9FA107616102B9E0010C75D /* ximawnd.cpp */,
-				C9FA107716102B9E0010C75D /* xiofile.h */,
 				C9FA107816102B9E0010C75D /* xmemfile.cpp */,
-				C9FA107916102B9E0010C75D /* xmemfile.h */,
 				C935CA6B1612A6EE00C72CD1 /* Types.h */,
 			);
 			name = CppImage;
@@ -225,14 +225,11 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C9FA107B16102B9E0010C75D /* xfile.h in Headers */,
 				C9FA107D16102B9E0010C75D /* ximabmp.h in Headers */,
 				C9FA107E16102B9E0010C75D /* ximacfg.h in Headers */,
 				C9FA107F16102B9E0010C75D /* ximadef.h in Headers */,
-				C9FA108416102B9E0010C75D /* ximage.h in Headers */,
 				C9FA108616102B9E0010C75D /* ximagif.h in Headers */,
 				C9FA108916102B9E0010C75D /* ximaico.h in Headers */,
-				C9FA108C16102B9E0010C75D /* ximaiter.h in Headers */,
 				C9FA108E16102B9E0010C75D /* ximajas.h in Headers */,
 				C9FA109016102B9E0010C75D /* ximajbg.h in Headers */,
 				C9FA109216102B9E0010C75D /* ximajpg.h in Headers */,
@@ -247,9 +244,12 @@
 				C9FA10A816102B9E0010C75D /* ximatif.h in Headers */,
 				C9FA10AB16102B9E0010C75D /* ximawbmp.h in Headers */,
 				C9FA10AD16102B9E0010C75D /* ximawmf.h in Headers */,
-				C9FA10AF16102B9E0010C75D /* xiofile.h in Headers */,
-				C9FA10B116102B9E0010C75D /* xmemfile.h in Headers */,
 				C935CA6C1612A6EF00C72CD1 /* Types.h in Headers */,
+				C926859F16215C5500D4EB54 /* CxFile.h in Headers */,
+				C92685A416215C6800D4EB54 /* CxImage.h in Headers */,
+				C92685A516215C6800D4EB54 /* CxIOFile.h in Headers */,
+				C92685A616215C6800D4EB54 /* CxMemFile.h in Headers */,
+				C92685A816215C8600D4EB54 /* CImageIterator.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

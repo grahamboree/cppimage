@@ -12,7 +12,7 @@
 #if !defined(__ximaPCX_h)
 #define __ximaPCX_h
 
-#include "ximage.h"
+#include "CxImage.h"
 
 #if CXIMAGE_SUPPORT_PCX
 

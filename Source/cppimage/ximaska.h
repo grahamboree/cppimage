@@ -10,7 +10,7 @@
 #if !defined(__ximaSKA_h)
 #define __ximaSKA_h
 
-#include "ximage.h"
+#include "CxImage.h"
 
 #if CXIMAGE_SUPPORT_SKA
 

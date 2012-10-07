@@ -8,3 +8,5 @@
 *.xcuserstate
 
 cppimage.xcodeproj/project.xcworkspace/xcuserdata/pentheny.xcuserdatad/UserInterfaceState.xcuserstate
+
+*.xcbkptlist

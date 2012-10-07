@@ -13,7 +13,7 @@
 #if !defined(__ximaPSD_h)
 #define __ximaPSD_h
 
-#include "ximage.h"
+#include "CxImage.h"
 
 #if CXIMAGE_SUPPORT_PSD
 

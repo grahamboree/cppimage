@@ -3,9 +3,9 @@
  * CxImage version 7.0.1 07/Jan/2011
  */
 
-#include "ximage.h"
+#include "CxImage.h"
 
-#include "ximaiter.h" 
+#include "CImageIterator.h" 
 #include "ximabmp.h"
 
 ////////////////////////////////////////////////////////////////////////////////

@@ -19,7 +19,7 @@
 #if !defined(__ximatif_h)
 #define __ximatif_h
 
-#include "ximage.h"
+#include "CxImage.h"
 
 #if CXIMAGE_SUPPORT_TIF
 

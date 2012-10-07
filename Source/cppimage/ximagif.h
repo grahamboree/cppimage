@@ -34,7 +34,7 @@
 #if !defined(__ximaGIF_h)
 #define __ximaGIF_h
 
-#include "ximage.h"
+#include "CxImage.h"
 
 #if CXIMAGE_SUPPORT_GIF
 

@@ -17,7 +17,7 @@
 #if !defined(__ximaBMP_h)
 #define __ximaBMP_h
 
-#include "ximage.h"
+#include "CxImage.h"
 
 const int32_t RLE_COMMAND     = 0;
 const int32_t RLE_ENDOFLINE   = 0;

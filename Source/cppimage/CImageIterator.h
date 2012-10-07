@@ -1,5 +1,5 @@
 /*
- * File:	ImaIter.h
+ * File:	CImageIterator.h
  * Purpose:	Declaration of the Platform Independent Image Base Class
  * Author:	Alejandro Aguilar Sierra
  * Created:	1995
@@ -26,55 +26,98 @@
  * ==========================================================
  */
 
-#if !defined(__ImaIter_h)
-#define __ImaIter_h
+#pragma once
 
-#include "ximage.h"
+#include "CxImage.h"
 #include "ximadef.h"
 
+//////////////////////////////////////////////////////////////////////////
 class CImageIterator
 {
-friend class CxImage;
+	friend class CxImage;
+
 protected:
-	int32_t Itx, Ity;		// Counters
-	int32_t Stepx, Stepy;
+	int32_t  Itx;
+	int32_t  Ity;		// Counters
+	int32_t  Stepx;
+	int32_t  Stepy;
 	uint8_t* IterImage;	//  Image pointer
-	CxImage *ima;
+	CxImage* ima;
+
 public:
 	// Constructors
-	CImageIterator ( void );
-	CImageIterator ( CxImage *image );
+	CImageIterator(void);
+	CImageIterator(CxImage *image);
+	
+	// Operators
 	operator CxImage* ();
 
 	// Iterators
-	BOOL ItOK ();
-	void Reset ();
-	void Upset ();
-	void SetRow(uint8_t *buf, int32_t n);
-	void GetRow(uint8_t *buf, int32_t n);
-	uint8_t GetByte( ) { return IterImage[Itx]; }
-	void SetByte(uint8_t b) { IterImage[Itx] = b; }
-	uint8_t* GetRow(void);
+	BOOL	ItOK();
+	void	Reset();
+	void	Upset();
+
+	void	 SetRow(uint8_t *buf, int32_t n);
+	void	 GetRow(uint8_t *buf, int32_t n);
+	uint8_t* GetRow();
 	uint8_t* GetRow(int32_t n);
+
+	uint8_t GetByte();
+	void	SetByte(uint8_t b);
+
 	BOOL NextRow();
 	BOOL PrevRow();
+
 	BOOL NextByte();
 	BOOL PrevByte();
 
-	void SetSteps(int32_t x, int32_t y=0) {  Stepx = x; Stepy = y; }
-	void GetSteps(int32_t *x, int32_t *y) {  *x = Stepx; *y = Stepy; }
+	void GetSteps(int32_t* x, int32_t* y);
+	void SetSteps(int32_t x, int32_t y = 0);
+
 	BOOL NextStep();
 	BOOL PrevStep();
 
-	void SetY(int32_t y);	/* AD - for interlace */
-	int32_t  GetY() {return Ity;}
+	void 	SetY(int32_t y);	/* AD - for interlace */
+	int32_t GetY();
+
 	BOOL GetCol(uint8_t* pCol, uint32_t x);
 	BOOL SetCol(uint8_t* pCol, uint32_t x);
 };
 
-/////////////////////////////////////////////////////////////////////
-inline
-CImageIterator::CImageIterator(void)
+//////////////////////////////////////////////////////////////////////////
+inline void CImageIterator::SetByte(uint8_t b)
+{
+	IterImage[Itx] = b;
+}
+
+//////////////////////////////////////////////////////////////////////////
+inline uint8_t CImageIterator::GetByte()
+{
+	return IterImage[Itx];
+}
+
+//////////////////////////////////////////////////////////////////////////
+inline void CImageIterator::SetSteps(int32_t x, int32_t y)
+{
+	Stepx = x;
+	Stepy = y;
+}
+
+//////////////////////////////////////////////////////////////////////////
+inline void CImageIterator::GetSteps(int32_t* x, int32_t* y)
+{
+	*x = Stepx;
+	*y = Stepy;
+}
+
+//////////////////////////////////////////////////////////////////////////
+inline int32_t CImageIterator::GetY()
+{
+	return Ity;
+}
+
+//////////////////////////////////////////////////////////////////////////
+inline CImageIterator::CImageIterator(void)
 {
 	ima = 0;
 	IterImage = 0;
@@ -82,16 +125,14 @@ CImageIterator::CImageIterator(void)
 	Stepx = Stepy = 0;
 }
 /////////////////////////////////////////////////////////////////////
-inline
-CImageIterator::CImageIterator(CxImage *imageImpl): ima(imageImpl)
+inline CImageIterator::CImageIterator(CxImage *imageImpl): ima(imageImpl)
 {
 	if (ima) IterImage = ima->GetBits();
 	Itx = Ity = 0;
 	Stepx = Stepy = 0;
 }
 /////////////////////////////////////////////////////////////////////
-inline
-CImageIterator::operator CxImage* ()
+inline CImageIterator::operator CxImage* ()
 {
 	return ima;
 }
@@ -200,6 +241,7 @@ inline BOOL CImageIterator::NextStep()
 			return 0;
 	}
 }
+
 /////////////////////////////////////////////////////////////////////
 inline BOOL CImageIterator::PrevStep()
 {
@@ -215,6 +257,7 @@ inline BOOL CImageIterator::PrevStep()
 			return 0;
 	}
 }
+
 /////////////////////////////////////////////////////////////////////
 inline BOOL CImageIterator::GetCol(uint8_t* pCol, uint32_t x)
 {
@@ -232,6 +275,7 @@ inline BOOL CImageIterator::GetCol(uint8_t* pCol, uint32_t x)
 	}
 	return 1;
 }
+
 /////////////////////////////////////////////////////////////////////
 inline BOOL CImageIterator::SetCol(uint8_t* pCol, uint32_t x)
 {
@@ -249,5 +293,3 @@ inline BOOL CImageIterator::SetCol(uint8_t* pCol, uint32_t x)
 	}
 	return 1;
 }
-/////////////////////////////////////////////////////////////////////
-#endif

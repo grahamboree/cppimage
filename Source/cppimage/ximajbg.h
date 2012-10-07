@@ -12,7 +12,7 @@
 #if !defined(__ximaJBG_h)
 #define __ximaJBG_h
 
-#include "ximage.h"
+#include "CxImage.h"
 
 #if CXIMAGE_SUPPORT_JBG
 

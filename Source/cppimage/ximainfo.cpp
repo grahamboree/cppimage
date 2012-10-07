@@ -3,7 +3,7 @@
  * CxImage version 7.0.1 07/Jan/2011
  */
 
-#include "ximage.h"
+#include "CxImage.h"
 
 #if defined(_LINUX) || defined(__APPLE__)
  #define _tcsnicmp(a,b,c) strcasecmp(a,b)

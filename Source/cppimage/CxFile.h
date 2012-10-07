@@ -1,5 +1,5 @@
 /*
- * File:	xfile.h
+ * File:	CxFile.h
  * Purpose:	General Purpose File Class 
  */
 /*
@@ -41,14 +41,13 @@
 #pragma once
 
 #if defined (WIN32) || defined (_WIN32_WCE)
- #include <windows.h>
+#	include <windows.h>
 #endif
 
 #include <stdio.h>
 #include <stdlib.h>
 
 #include "ximadef.h"
-
 
 class CxFile
 {

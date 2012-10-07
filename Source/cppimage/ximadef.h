@@ -10,7 +10,6 @@
 #	define DLL_EXP
 #endif
 
-
 #if CXIMAGE_SUPPORT_EXCEPTION_HANDLING
 #	 define cx_try try
 #	 define cx_throw(message) throw(message)
@@ -20,7 +19,6 @@
 #	 define cx_throw(message) {cx_error=true; if(strcmp(message,"")) strncpy(info.szLastError,message,255); goto cx_error_catch;}
 #	 define cx_catch cx_error_catch: char message[]=""; if(cx_error)
 #endif
-
 
 #if CXIMAGE_SUPPORT_JP2 || CXIMAGE_SUPPORT_JPC || CXIMAGE_SUPPORT_PGX || CXIMAGE_SUPPORT_PNM || CXIMAGE_SUPPORT_RAS
 #	define CXIMAGE_SUPPORT_JASPER 1
@@ -59,15 +57,23 @@
 
 #ifndef min
 #	define min(a,b) (((a)<(b))?(a):(b))
+#	define MIN(a,b) (((a)<(b))?(a):(b))
+//template<typename T>
+//inline static T min(const T& a, const T& b) { return (a < b) ? a : b; }
 #endif
+
 #ifndef max
 #	define max(a,b) (((a)>(b))?(a):(b))
+#	define MAX(a,b) (((a)>(b))?(a):(b))
+//template<typename T>
+//inline static T max(const T& a, const T& b) { return (a > b) ? a : b; }
 #endif
 
-#ifndef PI
+static const float PI = 3.141592653589793f;
+
+/*#ifndef PI
 #	define PI 3.141592653589793f
-#endif
-
+#endif*/
 
 #if defined(WIN32) || defined(_WIN32_WCE)
 #	include <windows.h>
@@ -78,50 +84,46 @@
 #include <math.h>
 
 #ifdef __BORLANDC__
-
 #	ifndef _COMPLEX_DEFINED
-
 typedef struct tagcomplex {
 	double x,y;
 } _complex;
-
 #	endif
 
 #	define _cabs(c) sqrt(c.x*c.x+c.y*c.y)
-
 #endif // __BORLANDC__)
 
 #if defined(WIN32) || defined(_WIN32_WCE)
- #include "stdint.h"
+#	include "stdint.h"
 #endif
 
 #if !defined(WIN32) && !defined(_WIN32_WCE)
-
-#include <stdint.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
+#	include <stdint.h>
+#	include <stdlib.h>
+#	include <string.h>
+#	include <ctype.h>
 
 typedef uint32_t   COLORREF;
 typedef void*      HANDLE;
 typedef void*      HRGN;
+typedef unsigned char BYTE;
 
-#ifndef BOOL
-#define	BOOL bool
-#endif
+#	ifndef BOOL
+#		define	BOOL bool
+#	endif
 
-#ifndef TRUE
-#define	TRUE true
-#endif
+#	ifndef TRUE
+#		define	TRUE true
+#	endif
 
-#ifndef FALSE
-#define	FALSE false
-#endif
+#	ifndef FALSE
+#		define	FALSE false
+#	endif
 
-#ifndef TCHAR
-#define TCHAR char
-#define _T
-#endif
+#	ifndef TCHAR
+#		define TCHAR char
+#		define _T
+#	endif
 
 typedef struct tagRECT
 {
@@ -144,7 +146,7 @@ typedef struct tagRGBQUAD {
 	uint8_t    rgbReserved;
 } RGBQUAD;
 
-#pragma pack(1)
+#	pragma pack(1)
 
 typedef struct tagBITMAPINFOHEADER{
 	uint32_t   biSize;
@@ -182,26 +184,25 @@ typedef struct tagRGBTRIPLE {
 	uint8_t    rgbtRed;
 } RGBTRIPLE;
 
-#pragma pack()
+#	pragma pack()
 
-#define BI_RGB        0L
-#define BI_RLE8       1L
-#define BI_RLE4       2L
-#define BI_BITFIELDS  3L
+#	define BI_RGB        0L
+#	define BI_RLE8       1L
+#	define BI_RLE4       2L
+#	define BI_BITFIELDS  3L
 
-#define GetRValue(rgb)      ((uint8_t)(rgb))
-#define GetGValue(rgb)      ((uint8_t)(((uint16_t)(rgb)) >> 8))
-#define GetBValue(rgb)      ((uint8_t)((rgb)>>16))
-#define RGB(r,g,b)          ((COLORREF)(((uint8_t)(r)|((uint16_t)((uint8_t)(g))<<8))|(((uint32_t)(uint8_t)(b))<<16)))
+#	define GetRValue(rgb)      ((uint8_t)(rgb))
+#	define GetGValue(rgb)      ((uint8_t)(((uint16_t)(rgb)) >> 8))
+#	define GetBValue(rgb)      ((uint8_t)((rgb)>>16))
+#	define RGB(r,g,b)          ((COLORREF)(((uint8_t)(r)|((uint16_t)((uint8_t)(g))<<8))|(((uint32_t)(uint8_t)(b))<<16)))
 
-#ifndef _COMPLEX_DEFINED
+#	ifndef _COMPLEX_DEFINED
 
 typedef struct tagcomplex {
 	double x,y;
 } _complex;
 
-#endif
+#	endif // _COMPLEX_DEFINED
+#	define _cabs(c) sqrt(c.x*c.x+c.y*c.y)
+#endif // !defined(WIN32) && !defined(_WIN32_WCE)
 
-#define _cabs(c) sqrt(c.x*c.x+c.y*c.y)
-
-#endif

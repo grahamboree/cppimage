@@ -19,7 +19,7 @@
 #if !defined(__ximaMNG_h)
 #define __ximaMNG_h
 
-#include "ximage.h"
+#include "CxImage.h"
 
 #if CXIMAGE_SUPPORT_MNG
 

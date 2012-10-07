@@ -10,7 +10,7 @@
 
 #if CXIMAGE_SUPPORT_PNG
 
-#include "ximaiter.h"
+#include "CImageIterator.h"
 
 ////////////////////////////////////////////////////////////////////////////////
 void CxImagePNG::ima_png_error(png_struct *png_ptr, char *message)

@@ -57,9 +57,9 @@
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
-#include "xfile.h"
-#include "xiofile.h"
-#include "xmemfile.h"
+#include "CxFile.h"
+#include "CxIOFile.h"
+#include "CxMemfile.h"
 #include "ximadef.h"
 
 /* see "ximacfg.h" for CxImage configuration options */
@@ -439,6 +439,7 @@ public:
 		OM_REPEAT		= 5,
 		OM_MIRROR		= 6
 	};
+
 	void OverflowCoordinates(float& x, float& y, OverflowMethod const ofMethod);
 	void OverflowCoordinates(int32_t& x, int32_t& y, OverflowMethod const ofMethod);
 	RGBQUAD GetPixelColorWithOverflow(int32_t x, int32_t y, OverflowMethod const ofMethod = OM_BACKGROUND, RGBQUAD* const rplColor = 0);
