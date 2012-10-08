@@ -813,10 +813,10 @@ protected:
 	static int32_t CompareColors(const void* elem1, const void* elem2);
 	int16_t	m_ntohs(const int16_t word);
 	int32_t	m_ntohl(const int32_t dword);
-	void	bihtoh(BITMAPINFOHEADER* bih);
+	void	bihtoh(BitmapInfoHeader* bih);
 
 	void*				pDib; 		//contains the header, the palette, the pixels
-	BITMAPINFOHEADER    head; 		//standard header
+	BitmapInfoHeader    head; 		//standard header
 	CXIMAGEINFO			info; 		//extended information
 	uint8_t*			pSelection;	//selected region
 	uint8_t*			pAlpha;		//alpha channel

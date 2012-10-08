@@ -67,7 +67,7 @@ bool CxImageICO::Decode(CxFile *hFile)
 			}
 
 			// get the bit count for the colors in the icon <CoreyRLucier>
-			BITMAPINFOHEADER bih;
+			BitmapInfoHeader bih;
 			hFile->Seek(off + icon_list[page].dwImageOffset, SEEK_SET);
 
 			if (icon_list[page].bWidth==0 && icon_list[page].bHeight==0)
@@ -83,7 +83,7 @@ bool CxImageICO::Decode(CxFile *hFile)
 			}
 			else
 			{	// standard icon
-				hFile->Read(&bih,sizeof(BITMAPINFOHEADER),1);
+				hFile->Read(&bih,sizeof(BitmapInfoHeader),1);
 
 				bihtoh(&bih);
 
@@ -328,7 +328,7 @@ bool CxImageICO::Encode(CxFile * hFile, bool bAppend, int32_t nPageCount)
 	if (!bAppend)
 		m_dwImageOffset = sizeof(ICONHEADER) + nPages * sizeof(ICONDIRENTRY);
 
-	uint32_t dwBytesInRes = sizeof(BITMAPINFOHEADER)+head.biClrUsed*sizeof(RGBQuad)+imagesize+masksize;
+	uint32_t dwBytesInRes = sizeof(BitmapInfoHeader)+head.biClrUsed*sizeof(RGBQuad)+imagesize+masksize;
 
 	ICONDIRENTRY icon_list={
 		(uint8_t)head.biWidth,
@@ -340,8 +340,8 @@ bool CxImageICO::Encode(CxFile * hFile, bool bAppend, int32_t nPageCount)
 		m_dwImageOffset
 	};
 
-	BITMAPINFOHEADER bi={
-		sizeof(BITMAPINFOHEADER),
+	BitmapInfoHeader bi={
+		sizeof(BitmapInfoHeader),
 		head.biWidth,
 		2*head.biHeight,
 		1,
@@ -350,8 +350,8 @@ bool CxImageICO::Encode(CxFile * hFile, bool bAppend, int32_t nPageCount)
 		0, 0, 0, 0
 	};
 	/*
-	 BITMAPINFOHEADER bi={
-	 sizeof(BITMAPINFOHEADER),
+	 BitmapInfoHeader bi={
+	 sizeof(BitmapInfoHeader),
 	 head.biWidth,
 	 2*head.biHeight,
 	 1,
@@ -404,7 +404,7 @@ bool CxImageICO::Encode(CxFile * hFile, bool bAppend, int32_t nPageCount)
 #endif //CXIMAGE_SUPPORT_PNG
 		{	// standard icon
 			bihtoh(&bi);
-			hFile->Write(&bi,sizeof(BITMAPINFOHEADER),1);			//write the image header
+			hFile->Write(&bi,sizeof(BitmapInfoHeader),1);			//write the image header
 			bihtoh(&bi);
 
 			bool bTransparent = info.nBkgndIndex >= 0;

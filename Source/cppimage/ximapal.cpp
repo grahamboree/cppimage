@@ -17,7 +17,7 @@ uint32_t CxImage::GetPaletteSize()
 void CxImage::SetPaletteColor(uint8_t idx, uint8_t r, uint8_t g, uint8_t b, uint8_t alpha)
 {
 	if ((pDib)&&(head.biClrUsed)){
-		uint8_t* iDst = (uint8_t*)(pDib) + sizeof(BITMAPINFOHEADER);
+		uint8_t* iDst = (uint8_t*)(pDib) + sizeof(BitmapInfoHeader);
 		if (idx<head.biClrUsed){
 			int32_t ldx=idx*sizeof(RGBQuad);
 			iDst[ldx++] = (uint8_t) b;
@@ -32,7 +32,7 @@ void CxImage::SetPaletteColor(uint8_t idx, uint8_t r, uint8_t g, uint8_t b, uint
 void CxImage::SetPaletteColor(uint8_t idx, RGBQuad c)
 {
 	if ((pDib)&&(head.biClrUsed)){
-		uint8_t* iDst = (uint8_t*)(pDib) + sizeof(BITMAPINFOHEADER);
+		uint8_t* iDst = (uint8_t*)(pDib) + sizeof(BitmapInfoHeader);
 		if (idx<head.biClrUsed){
 			int32_t ldx=idx*sizeof(RGBQuad);
 			iDst[ldx++] = (uint8_t) c.rgbBlue;
@@ -47,7 +47,7 @@ void CxImage::SetPaletteColor(uint8_t idx, RGBQuad c)
 void CxImage::SetPaletteColor(uint8_t idx, COLORREF cr)
 {
 	if ((pDib)&&(head.biClrUsed)){
-		uint8_t* iDst = (uint8_t*)(pDib) + sizeof(BITMAPINFOHEADER);
+		uint8_t* iDst = (uint8_t*)(pDib) + sizeof(BitmapInfoHeader);
 		if (idx<head.biClrUsed){
 			int32_t ldx=idx*sizeof(RGBQuad);
 			iDst[ldx++] = (uint8_t) GetBValue(cr);
@@ -65,7 +65,7 @@ void CxImage::SetPaletteColor(uint8_t idx, COLORREF cr)
 RGBQuad* CxImage::GetPalette() const
 {
 	if ((pDib)&&(head.biClrUsed))
-		return (RGBQuad*)((uint8_t*)pDib + sizeof(BITMAPINFOHEADER));
+		return (RGBQuad*)((uint8_t*)pDib + sizeof(BitmapInfoHeader));
 	return NULL;
 }
 ////////////////////////////////////////////////////////////////////////////////
@@ -76,7 +76,7 @@ RGBQuad CxImage::GetPaletteColor(uint8_t idx)
 {
 	RGBQuad rgb = {0,0,0,0};
 	if ((pDib)&&(head.biClrUsed)){
-		uint8_t* iDst = (uint8_t*)(pDib) + sizeof(BITMAPINFOHEADER);
+		uint8_t* iDst = (uint8_t*)(pDib) + sizeof(BitmapInfoHeader);
 		if (idx<head.biClrUsed){
 			int32_t ldx=idx*sizeof(RGBQuad);
 			rgb.rgbBlue = iDst[ldx++];
@@ -366,7 +366,7 @@ uint8_t CxImage::GetNearestIndex(RGBQuad c)
 	info.last_c = c;
 	info.last_c_isvalid = true;
 
-	uint8_t* iDst = (uint8_t*)(pDib) + sizeof(BITMAPINFOHEADER);
+	uint8_t* iDst = (uint8_t*)(pDib) + sizeof(BitmapInfoHeader);
 	int32_t distance=200000;
 	int32_t i,j = 0;
 	int32_t k,l;
@@ -493,7 +493,7 @@ void CxImage::SetGrayPalette()
 void CxImage::BlendPalette(COLORREF cr,int32_t perc)
 {
 	if ((pDib==NULL)||(head.biClrUsed==0)) return;
-	uint8_t* iDst = (uint8_t*)(pDib) + sizeof(BITMAPINFOHEADER);
+	uint8_t* iDst = (uint8_t*)(pDib) + sizeof(BitmapInfoHeader);
 	uint32_t i,r,g,b;
 	RGBQuad* pPal=(RGBQuad*)iDst;
 	r = GetRValue(cr);

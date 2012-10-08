@@ -153,7 +153,7 @@ struct RGBQuad
 
 #	pragma pack(1)
 
-struct BITMAPINFOHEADER
+struct BitmapInfoHeader
 {
 	uint32_t   biSize;
 	int32_t    biWidth;

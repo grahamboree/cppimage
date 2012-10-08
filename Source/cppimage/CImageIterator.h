@@ -47,7 +47,7 @@ protected:
 public:
 	// Constructors
 	CImageIterator();
-	CImageIterator(CxImage *image);
+	CImageIterator(CxImage* inImage);
 	
 	// Operators
 	operator CxImage* ();
@@ -128,8 +128,8 @@ inline CImageIterator::CImageIterator(void)
 }
 
 /////////////////////////////////////////////////////////////////////
-inline CImageIterator::CImageIterator(CxImage* imageImpl)
-: mImage(imageImpl)
+inline CImageIterator::CImageIterator(CxImage* inImage)
+: mImage(inImage)
 {
 	if (mImage != NULL)
 		IterImage = mImage->GetBits();

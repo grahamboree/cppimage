@@ -97,7 +97,7 @@ void CxImage::SetXDPI(int32_t dpi)
 	if (dpi<=0) dpi = CXIMAGE_DEFAULT_DPI;
 	info.xDPI = dpi;
 	head.biXPelsPerMeter = (int32_t) floor(dpi * 10000.0 / 254.0 + 0.5);
-	if (pDib) ((BITMAPINFOHEADER*)pDib)->biXPelsPerMeter = head.biXPelsPerMeter;
+	if (pDib) ((BitmapInfoHeader*)pDib)->biXPelsPerMeter = head.biXPelsPerMeter;
 }
 ////////////////////////////////////////////////////////////////////////////////
 /**
@@ -108,7 +108,7 @@ void CxImage::SetYDPI(int32_t dpi)
 	if (dpi<=0) dpi = CXIMAGE_DEFAULT_DPI;
 	info.yDPI = dpi;
 	head.biYPelsPerMeter = (int32_t) floor(dpi * 10000.0 / 254.0 + 0.5);
-	if (pDib) ((BITMAPINFOHEADER*)pDib)->biYPelsPerMeter = head.biYPelsPerMeter;
+	if (pDib) ((BitmapInfoHeader*)pDib)->biYPelsPerMeter = head.biYPelsPerMeter;
 }
 ////////////////////////////////////////////////////////////////////////////////
 /**
@@ -753,7 +753,7 @@ int32_t CxImage::m_ntohl(const int32_t dword)
 			((dword >> 8) & 0xff00) | ((dword >> 24) & 0xff);
 }
 ////////////////////////////////////////////////////////////////////////////////
-void CxImage::bihtoh(BITMAPINFOHEADER* bih)
+void CxImage::bihtoh(BitmapInfoHeader* bih)
 {
 	bih->biSize = m_ntohl(bih->biSize);
 	bih->biWidth = m_ntohl(bih->biWidth);
@@ -779,7 +779,7 @@ const char* CxImage::GetLastError()
 uint32_t CxImage::DumpSize()
 {
 	uint32_t n;
-	n = sizeof(BITMAPINFOHEADER) + sizeof(CXIMAGEINFO) + GetSize();
+	n = sizeof(BitmapInfoHeader) + sizeof(CXIMAGEINFO) + GetSize();
 
 #if CXIMAGE_SUPPORT_ALPHA
 	if (pAlpha){
@@ -818,8 +818,8 @@ uint32_t CxImage::Dump(uint8_t * dst)
 {
 	if (!dst) return 0;
 
-	memcpy(dst,&head,sizeof(BITMAPINFOHEADER));
-	dst += sizeof(BITMAPINFOHEADER);
+	memcpy(dst,&head,sizeof(BitmapInfoHeader));
+	dst += sizeof(BitmapInfoHeader);
 
 	memcpy(dst,&info,sizeof(CXIMAGEINFO));
 	dst += sizeof(CXIMAGEINFO);
@@ -885,8 +885,8 @@ uint32_t CxImage::UnDump(const uint8_t * src)
 
 	uint32_t n = 0;
 
-	memcpy(&head,src,sizeof(BITMAPINFOHEADER));
-	n += sizeof(BITMAPINFOHEADER);
+	memcpy(&head,src,sizeof(BitmapInfoHeader));
+	n += sizeof(BitmapInfoHeader);
 
 	memcpy(&info,&src[n],sizeof(CXIMAGEINFO));
 	n += sizeof(CXIMAGEINFO);

@@ -209,14 +209,14 @@ bool CxImage::CreateFromHANDLE(HANDLE hMem)
 
 	uint8_t *lpVoid;						//pointer to the bitmap
 	lpVoid = (uint8_t *)GlobalLock(hMem);
-	BITMAPINFOHEADER *pHead;			//pointer to the bitmap header
-	pHead = (BITMAPINFOHEADER *)lpVoid;
+	BitmapInfoHeader *pHead;			//pointer to the bitmap header
+	pHead = (BitmapInfoHeader *)lpVoid;
 	if (lpVoid){
 
 		//CxMemFile hFile(lpVoid,dwSize);
 
 		//copy the bitmap header
-		memcpy(&head,pHead,sizeof(BITMAPINFOHEADER));
+		memcpy(&head,pHead,sizeof(BitmapInfoHeader));
 		//check if it's a top-down bitmap
 		bool bTopDownDib = head.biHeight<0;
 		if (bTopDownDib) head.biHeight=-head.biHeight;
@@ -549,8 +549,8 @@ HBITMAP CxImage::MakeBitmap(HDC hdc, bool bTransparency)
 
 		BITMAPINFO bi;
 
-		// Fill in the BITMAPINFOHEADER
-		bi.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+		// Fill in the BitmapInfoHeader
+		bi.bmiHeader.biSize = sizeof(BitmapInfoHeader);
 		bi.bmiHeader.biWidth = GetWidth();
 		bi.bmiHeader.biHeight = GetHeight();
 		bi.bmiHeader.biPlanes = 1;
@@ -636,7 +636,7 @@ bool CxImage::IsHBITMAPAlphaValid( HBITMAP hbmp )
 		if( bm.bmBitsPixel == 32 )
 		{
 			BITMAPINFO l_BitmapInfo;
-			l_BitmapInfo.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+			l_BitmapInfo.bmiHeader.biSize = sizeof(BitmapInfoHeader);
 			l_BitmapInfo.bmiHeader.biWidth = bm.bmWidth;
 			l_BitmapInfo.bmiHeader.biHeight = bm.bmHeight;
 			l_BitmapInfo.bmiHeader.biPlanes = bm.bmPlanes;
@@ -702,7 +702,7 @@ bool CxImage::CreateFromHBITMAP(HBITMAP hbmp, HPALETTE hpal, bool bTransparency)
 			bool l_bResult = true;
 
 			BITMAPINFO l_BitmapInfo;
-			l_BitmapInfo.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+			l_BitmapInfo.bmiHeader.biSize = sizeof(BitmapInfoHeader);
 			l_BitmapInfo.bmiHeader.biWidth = bm.bmWidth;
 			l_BitmapInfo.bmiHeader.biHeight = bm.bmHeight;
 			l_BitmapInfo.bmiHeader.biPlanes = bm.bmPlanes;
@@ -872,8 +872,8 @@ int32_t CxImage::Draw(HDC hdc, int32_t x, int32_t y, int32_t cx, int32_t cy, Rec
 			RGBQuad c={0,0,0,0};
 			//Preparing Bitmap Info
 			BITMAPINFO bmInfo;
-			memset(&bmInfo.bmiHeader,0,sizeof(BITMAPINFOHEADER));
-			bmInfo.bmiHeader.biSize=sizeof(BITMAPINFOHEADER);
+			memset(&bmInfo.bmiHeader,0,sizeof(BitmapInfoHeader));
+			bmInfo.bmiHeader.biSize=sizeof(BitmapInfoHeader);
 			bmInfo.bmiHeader.biWidth=destw;
 			bmInfo.bmiHeader.biHeight=desth;
 			bmInfo.bmiHeader.biPlanes=1;
@@ -954,8 +954,8 @@ int32_t CxImage::Draw(HDC hdc, int32_t x, int32_t y, int32_t cx, int32_t cy, Rec
 
 		//Preparing Bitmap Info
 		BITMAPINFO bmInfo;
-		memset(&bmInfo.bmiHeader,0,sizeof(BITMAPINFOHEADER));
-		bmInfo.bmiHeader.biSize=sizeof(BITMAPINFOHEADER);
+		memset(&bmInfo.bmiHeader,0,sizeof(BitmapInfoHeader));
+		bmInfo.bmiHeader.biSize=sizeof(BitmapInfoHeader);
 		bmInfo.bmiHeader.biWidth=destw;
 		bmInfo.bmiHeader.biHeight=desth;
 		bmInfo.bmiHeader.biPlanes=1;
@@ -1192,8 +1192,8 @@ HBITMAP CxImage::Draw2HBITMAP(HDC hdc, int32_t x, int32_t y, int32_t cx, int32_t
 			RGBQuad c={0,0,0,0};
 			//Preparing Bitmap Info
 			BITMAPINFO bmInfo;
-			memset(&bmInfo.bmiHeader,0,sizeof(BITMAPINFOHEADER));
-			bmInfo.bmiHeader.biSize=sizeof(BITMAPINFOHEADER);
+			memset(&bmInfo.bmiHeader,0,sizeof(BitmapInfoHeader));
+			bmInfo.bmiHeader.biSize=sizeof(BitmapInfoHeader);
 			bmInfo.bmiHeader.biWidth=destw;
 			bmInfo.bmiHeader.biHeight=desth;
 			bmInfo.bmiHeader.biPlanes=1;
@@ -1269,8 +1269,8 @@ HBITMAP CxImage::Draw2HBITMAP(HDC hdc, int32_t x, int32_t y, int32_t cx, int32_t
 
 		//Preparing Bitmap Info
 		BITMAPINFO bmInfo;
-		memset(&bmInfo.bmiHeader,0,sizeof(BITMAPINFOHEADER));
-		bmInfo.bmiHeader.biSize=sizeof(BITMAPINFOHEADER);
+		memset(&bmInfo.bmiHeader,0,sizeof(BitmapInfoHeader));
+		bmInfo.bmiHeader.biSize=sizeof(BitmapInfoHeader);
 		bmInfo.bmiHeader.biWidth=destw;
 		bmInfo.bmiHeader.biHeight=desth;
 		bmInfo.bmiHeader.biPlanes=1;
@@ -1622,8 +1622,8 @@ int32_t CxImage::DrawString(HDC hdc, int32_t x, int32_t y, const TCHAR* text, RG
 		int32_t width=pos.right;
 		int32_t height=pos.bottom;
 		BITMAPINFO bmInfo;
-		memset(&bmInfo.bmiHeader,0,sizeof(BITMAPINFOHEADER));
-		bmInfo.bmiHeader.biSize=sizeof(BITMAPINFOHEADER);
+		memset(&bmInfo.bmiHeader,0,sizeof(BitmapInfoHeader));
+		bmInfo.bmiHeader.biSize=sizeof(BitmapInfoHeader);
 		bmInfo.bmiHeader.biWidth=width;
 		bmInfo.bmiHeader.biHeight=height;
 		bmInfo.bmiHeader.biPlanes=1;
@@ -1734,8 +1734,8 @@ int32_t CxImage::DrawStringEx(HDC hdc, int32_t x, int32_t y, CXTEXTINFO *pTextTy
 	int32_t width=pos.right +frame*2;
 	int32_t height=pos.bottom +frame*2;
 	BITMAPINFO bmInfo;
-	memset(&bmInfo.bmiHeader,0,sizeof(BITMAPINFOHEADER));
-	bmInfo.bmiHeader.biSize=sizeof(BITMAPINFOHEADER);
+	memset(&bmInfo.bmiHeader,0,sizeof(BitmapInfoHeader));
+	bmInfo.bmiHeader.biSize=sizeof(BitmapInfoHeader);
 	bmInfo.bmiHeader.biWidth=width;
 	bmInfo.bmiHeader.biHeight=height;
 	bmInfo.bmiHeader.biPlanes=1;

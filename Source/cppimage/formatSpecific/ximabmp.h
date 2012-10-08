@@ -47,7 +47,7 @@ public:
 #endif // CXIMAGE_SUPPORT_ENCODE
 
 protected:
-	bool DibReadBitmapInfo(CxFile* fh, BITMAPINFOHEADER *pdib);
+	bool DibReadBitmapInfo(CxFile* fh, BitmapInfoHeader *pdib);
 };
 
 #define BFT_ICON   0x4349   /* 'IC' */

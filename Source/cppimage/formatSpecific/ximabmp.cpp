@@ -34,8 +34,8 @@ bool CxImageBMP::Encode(CxFile * hFile)
 #if CXIMAGE_SUPPORT_ALPHA
 	if (GetNumColors() == 0 && AlphaIsValid())
 	{
-		BITMAPINFOHEADER  infohdr;
-		memcpy(&infohdr, &head, sizeof(BITMAPINFOHEADER));
+		BitmapInfoHeader  infohdr;
+		memcpy(&infohdr, &head, sizeof(BitmapInfoHeader));
 		infohdr.biCompression = BI_RGB;
 		infohdr.biBitCount = 32;
 		uint32_t dwEffWidth = ((((infohdr.biBitCount * infohdr.biWidth) + 31) / 32) * 4);
@@ -48,7 +48,7 @@ bool CxImageBMP::Encode(CxFile * hFile)
 
 		// Write the file header
 		hFile->Write(&hdr, min(14, sizeof(BITMAPFILEHEADER)), 1);
-		hFile->Write(&infohdr, sizeof(BITMAPINFOHEADER), 1);
+		hFile->Write(&infohdr, sizeof(BitmapInfoHeader), 1);
 		 //and DIB+ALPHA interlaced
 		uint8_t *srcalpha = AlphaGetPointer();
 		for (int32_t y = 0; y < infohdr.biHeight; ++y)
@@ -69,11 +69,11 @@ bool CxImageBMP::Encode(CxFile * hFile)
 		// Write the file header
 		hFile->Write(&hdr, min(14, sizeof(BITMAPFILEHEADER)), 1);
 		//copy attributes
-		memcpy(pDib, &head, sizeof(BITMAPINFOHEADER));
-		bihtoh(static_cast<BITMAPINFOHEADER*>(pDib));
+		memcpy(pDib, &head, sizeof(BitmapInfoHeader));
+		bihtoh(static_cast<BitmapInfoHeader*>(pDib));
 		// Write the DIB header and the pixels
 		hFile->Write(pDib, GetSize(), 1);
-		bihtoh(static_cast<BITMAPINFOHEADER*>(pDib));
+		bihtoh(static_cast<BitmapInfoHeader*>(pDib));
 	}
 	return true;
 }
@@ -103,7 +103,7 @@ bool CxImageBMP::Decode(CxFile * hFile)
 			hFile->Seek(off, SEEK_SET);
 		}
 
-		BITMAPINFOHEADER bmpHeader;
+		BitmapInfoHeader bmpHeader;
 		if (!DibReadBitmapInfo(hFile, &bmpHeader))
 			cx_throw("Error reading BMP info");
 		uint32_t dwCompression = bmpHeader.biCompression;
@@ -464,27 +464,27 @@ bool CxImageBMP::Decode(CxFile * hFile)
  *  BITMAPINFO.  This function will work with both "old" and "new"
  *  bitmap formats, but will always return a "new" BITMAPINFO.
  */
-bool CxImageBMP::DibReadBitmapInfo(CxFile* fh, BITMAPINFOHEADER *pdib)
+bool CxImageBMP::DibReadBitmapInfo(CxFile* fh, BitmapInfoHeader *pdib)
 {
 	if ((fh == NULL) || (pdib == NULL))
 		return false;
 
-    if (fh->Read(pdib, sizeof(BITMAPINFOHEADER), 1) == 0)
+    if (fh->Read(pdib, sizeof(BitmapInfoHeader), 1) == 0)
 		return false;
 
 	bihtoh(pdib);
 
     switch (pdib->biSize) // what type of bitmap info is this?
     {
-	case sizeof(BITMAPINFOHEADER):
+	case sizeof(BitmapInfoHeader):
 		break;
 
 	case 64: //sizeof(OS2_BMP_HEADER):
-		fh->Seek((int32_t)(64 - sizeof(BITMAPINFOHEADER)), SEEK_CUR);
+		fh->Seek((int32_t)(64 - sizeof(BitmapInfoHeader)), SEEK_CUR);
 		break;
 
 	case 124: //sizeof(BITMAPV5HEADER):
-		fh->Seek((long)(124-sizeof(BITMAPINFOHEADER)), SEEK_CUR);
+		fh->Seek((long)(124-sizeof(BitmapInfoHeader)), SEEK_CUR);
 		break;
 
 	case sizeof(BITMAPCOREHEADER):
@@ -502,17 +502,17 @@ bool CxImageBMP::DibReadBitmapInfo(CxFile* fh, BITMAPINFOHEADER *pdib)
 			pdib->biClrUsed      	= 0;
 			pdib->biClrImportant 	= 0;
 
-			fh->Seek((int32_t)(sizeof(BITMAPCOREHEADER) - sizeof(BITMAPINFOHEADER)), SEEK_CUR);
+			fh->Seek((int32_t)(sizeof(BITMAPCOREHEADER) - sizeof(BitmapInfoHeader)), SEEK_CUR);
 		}
 		break;
 	default:
 		//give a last chance
-		 if (pdib->biSize > (sizeof(BITMAPINFOHEADER)) &&
+		 if (pdib->biSize > (sizeof(BitmapInfoHeader)) &&
 			(pdib->biSizeImage >= (uint32_t)(pdib->biHeight * ((((pdib->biBitCount * pdib->biWidth) + 31) / 32) * 4))) &&
 			(pdib->biPlanes == 1) && (pdib->biClrUsed == 0))
 		 {
 			 if (pdib->biCompression == BI_RGB)
-				 fh->Seek((int32_t)(pdib->biSize - sizeof(BITMAPINFOHEADER)), SEEK_CUR);
+				 fh->Seek((int32_t)(pdib->biSize - sizeof(BitmapInfoHeader)), SEEK_CUR);
 			 break;
 		 }
 		return false;

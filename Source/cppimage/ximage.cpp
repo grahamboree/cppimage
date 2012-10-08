@@ -16,7 +16,7 @@ void CxImage::Startup(uint32_t imagetype)
 	pDib = pSelection = pAlpha = NULL;
 	ppLayers = ppFrames = NULL;
 	//init structures
-	memset(&head, 0, sizeof(BITMAPINFOHEADER));
+	memset(&head, 0, sizeof(BitmapInfoHeader));
 	memset(&info, 0, sizeof(CXIMAGEINFO));
 	//init default attributes
     info.dwType = imagetype;
@@ -133,7 +133,7 @@ void CxImage::Copy(const CxImage& src, bool copypixels, bool copyselection, bool
 
 	//copy the attributes
 	memcpy(&info, &src.info, sizeof(CXIMAGEINFO));
-	memcpy(&head, &src.head, sizeof(BITMAPINFOHEADER)); // [andy] - fix for bitmap header DPI
+	memcpy(&head, &src.head, sizeof(BitmapInfoHeader)); // [andy] - fix for bitmap header DPI
 	//rebuild the image
 	Create(src.GetWidth(), src.GetHeight(), src.GetBpp(), src.GetType());
 	//copy the pixels and the palette, or at least copy the palette only.
@@ -244,8 +244,8 @@ void* CxImage::Create(uint32_t dwWidth, uint32_t dwHeight, uint32_t wBpp, uint32
     info.dwEffWidth = ((((wBpp * dwWidth) + 31) / 32) * 4);
     info.dwType = imagetype;
 
-    // initialize BITMAPINFOHEADER
-	head.biSize = sizeof(BITMAPINFOHEADER); //<ralphw>
+    // initialize BitmapInfoHeader
+	head.biSize = sizeof(BitmapInfoHeader); //<ralphw>
     head.biWidth = dwWidth;		// fill in width from parameter
     head.biHeight = dwHeight;	// fill in height from parameter
     head.biPlanes = 1;			// must be 1
@@ -279,9 +279,9 @@ void* CxImage::Create(uint32_t dwWidth, uint32_t dwHeight, uint32_t wBpp, uint32
 #endif //CXIMAGE_SUPPORT_ALPHA
 
     // use our bitmap info structure to fill in first part of
-    // our DIB with the BITMAPINFOHEADER
-    BITMAPINFOHEADER* lpbi;
-	lpbi = (BITMAPINFOHEADER*)(pDib);
+    // our DIB with the BitmapInfoHeader
+    BitmapInfoHeader* lpbi;
+	lpbi = (BitmapInfoHeader*)(pDib);
     *lpbi = head;
 
 	info.pImage = GetBits();
@@ -371,7 +371,7 @@ bool CxImage::Transfer(CxImage& from, bool bTransferFrames /*=true*/)
 	if (!Destroy())
 		return false;
 
-	memcpy(&head, &from.head, sizeof(BITMAPINFOHEADER));
+	memcpy(&head, &from.head, sizeof(BitmapInfoHeader));
 	memcpy(&info, &from.info, sizeof(CXIMAGEINFO));
 
 	pDib 		= from.pDib;
@@ -379,7 +379,7 @@ bool CxImage::Transfer(CxImage& from, bool bTransferFrames /*=true*/)
 	pAlpha 		= from.pAlpha;
 	ppLayers 	= from.ppLayers;
 
-	memset(&from.head, 0, sizeof(BITMAPINFOHEADER));
+	memset(&from.head, 0, sizeof(BitmapInfoHeader));
 	memset(&from.info, 0, sizeof(CXIMAGEINFO));
 	from.pDib = from.pSelection = from.pAlpha = NULL;
 	from.ppLayers = NULL;
@@ -403,7 +403,7 @@ void CxImage::Ghost(const CxImage* from)
 {
 	if (from)
 	{
-		memcpy(&head, &from->head, sizeof(BITMAPINFOHEADER));
+		memcpy(&head, &from->head, sizeof(BitmapInfoHeader));
 		memcpy(&info, &from->info, sizeof(CXIMAGEINFO));
 		pDib 		= from->pDib;
 		pSelection 	= from->pSelection;
