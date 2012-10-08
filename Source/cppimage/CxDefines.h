@@ -127,19 +127,19 @@ typedef unsigned char BYTE;
 #		define _T
 #	endif
 
-typedef struct tagRECT
+struct Rect
 {
 	int32_t    left;
 	int32_t    top;
 	int32_t    right;
 	int32_t    bottom;
-} RECT;
+};
 
-typedef struct tagPOINT
+struct POINT
 {
 	int32_t  x;
 	int32_t  y;
-} POINT;
+};
 
 typedef struct tagRGBQUAD {
 	uint8_t    rgbBlue;

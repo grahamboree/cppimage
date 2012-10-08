@@ -151,7 +151,7 @@ bool CxImageWMF::Decode(CxFile *hFile, int32_t nForceWidth, int32_t nForceHeight
 
 	if (hDC){
 		if (hBitmap){
-			RECT rc = {0,0,cx,cy};
+			Rect rc = {0,0,cx,cy};
 			int32_t bpp = ::GetDeviceCaps(hDC, BITSPIXEL);
 
 			HBITMAP hBitmapOld = (HBITMAP)SelectObject(hDC, hBitmap);

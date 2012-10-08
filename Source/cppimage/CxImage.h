@@ -207,7 +207,7 @@ private:
 		uint32_t	dwFrameDelay;		///< used for GIF, MNG
 		int32_t		xDPI;				///< horizontal resolution
 		int32_t		yDPI;				///< vertical resolution
-		RECT		rSelectionBox;		///< bounding rectangle
+		Rect		rSelectionBox;		///< bounding rectangle
 		uint8_t		nAlphaMax;			///< max opacity (fade)
 		bool		bAlphaPaletteEnabled; ///< true if alpha values in the palette are enabled.
 		bool		bEnabled;			///< enables the painting functions
@@ -503,20 +503,20 @@ public:
 /** \addtogroup Painting */ //@{
 #if CXIMAGE_SUPPORT_WINDOWS
 	int32_t	Blt(HDC pDC, int32_t x = 0, int32_t y = 0);
-	HBITMAP Draw2HBITMAP(HDC hdc, int32_t x, int32_t y, int32_t cx, int32_t cy, RECT* pClipRect, bool bSmooth);
+	HBITMAP Draw2HBITMAP(HDC hdc, int32_t x, int32_t y, int32_t cx, int32_t cy, Rect* pClipRect, bool bSmooth);
 	HBITMAP MakeBitmap(HDC hdc = NULL, bool bTransparency = false);
 	HICON   MakeIcon(HDC hdc = NULL, bool bTransparency = false);
 	HANDLE	CopyToHandle();
 	bool	CreateFromHANDLE(HANDLE hMem);		//Windows objects (clipboard)
 	bool	CreateFromHBITMAP(HBITMAP hbmp, HPALETTE hpal = 0, bool bTransparency = false);	//Windows resource
 	bool	CreateFromHICON(HICON hico, bool bTransparency = false);
-	int32_t	Draw(HDC hdc, int32_t x = 0, int32_t y = 0, int32_t cx = -1, int32_t cy = -1, RECT* pClipRect = 0, bool bSmooth = false, bool bFlipY = false);
-	int32_t	Draw(HDC hdc, const RECT& rect, RECT* pClipRect=NULL, bool bSmooth = false, bool bFlipY = false);
+	int32_t	Draw(HDC hdc, int32_t x = 0, int32_t y = 0, int32_t cx = -1, int32_t cy = -1, Rect* pClipRect = 0, bool bSmooth = false, bool bFlipY = false);
+	int32_t	Draw(HDC hdc, const Rect& rect, Rect* pClipRect=NULL, bool bSmooth = false, bool bFlipY = false);
 	int32_t	Stretch(HDC hdc, int32_t xoffset, int32_t yoffset, int32_t xsize, int32_t ysize, uint32_t dwRop = SRCCOPY);
-	int32_t	Stretch(HDC hdc, const RECT& rect, uint32_t dwRop = SRCCOPY);
-	int32_t	Tile(HDC hdc, RECT* rc);
+	int32_t	Stretch(HDC hdc, const Rect& rect, uint32_t dwRop = SRCCOPY);
+	int32_t	Tile(HDC hdc, Rect* rc);
 	int32_t	Draw2(HDC hdc, int32_t x = 0, int32_t y = 0, int32_t cx = -1, int32_t cy = -1);
-	int32_t	Draw2(HDC hdc, const RECT& rect);
+	int32_t	Draw2(HDC hdc, const Rect& rect);
 	//int32_t	DrawString(HDC hdc, int32_t x, int32_t y, const char* text, RGBQUAD color, const char* font, int32_t lSize=0, int32_t lWeight=400, uint8_t bItalic=0, uint8_t bUnderline=0, bool bSetAlpha=false);
 	int32_t	DrawString(HDC hdc, int32_t x, int32_t y, const TCHAR* text, RGBQUAD color, const TCHAR* font, int32_t lSize = 0, int32_t lWeight = 400, uint8_t bItalic = 0, uint8_t bUnderline = 0, bool bSetAlpha = false);
 	// <VATI> extensions
@@ -607,7 +607,7 @@ public:
 	bool DecreaseBpp(uint32_t nbit, bool errordiffusion, RGBQUAD* ppal = 0, uint32_t clrimportant = 0);
 	bool Dither(int32_t method = 0);
 	bool Crop(int32_t left, int32_t top, int32_t right, int32_t bottom, CxImage* iDst = NULL);
-	bool Crop(const RECT& rect, CxImage* iDst = NULL);
+	bool Crop(const Rect& rect, CxImage* iDst = NULL);
 	bool CropRotatedRectangle(int32_t topx, int32_t topy, int32_t width, int32_t height, float angle, CxImage* iDst = NULL);
 	bool Skew(float xgain, float ygain, int32_t xpivot = 0, int32_t ypivot = 0, bool bEnableInterpolation = false);
 	bool Expand(int32_t left, int32_t top, int32_t right, int32_t bottom, RGBQUAD canvascolor, CxImage* iDst = 0);
@@ -676,7 +676,7 @@ public:
 	bool	FloodFill(const int32_t xStart, const int32_t yStart, const RGBQUAD cFillColor, const uint8_t tolerance = 0, uint8_t nOpacity = 255, const bool bSelectFilledArea = false, const uint8_t nSelectionLevel = 255);
 	bool	Saturate(const int32_t saturation, const int32_t colorspace = 1);
 	bool	ConvertColorSpace(const int32_t dstColorSpace, const int32_t srcColorSpace);
-	int32_t	OptimalThreshold(int32_t method = 0, RECT* pBox = 0, CxImage* pContrastMask = 0);
+	int32_t	OptimalThreshold(int32_t method = 0, Rect* pBox = 0, CxImage* pContrastMask = 0);
 	bool	AdaptiveThreshold(int32_t method = 0, int32_t nBoxSize = 64, CxImage* pContrastMask = 0, int32_t nBias = 0, float fGlobalLocalBalance = 0.5f);
 	bool	RedEyeRemove(float strength = 0.8f);
 	bool	Trace(RGBQUAD color_target, RGBQUAD color_trace);
@@ -726,14 +726,14 @@ public:
 	bool SelectionInvert();
 	bool SelectionMirror();
 	bool SelectionFlip();
-	bool SelectionAddRect(RECT r, uint8_t level = 255);
-	bool SelectionAddEllipse(RECT r, uint8_t level = 255);
+	bool SelectionAddRect(Rect r, uint8_t level = 255);
+	bool SelectionAddEllipse(Rect r, uint8_t level = 255);
 	bool SelectionAddPolygon(POINT* points, int32_t npoints, uint8_t level = 255);
 	bool SelectionAddColor(RGBQUAD c, uint8_t level = 255);
 	bool SelectionAddPixel(int32_t x, int32_t y, uint8_t level = 255);
 	bool SelectionCopy(CxImage& from);
 	bool SelectionIsInside(int32_t x, int32_t y);
-	void SelectionGetBox(RECT& r);
+	void SelectionGetBox(Rect& r);
 	bool SelectionToHRGN(HRGN& region);
 	bool SelectionSplit(CxImage* dest);
 	uint8_t SelectionGet(const int32_t x, const int32_t y);
@@ -796,8 +796,8 @@ public:
 	CxImage*	GetParent() const;
 	int32_t		GetNumLayers() const;
 #ifdef WIN32 //@HACK
-	int32_t		LayerDrawAll(HDC hdc, int32_t x = 0, int32_t y = 0, int32_t cx = -1, int32_t cy = -1, RECT* pClipRect = 0, bool bSmooth = false);
-	int32_t		LayerDrawAll(HDC hdc, const RECT& rect, RECT* pClipRect = NULL, bool bSmooth = false);
+	int32_t		LayerDrawAll(HDC hdc, int32_t x = 0, int32_t y = 0, int32_t cx = -1, int32_t cy = -1, Rect* pClipRect = 0, bool bSmooth = false);
+	int32_t		LayerDrawAll(HDC hdc, const Rect& rect, Rect* pClipRect = NULL, bool bSmooth = false);
 #endif
 //@}
 #endif //CXIMAGE_SUPPORT_LAYERS

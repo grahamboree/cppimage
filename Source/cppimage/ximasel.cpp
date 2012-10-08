@@ -20,9 +20,9 @@ bool CxImage::SelectionIsValid()
 /**
  * Gets the smallest rectangle that contains the selection 
  */
-void CxImage::SelectionGetBox(RECT& r)
+void CxImage::SelectionGetBox(Rect& r)
 {
-	memcpy(&r,&info.rSelectionBox,sizeof(RECT));
+	memcpy(&r,&info.rSelectionBox,sizeof(Rect));
 }
 ////////////////////////////////////////////////////////////////////////////////
 /**
@@ -105,12 +105,12 @@ bool CxImage::BlindSelectionIsInside(int32_t x, int32_t y)
 /**
  * Adds a rectangle to the existing selection.
  */
-bool CxImage::SelectionAddRect(RECT r, uint8_t level)
+bool CxImage::SelectionAddRect(Rect r, uint8_t level)
 {
 	if (pSelection==NULL) SelectionCreate();
 	if (pSelection==NULL) return false;
 
-	RECT r2;
+	Rect r2;
 	if (r.left<r.right) {r2.left=r.left; r2.right=r.right; } else {r2.left=r.right ; r2.right=r.left; }
 	if (r.bottom<r.top) {r2.bottom=r.bottom; r2.top=r.top; } else {r2.bottom=r.top ; r2.top=r.bottom; }
 
@@ -133,7 +133,7 @@ bool CxImage::SelectionAddRect(RECT r, uint8_t level)
 /**
  * Adds an ellipse to the existing selection.
  */
-bool CxImage::SelectionAddEllipse(RECT r, uint8_t level)
+bool CxImage::SelectionAddEllipse(Rect r, uint8_t level)
 {
 	if (pSelection==NULL) SelectionCreate();
 	if (pSelection==NULL) return false;
@@ -201,7 +201,7 @@ bool CxImage::SelectionCopy(CxImage &from)
 	if (pSelection==NULL) pSelection = (uint8_t*)malloc(head.biWidth * head.biHeight);
 	if (pSelection==NULL) return false;
 	memcpy(pSelection,from.pSelection,head.biWidth * head.biHeight);
-	memcpy(&info.rSelectionBox,&from.info.rSelectionBox,sizeof(RECT));
+	memcpy(&info.rSelectionBox,&from.info.rSelectionBox,sizeof(Rect));
 	return true;
 }
 ////////////////////////////////////////////////////////////////////////////////
@@ -218,7 +218,7 @@ bool CxImage::SelectionAddPolygon(POINT *points, int32_t npoints, uint8_t level)
 	if (pSelection==NULL) return false;
 
 	uint8_t* plocal = (uint8_t*)calloc(head.biWidth*head.biHeight, 1);
-	RECT localbox = {head.biWidth,0,0,head.biHeight};
+	Rect localbox = {head.biWidth,0,0,head.biHeight};
 
 	int32_t x,y,i=0;
 	POINT *current;
@@ -266,7 +266,7 @@ bool CxImage::SelectionAddPolygon(POINT *points, int32_t npoints, uint8_t level)
 			}
 		}
 
-		RECT r2;
+		Rect r2;
 		if (current->x < next->x) {r2.left=current->x; r2.right=next->x; } else {r2.left=next->x ; r2.right=current->x; }
 		if (current->y < next->y) {r2.bottom=current->y; r2.top=next->y; } else {r2.bottom=next->y ; r2.top=current->y; }
 		if (localbox.top < r2.top) localbox.top = max(0L,min(head.biHeight-1,r2.top+1));
@@ -405,7 +405,7 @@ bool CxImage::SelectionAddColor(RGBQUAD c, uint8_t level)
     if (pSelection==NULL) SelectionCreate();
 	if (pSelection==NULL) return false;
 
-	RECT localbox = {head.biWidth,0,0,head.biHeight};
+	Rect localbox = {head.biWidth,0,0,head.biHeight};
 
     for (int32_t y = 0; y < head.biHeight; y++){
         for (int32_t x = 0; x < head.biWidth; x++){

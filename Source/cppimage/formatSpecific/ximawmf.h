@@ -109,7 +109,7 @@ public:
 
 protected:
 	void ShrinkMetafile(int32_t &cx, int32_t &cy);
-	bool CheckMetafileHeader(METAFILEHEADER *pmetafileheader);
+	BOOL CheckMetafileHeader(METAFILEHEADER *pmetafileheader);
 	HENHMETAFILE ConvertWmfFiletoEmf(CxFile *pFile, METAFILEHEADER *pmetafileheader);
 	HENHMETAFILE ConvertEmfFiletoEmf(CxFile *pFile, ENHMETAHEADER *pemfh);
 

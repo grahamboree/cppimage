@@ -908,7 +908,7 @@ uint32_t CxImage::UnDump(const uint8_t * src)
 
 #if CXIMAGE_SUPPORT_SELECTION
 	if (src[n++]){
-		RECT box = info.rSelectionBox;
+		Rect box = info.rSelectionBox;
 		if (SelectionCreate()){
 			info.rSelectionBox = box;
 			memcpy(pSelection, &src[n], head.biWidth * head.biHeight);

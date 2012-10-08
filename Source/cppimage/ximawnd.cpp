@@ -799,7 +799,7 @@ bool CxImage::CreateFromHICON(HICON hico, bool bTransparency)
 }
 #endif //_WIN32_WCE
 ////////////////////////////////////////////////////////////////////////////////
-int32_t CxImage::Draw(HDC hdc, const RECT& rect, RECT* pClipRect, bool bSmooth, bool bFlipY)
+int32_t CxImage::Draw(HDC hdc, const Rect& rect, Rect* pClipRect, bool bSmooth, bool bFlipY)
 {
 	return Draw(hdc, rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top, pClipRect,bSmooth, bFlipY);
 }
@@ -818,7 +818,7 @@ int32_t CxImage::Draw(HDC hdc, const RECT& rect, RECT* pClipRect, bool bSmooth, 
  * \param bFlipY : draws a mirror image along the y-axis
  * \return true if everything is ok
  */
-int32_t CxImage::Draw(HDC hdc, int32_t x, int32_t y, int32_t cx, int32_t cy, RECT* pClipRect, bool bSmooth, bool bFlipY)
+int32_t CxImage::Draw(HDC hdc, int32_t x, int32_t y, int32_t cx, int32_t cy, Rect* pClipRect, bool bSmooth, bool bFlipY)
 {
 	if((pDib==0)||(hdc==0)||(cx==0)||(cy==0)||(!info.bEnabled)) return 0;
 
@@ -833,7 +833,7 @@ int32_t CxImage::Draw(HDC hdc, int32_t x, int32_t y, int32_t cx, int32_t cy, REC
 		return 0;
 
 #if !defined (_WIN32_WCE)
-	RECT mainbox; // (experimental) 
+	Rect mainbox; // (experimental) 
 	if (pClipRect){
 		GetClipBox(hdc,&mainbox);
 		HRGN rgn = CreateRectRgnIndirect(pClipRect);
@@ -843,7 +843,7 @@ int32_t CxImage::Draw(HDC hdc, int32_t x, int32_t y, int32_t cx, int32_t cy, REC
 #endif
 
 	//find the smallest area to paint
-	RECT clipbox,paintbox;
+	Rect clipbox,paintbox;
 	GetClipBox(hdc,&clipbox);
 
 	paintbox.top = min(clipbox.bottom,max(clipbox.top,y));
@@ -1142,7 +1142,7 @@ int32_t CxImage::Draw(HDC hdc, int32_t x, int32_t y, int32_t cx, int32_t cy, REC
  * \return HBITMAP handle, NULL in case of error
  * \sa MakeBitmap
  */
-HBITMAP CxImage::Draw2HBITMAP(HDC hdc, int32_t x, int32_t y, int32_t cx, int32_t cy, RECT* pClipRect, bool bSmooth)
+HBITMAP CxImage::Draw2HBITMAP(HDC hdc, int32_t x, int32_t y, int32_t cx, int32_t cy, Rect* pClipRect, bool bSmooth)
 {
 	if((pDib==0)||(hdc==0)||(cx==0)||(cy==0)||(!info.bEnabled)) return 0;
 
@@ -1157,7 +1157,7 @@ HBITMAP CxImage::Draw2HBITMAP(HDC hdc, int32_t x, int32_t y, int32_t cx, int32_t
 		return 0;
 
 #if !defined (_WIN32_WCE)
-	RECT mainbox; // (experimental) 
+	Rect mainbox; // (experimental) 
 	if (pClipRect){
 		GetClipBox(hdc,&mainbox);
 		HRGN rgn = CreateRectRgnIndirect(pClipRect);
@@ -1169,7 +1169,7 @@ HBITMAP CxImage::Draw2HBITMAP(HDC hdc, int32_t x, int32_t y, int32_t cx, int32_t
 	HBITMAP TmpBmp;
 
 	//find the smallest area to paint
-	RECT clipbox,paintbox;
+	Rect clipbox,paintbox;
 	GetClipBox(hdc,&clipbox);
 
 	paintbox.top = min(clipbox.bottom,max(clipbox.top,y));
@@ -1435,7 +1435,7 @@ HBITMAP CxImage::Draw2HBITMAP(HDC hdc, int32_t x, int32_t y, int32_t cx, int32_t
 }
 
 ////////////////////////////////////////////////////////////////////////////////
-int32_t CxImage::Draw2(HDC hdc, const RECT& rect)
+int32_t CxImage::Draw2(HDC hdc, const Rect& rect)
 {
 	return Draw2(hdc, rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top);
 }
@@ -1471,7 +1471,7 @@ int32_t CxImage::Draw2(HDC hdc, int32_t x, int32_t y, int32_t cx, int32_t cy)
 	} else {
 		// draw image with transparent background
 		const int32_t safe = 0; // or else GDI fails in the following - sometimes 
-		RECT rcDst = {x+safe, y+safe, x+cx, y+cy};
+		Rect rcDst = {x+safe, y+safe, x+cx, y+cy};
 		if (RectVisible(hdc, &rcDst)){
 		/////////////////////////////////////////////////////////////////
 			// True Mask Method - Thanks to Paul Reynolds and Ron Gery
@@ -1520,7 +1520,7 @@ int32_t CxImage::Draw2(HDC hdc, int32_t x, int32_t y, int32_t cx, int32_t cy)
 	return 1;
 }
 ////////////////////////////////////////////////////////////////////////////////
-int32_t CxImage::Stretch(HDC hdc, const RECT& rect, uint32_t dwRop)
+int32_t CxImage::Stretch(HDC hdc, const Rect& rect, uint32_t dwRop)
 {
 	return Stretch(hdc, rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top, dwRop);
 }
@@ -1554,7 +1554,7 @@ int32_t CxImage::Stretch(HDC hdc, int32_t xoffset, int32_t yoffset, int32_t xsiz
  * \param rc : tiled rectangle in the output device context
  * \return true if everything is ok
  */
-int32_t CxImage::Tile(HDC hdc, RECT *rc)
+int32_t CxImage::Tile(HDC hdc, Rect *rc)
 {
 	if((pDib)&&(hdc)&&(rc)) {
 		int32_t w = rc->right - rc->left;
@@ -1567,7 +1567,7 @@ int32_t CxImage::Tile(HDC hdc, RECT *rc)
 			z=bx;
 			for (x = 0 ; x < w ; x += z){
 				if ((x+z)>w) z=w-x;
-				RECT r = {rc->left + x,rc->top + y,rc->left + x + z,rc->top + y + by};
+				Rect r = {rc->left + x,rc->top + y,rc->left + x + z,rc->top + y + by};
 				Draw(hdc,rc->left + x, rc->top + y,-1,-1,&r);
 			}
 		}
@@ -1612,10 +1612,10 @@ int32_t CxImage::DrawString(HDC hdc, int32_t x, int32_t y, const TCHAR* text, RG
 		//draw the text
 		SetBkMode(TmpDC,OPAQUE);
 		//Set text position;
-		RECT pos = {0,0,0,0};
+		Rect pos = {0,0,0,0};
 		//int32_t len = (int32_t)strlen(text);
 		int32_t len = (int32_t)_tcslen(text);	// For UNICODE support
-		::DrawText(TmpDC,text,len,&pos,DT_CALCRECT);
+		::DrawText(TmpDC,text,len,&pos,DT_CALCRect);
 		pos.right+=pos.bottom; //for italics
 
 		//Preparing Bitmap Info
@@ -1705,7 +1705,7 @@ int32_t CxImage::DrawStringEx(HDC hdc, int32_t x, int32_t y, CXTEXTINFO *pTextTy
 	SetBkColor(TmpDC,RGB(0,0,0));
 	SetBkMode(TmpDC,OPAQUE);
 	//Set text position;
-	RECT pos = {0,0,0,0};
+	Rect pos = {0,0,0,0};
 	
     // get text length and number of lines
     int32_t i=0, numlines=1, len=(int32_t)_tcsclen(pTextType->text);
@@ -1715,7 +1715,7 @@ int32_t CxImage::DrawStringEx(HDC hdc, int32_t x, int32_t y, CXTEXTINFO *pTextTy
             numlines++;
     }
 
-	::DrawText(TmpDC, pTextType->text, len, &pos, /*DT_EDITCONTROL|DT_EXTERNALLEADING|*/DT_NOPREFIX | DT_CALCRECT );
+	::DrawText(TmpDC, pTextType->text, len, &pos, /*DT_EDITCONTROL|DT_EXTERNALLEADING|*/DT_NOPREFIX | DT_CALCRect );
 
     // increase only if it's really italics, and only one line height
 	if ( pTextType->lfont.lfItalic ) 
@@ -1876,12 +1876,12 @@ void CxImage::InitTextInfo( CXTEXTINFO *txt )
 
 #if CXIMAGE_SUPPORT_LAYERS
 ////////////////////////////////////////////////////////////////////////////////
-int32_t CxImage::LayerDrawAll(HDC hdc, const RECT& rect, RECT* pClipRect, bool bSmooth)
+int32_t CxImage::LayerDrawAll(HDC hdc, const Rect& rect, Rect* pClipRect, bool bSmooth)
 {
 	return LayerDrawAll(hdc, rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top, pClipRect,bSmooth);
 }
 ////////////////////////////////////////////////////////////////////////////////
-int32_t CxImage::LayerDrawAll(HDC hdc, int32_t x, int32_t y, int32_t cx, int32_t cy, RECT* pClipRect, bool bSmooth)
+int32_t CxImage::LayerDrawAll(HDC hdc, int32_t x, int32_t y, int32_t cx, int32_t cy, Rect* pClipRect, bool bSmooth)
 {
 	int32_t n=0;
 	CxImage* pLayer;

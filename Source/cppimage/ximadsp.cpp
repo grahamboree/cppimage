@@ -3251,7 +3251,7 @@ bool CxImage::ConvertColorSpace(const int32_t dstColorSpace, const int32_t srcCo
  * \return optimal threshold; -1 = error.
  * \sa AdaptiveThreshold
  */
-int32_t  CxImage::OptimalThreshold(int32_t method, RECT * pBox, CxImage* pContrastMask)
+int32_t  CxImage::OptimalThreshold(int32_t method, Rect * pBox, CxImage* pContrastMask)
 {
 	if (!pDib)
 		return false;
@@ -3491,7 +3491,7 @@ bool CxImage::AdaptiveThreshold(int32_t method, int32_t nBoxSize, CxImage* pCont
 		for (int32_t x=0; x<mw; x++){
 			info.nProgress = (int32_t)(100*(x+y*mw)/(mw*mh));
 			if (info.nEscape) break;
-			RECT r;
+			Rect r;
 			r.left = x*nBoxSize;
 			r.right = r.left + nBoxSize;
 			r.bottom = y*nBoxSize;
@@ -3779,7 +3779,7 @@ bool CxImage::FloodFill(const int32_t xStart, const int32_t yStart, const RGBQUA
 			info.rSelectionBox.top = head.biHeight;
 			info.rSelectionBox.left = info.rSelectionBox.bottom = 0;
 		}
-		RECT r;
+		Rect r;
 		SelectionGetBox(r);
 		for (int32_t y = r.bottom; y < r.top; y++)
 		{

@@ -2152,7 +2152,7 @@ bool CxImage::CropRotatedRectangle( int32_t topx, int32_t topy, int32_t width, i
 	return true;
 }
 ////////////////////////////////////////////////////////////////////////////////
-bool CxImage::Crop(const RECT& rect, CxImage* iDst)
+bool CxImage::Crop(const Rect& rect, CxImage* iDst)
 {
 	return Crop(rect.left, rect.top, rect.right, rect.bottom, iDst);
 }
