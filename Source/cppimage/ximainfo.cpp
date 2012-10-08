@@ -13,7 +13,7 @@
 /**
  * \return the color used for transparency, and/or for background color
  */
-RGBQUAD	CxImage::GetTransColor()
+RGBQuad	CxImage::GetTransColor()
 {
 	if (head.biBitCount<24 && info.nBkgndIndex>=0) return GetPaletteColor((uint8_t)info.nBkgndIndex);
 	return info.nBkgndColor;
@@ -42,7 +42,7 @@ void CxImage::SetTransIndex(int32_t idx)
  * Sets the color used for transparency with 24 bpp images.
  * You must call SetTransIndex(0) to enable the effect, SetTransIndex(-1) to disable it.
  */
-void CxImage::SetTransColor(RGBQUAD rgb)
+void CxImage::SetTransColor(RGBQuad rgb)
 {
 	rgb.rgbReserved=0;
 	info.nBkgndColor = rgb;

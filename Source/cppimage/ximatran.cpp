@@ -121,7 +121,7 @@ bool CxImage::GrayScale()
 {
 	if (!pDib) return false;
 	if (head.biBitCount<=8){
-		RGBQUAD* ppal=GetPalette();
+		RGBQuad* ppal=GetPalette();
 		int32_t gray;
 		//converts the colors to gray, use the blue channel only
 		for(uint32_t i=0;i<head.biClrUsed;i++){
@@ -171,7 +171,7 @@ bool CxImage::GrayScale()
 		if (!ima.Create(head.biWidth,head.biHeight,8,info.dwType)) return false;
 		ima.SetGrayPalette();
 		if (GetTransIndex()>=0){
-			RGBQUAD c = GetTransColor();
+			RGBQuad c = GetTransColor();
 			ima.SetTransIndex((uint8_t)RGB2GRAY(c.rgbRed,c.rgbGreen,c.rgbBlue));
 		}
 #if CXIMAGE_SUPPORT_SELECTION
@@ -625,7 +625,7 @@ bool CxImage::Negative()
 				}
 			}
 		} else { //PALETTE, full image
-			RGBQUAD* ppal=GetPalette();
+			RGBQuad* ppal=GetPalette();
 			for(uint32_t i=0;i<head.biClrUsed;i++){
 				ppal[i].rgbBlue =(uint8_t)(255-ppal[i].rgbBlue);
 				ppal[i].rgbGreen =(uint8_t)(255-ppal[i].rgbGreen);
@@ -640,7 +640,7 @@ bool CxImage::Negative()
 				iSrc++;
 			}
 		} else { // RGB with selection
-			RGBQUAD color;
+			RGBQuad color;
 			for(int32_t y=info.rSelectionBox.bottom; y<info.rSelectionBox.top; y++){
 				for(int32_t x=info.rSelectionBox.left; x<info.rSelectionBox.right; x++){
 #if CXIMAGE_SUPPORT_SELECTION
@@ -710,10 +710,10 @@ bool CxImage::Rotate(float angle, CxImage* iDst)
 	double sin_angle = sin(ang);
 
 	// Calculate the size of the new bitmap
-	POINT p1={0,0};
-	POINT p2={nWidth,0};
-	POINT p3={0,nHeight};
-	POINT p4={nWidth,nHeight};
+	Point p1={0,0};
+	Point p2={nWidth,0};
+	Point p3={0,nHeight};
+	Point p4={nWidth,nHeight};
 	CxPoint2 newP1,newP2,newP3,newP4, leftTop, rightTop, leftBottom, rightBottom;
 
 	newP1.x = (float)p1.x;
@@ -808,7 +808,7 @@ bool CxImage::Rotate2(float angle,
                        CxImage *iDst, 
                        InterpolationMethod inMethod, 
                        OverflowMethod ofMethod, 
-                       RGBQUAD *replColor,
+                       RGBQuad *replColor,
                        bool const optimizeRightAngles,
 					   bool const bKeepOriginalSize)
 {
@@ -885,8 +885,8 @@ bool CxImage::Rotate2(float angle,
 	if(AlphaIsValid()) imgDest.AlphaCreate(); //MTA: Fix for rotation problem when the image has an alpha channel
 #endif //CXIMAGE_SUPPORT_ALPHA
 	
-	RGBQUAD rgb;			//pixel colour
-	RGBQUAD rc;
+	RGBQuad rgb;			//pixel colour
+	RGBQuad rc;
 	if (replColor!=0) 
 		rc=*replColor; 
 	else {
@@ -1056,7 +1056,7 @@ bool CxImage::Resample(int32_t newx, int32_t newy, int32_t mode, CxImage* iDst)
 	{
 		float f_x, f_y, a, b, rr, gg, bb, r1, r2;
 		int32_t   i_x, i_y, xx, yy;
-		RGBQUAD rgb;
+		RGBQuad rgb;
 		uint8_t* iDst;
 		for(int32_t y=0; y<newy; y++){
 			info.nProgress = (int32_t)(100*y/newy);
@@ -1115,7 +1115,7 @@ bool CxImage::Resample(int32_t newx, int32_t newy, int32_t mode, CxImage* iDst)
 			int32_t ifX, ifY, ifX1, ifY1, xmax, ymax;
 			float ir1, ir2, ig1, ig2, ib1, ib2, dx, dy;
 			uint8_t r,g,b;
-			RGBQUAD rgb1, rgb2, rgb3, rgb4;
+			RGBQuad rgb1, rgb2, rgb3, rgb4;
 			xmax = head.biWidth-1;
 			ymax = head.biHeight-1;
 			for(int32_t y=0; y<newy; y++){
@@ -1327,7 +1327,7 @@ bool CxImage::Resample2(
 		//image is being enlarged (or interpolation on demand)
 		if (!IsIndexed()) {
 			//RGB24 image (optimized version with direct writes)
-			RGBQUAD q;              //pixel colour
+			RGBQuad q;              //pixel colour
 			uint8_t *pxptr;            //pointer to destination pixel
 			for(dY=0; dY<newy; dY++){
 				info.nProgress = (int32_t)(100*dY/newy);
@@ -1397,7 +1397,7 @@ bool CxImage::Resample2(
  * ppal points to a valid palette for the final image; if not supplied the function will use a standard palette.
  * ppal is not necessary for reduction to 1 bpp.
  */
-bool CxImage::DecreaseBpp(uint32_t nbit, bool errordiffusion, RGBQUAD* ppal, uint32_t clrimportant)
+bool CxImage::DecreaseBpp(uint32_t nbit, bool errordiffusion, RGBQuad* ppal, uint32_t clrimportant)
 {
 	if (!pDib) return false;
 	if (head.biBitCount <  nbit){
@@ -1410,7 +1410,7 @@ bool CxImage::DecreaseBpp(uint32_t nbit, bool errordiffusion, RGBQUAD* ppal, uin
 	}
 
 	int32_t er,eg,eb;
-	RGBQUAD c,ce;
+	RGBQuad c,ce;
 
 	CxImage tmp;
 	tmp.CopyInfo(*this);
@@ -2296,7 +2296,7 @@ bool CxImage::Skew(float xgain, float ygain, int32_t xpivot, int32_t ypivot, boo
  * \return true if everything is ok 
  * \author [Colin Urquhart]; changes [DP]
  */
-bool CxImage::Expand(int32_t left, int32_t top, int32_t right, int32_t bottom, RGBQUAD canvascolor, CxImage* iDst)
+bool CxImage::Expand(int32_t left, int32_t top, int32_t right, int32_t bottom, RGBQuad canvascolor, CxImage* iDst)
 {
     if (!pDib) return false;
 
@@ -2402,7 +2402,7 @@ bool CxImage::Expand(int32_t left, int32_t top, int32_t right, int32_t bottom, R
     return true;
 }
 ////////////////////////////////////////////////////////////////////////////////
-bool CxImage::Expand(int32_t newx, int32_t newy, RGBQUAD canvascolor, CxImage* iDst)
+bool CxImage::Expand(int32_t newx, int32_t newy, RGBQuad canvascolor, CxImage* iDst)
 {
 	//thanks to <Colin Urquhart>
 
@@ -2424,7 +2424,7 @@ bool CxImage::Expand(int32_t newx, int32_t newy, RGBQUAD canvascolor, CxImage* i
  * \return true if everything is ok.
  * \author [Colin Urquhart]
  */
-bool CxImage::Thumbnail(int32_t newx, int32_t newy, RGBQUAD canvascolor, CxImage* iDst)
+bool CxImage::Thumbnail(int32_t newx, int32_t newy, RGBQuad canvascolor, CxImage* iDst)
 {
     if (!pDib) return false;
 
@@ -2671,7 +2671,7 @@ bool CxImage::QIShrink(int32_t newx, int32_t newy, CxImage* const iDst, bool bCh
 		int32_t dy=0;
 		//(we just add pixels, until by adding newx or newy we get a number greater than old size... then
 		// it's time to move to next pixel)
-		RGBQUAD rgb;
+		RGBQuad rgb;
         
 		for(int32_t y=0; y<oldy; y++){                                    //for all source rows
 			info.nProgress = (int32_t)(100*y/oldy); if (info.nEscape) break;

@@ -219,7 +219,7 @@ bool CxImageWMF::Decode(CxFile *hFile, int32_t nForceWidth, int32_t nForceHeight
 
 #if XMF_SUPPORT_TRANSPARENCY
 			if (bpp == 24) {
-				RGBQUAD	rgbTrans = { XMF_RGBQUAD_TRANSPARENT };
+				RGBQuad	rgbTrans = { XMF_RGBQUAD_TRANSPARENT };
 				SetTransColor(rgbTrans);
 			}
 #endif

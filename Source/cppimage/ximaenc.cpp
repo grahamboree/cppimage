@@ -640,7 +640,7 @@ bool CxImage::Encode2RGBA(CxFile* hFile, bool bFlipY)
 		int32_t y = bFlipY ? head.biHeight - 1 - y1 : y1;
 		for(int32_t x = 0; x < head.biWidth; x++) 
 		{
-			RGBQUAD color = BlindGetPixelColor(x, y);
+			RGBQuad color = BlindGetPixelColor(x, y);
 			hFile->PutC(color.rgbRed);
 			hFile->PutC(color.rgbGreen);
 			hFile->PutC(color.rgbBlue);

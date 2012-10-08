@@ -53,7 +53,7 @@ typedef struct tagmngstuff
 	mng_bool	animation_enabled;
 	float		speed;
 	int32_t		nBkgndIndex;
-	RGBQUAD		nBkgndColor;
+	RGBQuad		nBkgndColor;
 } mngstuff;
 
 class CxImageMNG: public CxImage

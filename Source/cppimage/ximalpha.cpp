@@ -178,7 +178,7 @@ uint8_t CxImage::BlindAlphaGet(const int32_t x,const int32_t y)
  */
 void CxImage::AlphaPaletteClear()
 {
-	RGBQUAD c;
+	RGBQuad c;
 	for(uint16_t ip=0; ip<head.biClrUsed;ip++){
 		c=GetPaletteColor((uint8_t)ip);
 		c.rgbReserved=0;
@@ -191,7 +191,7 @@ void CxImage::AlphaPaletteClear()
  */
 bool CxImage::AlphaPaletteIsValid()
 {
-	RGBQUAD c;
+	RGBQuad c;
 	for(uint16_t ip=0; ip<head.biClrUsed;ip++){
 		c=GetPaletteColor((uint8_t)ip);
 		if (c.rgbReserved != 0) return true;
@@ -208,7 +208,7 @@ void CxImage::AlphaStrip()
 	bool bAlphaPaletteIsValid = AlphaPaletteIsValid();
 	bool bAlphaIsValid = AlphaIsValid();
 	if (!(bAlphaIsValid || bAlphaPaletteIsValid)) return;
-	RGBQUAD c;
+	RGBQuad c;
 	int32_t a, a1;
 	if (head.biBitCount==24){
 		for(int32_t y=0; y<head.biHeight; y++){

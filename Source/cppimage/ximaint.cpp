@@ -99,9 +99,9 @@ void CxImage::OverflowCoordinates(float &x, float &y, OverflowMethod const ofMet
  * \return color : color of pixel
  * \author ***bd*** 2.2004
  */
-RGBQUAD CxImage::GetPixelColorWithOverflow(int32_t x, int32_t y, OverflowMethod const ofMethod, RGBQUAD* const rplColor)
+RGBQuad CxImage::GetPixelColorWithOverflow(int32_t x, int32_t y, OverflowMethod const ofMethod, RGBQuad* const rplColor)
 {
-  RGBQUAD color;          //color to return
+  RGBQuad color;          //color to return
   if ((!IsInside(x,y)) || pDib==NULL) {     //is pixel within bouns?:
     //pixel is out of bounds or no DIB
     if (rplColor!=NULL)
@@ -183,16 +183,16 @@ RGBQUAD CxImage::GetPixelColorWithOverflow(int32_t x, int32_t y, OverflowMethod 
  * 
  *  \author ***bd*** 2.2004
  */
-RGBQUAD CxImage::GetPixelColorInterpolated(
+RGBQuad CxImage::GetPixelColorInterpolated(
   float x,float y, 
   InterpolationMethod const inMethod, 
   OverflowMethod const ofMethod, 
-  RGBQUAD* const rplColor)
+  RGBQuad* const rplColor)
 {
   //calculate nearest pixel
   int32_t xi=(int32_t)(x); if (x<0) xi--;   //these replace (incredibly slow) floor (Visual c++ 2003, AMD Athlon)
   int32_t yi=(int32_t)(y); if (y<0) yi--;
-  RGBQUAD color;                    //calculated colour
+  RGBQuad color;                    //calculated colour
 
   switch (inMethod) {
     case IM_NEAREST_NEIGHBOUR:
@@ -249,7 +249,7 @@ RGBQUAD CxImage::GetPixelColorInterpolated(
         float b=t1-d;
         float c=t2-d;
         float a=1-t1-c;
-        RGBQUAD rgb11,rgb21,rgb12,rgb22;
+        RGBQuad rgb11,rgb21,rgb12,rgb22;
         rgb11=GetPixelColorWithOverflow(xi, yi, ofMethod, rplColor);
         rgb21=GetPixelColorWithOverflow(xi+1, yi, ofMethod, rplColor);
         rgb12=GetPixelColorWithOverflow(xi, yi+1, ofMethod, rplColor);
@@ -429,7 +429,7 @@ RGBQUAD CxImage::GetPixelColorInterpolated(
         }//yii
       } else {
         //slower more flexible interpolation for border pixels and paletted images
-        RGBQUAD rgbs;
+        RGBQuad rgbs;
         for (yii=yi-1; yii<yi+3; yii++) {
           kernelyc=kernely[yii-(yi-1)];
           for (xii=xi-1; xii<xi+3; xii++) {
@@ -444,7 +444,7 @@ RGBQUAD CxImage::GetPixelColorInterpolated(
           }//xii
         }//yii
       }//if
-      //for all colors, clip to 0..255 and assign to RGBQUAD
+      //for all colors, clip to 0..255 and assign to RGBQuad
       if (rr>255) rr=255; if (rr<0) rr=0; color.rgbRed=(uint8_t) rr;
       if (gg>255) gg=255; if (gg<0) gg=0; color.rgbGreen=(uint8_t) gg;
       if (bb>255) bb=255; if (bb<0) bb=0; color.rgbBlue=(uint8_t) bb;
@@ -499,7 +499,7 @@ RGBQUAD CxImage::GetPixelColorInterpolated(
         }//yii
       } else {
         //slower more flexible interpolation for border pixels and paletted images
-        RGBQUAD rgbs;
+        RGBQuad rgbs;
         for (yii=yi-5; yii<yi+7; yii++) {
           kernelyc=KernelLanczosSinc((float)(yii-y),6.0f);
           for (xii=xi-5; xii<xi+7; xii++) {
@@ -514,7 +514,7 @@ RGBQUAD CxImage::GetPixelColorInterpolated(
           }//xii
         }//yii
       }//if
-      //for all colors, clip to 0..255 and assign to RGBQUAD
+      //for all colors, clip to 0..255 and assign to RGBQuad
       if (rr>255) rr=255; if (rr<0) rr=0; color.rgbRed=(uint8_t) rr;
       if (gg>255) gg=255; if (gg<0) gg=0; color.rgbGreen=(uint8_t) gg;
       if (bb>255) bb=255; if (bb<0) bb=0; color.rgbBlue=(uint8_t) bb;
@@ -531,7 +531,7 @@ RGBQUAD CxImage::GetPixelColorInterpolated(
  * Helper function for GetAreaColorInterpolated.
  * Adds 'surf' portion of image pixel with color 'color' to (rr,gg,bb,aa).
  */
-void CxImage::AddAveragingCont(RGBQUAD const &color, float const surf, float &rr, float &gg, float &bb, float &aa)
+void CxImage::AddAveragingCont(RGBQuad const &color, float const surf, float &rr, float &gg, float &bb, float &aa)
 {
   rr+=color.rgbRed*surf;
   gg+=color.rgbGreen*surf;
@@ -565,13 +565,13 @@ void CxImage::AddAveragingCont(RGBQUAD const &color, float const surf, float &rr
  *
  * \author ***bd*** 2.2004
  */
-RGBQUAD CxImage::GetAreaColorInterpolated(
+RGBQuad CxImage::GetAreaColorInterpolated(
   float const xc, float const yc, float const w, float const h, 
   InterpolationMethod const inMethod, 
   OverflowMethod const ofMethod, 
-  RGBQUAD* const rplColor)
+  RGBQuad* const rplColor)
 {
-	RGBQUAD color;      //calculated colour
+	RGBQuad color;      //calculated colour
 	
 	if (h<=1 && w<=1) {
 		//both width and height are less than one... we will use interpolation of center point

@@ -149,7 +149,7 @@ bool CxImagePNG::Decode(CxFile *hFile)
 			}
 		}
 		if (info_ptr->num_trans>1){
-			RGBQUAD* pal=GetPalette();
+			RGBQuad* pal=GetPalette();
 			if (pal){
 				uint32_t ip;
 				for (ip=0;ip<min(head.biClrUsed,(uint32_t)info_ptr->num_trans);ip++)
@@ -415,7 +415,7 @@ bool CxImagePNG::Encode(CxFile *hFile)
 
 	/* set background */
 	png_color_16 image_background={ 0, 255, 255, 255, 0 };
-	RGBQUAD tc = GetTransColor();
+	RGBQuad tc = GetTransColor();
 	if (info.nBkgndIndex>=0) {
 		image_background.blue  = tc.rgbBlue;
 		image_background.green = tc.rgbGreen;
@@ -475,7 +475,7 @@ bool CxImagePNG::Encode(CxFile *hFile)
 	if (AlphaIsValid() && head.biBitCount==24 && info.nBkgndIndex>=0){
 		for(int32_t y=0; y < head.biHeight; y++){
 			for(int32_t x=0; x < head.biWidth ; x++){
-				RGBQUAD c=GetPixelColor(x,y,false);
+				RGBQuad c=GetPixelColor(x,y,false);
 				if (*(int32_t*)&c==*(int32_t*)&tc)
 					AlphaSet(x,y,0);
 	}	}	}
@@ -496,7 +496,7 @@ bool CxImagePNG::Encode(CxFile *hFile)
 		int32_t ay=head.biHeight-1;
 		do	{
 #if CXIMAGE_SUPPORT_ALPHA	// <vho>
-			RGBQUAD c;
+			RGBQuad c;
 			if (AlphaIsValid()){
 				for (int32_t ax=head.biWidth-1; ax>=0;ax--){
 					c = BlindGetPixelColor(ax,ay);

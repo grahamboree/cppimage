@@ -132,7 +132,7 @@ bool CxImageBMP::Decode(CxFile * hFile)
 		if (info.nEscape)
 			cx_throw("Cancelled"); // <vho> - cancel decoding
 
-		RGBQUAD* pRgb = GetPalette();
+		RGBQuad* pRgb = GetPalette();
 		if (pRgb)
 		{
 			if (bIsOldBmp)
@@ -155,7 +155,7 @@ bool CxImageBMP::Decode(CxFile * hFile)
 			}
 			else
 			{
-				hFile->Read(reinterpret_cast<void*>(pRgb), DibNumColors(&bmpHeader) * sizeof(RGBQUAD), 1);
+				hFile->Read(reinterpret_cast<void*>(pRgb), DibNumColors(&bmpHeader) * sizeof(RGBQuad), 1);
 				//force rgbReserved=0, to avoid problems with some WinXp bitmaps
 				for (uint32_t i = 0; i < head.biClrUsed; i++)
 				{

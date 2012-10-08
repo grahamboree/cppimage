@@ -199,7 +199,7 @@ private:
 		int32_t		nProgress;			///< monitor
 		int32_t		nEscape;			///< escape
 		int32_t		nBkgndIndex;		///< used for GIF, PNG, MNG
-		RGBQUAD		nBkgndColor;		///< used for RGB transparency
+		RGBQuad		nBkgndColor;		///< used for RGB transparency
 		float		fQuality;			///< used for JPEG, JPEG2000 (0.0f ... 100.0f)
 		uint8_t		nJpegScale;			///< used for JPEG [ignacio]
 		int32_t		nFrame;				///< used for TIF, GIF, MNG : actual frame
@@ -214,7 +214,7 @@ private:
 		int32_t		xOffset;
 		int32_t		yOffset;
 		uint32_t	dwCodecOpt[CMAX_IMAGE_FORMATS];	///< for GIF, TIF : 0=def.1=unc,2=fax3,3=fax4,4=pack,5=jpg
-		RGBQUAD		last_c;				///< for GetNearestIndex optimization
+		RGBQuad		last_c;				///< for GetNearestIndex optimization
 		uint8_t		last_c_index;
 		bool		last_c_isvalid;
 		int32_t		nNumLayers;
@@ -348,9 +348,9 @@ public:
 	void	SetEscape(int32_t i);
 
 	int32_t	GetTransIndex() const;
-	RGBQUAD	GetTransColor();
+	RGBQuad	GetTransColor();
 	void	SetTransIndex(int32_t idx);
-	void	SetTransColor(RGBQUAD rgb);
+	void	SetTransColor(RGBQuad rgb);
 	bool	IsTransparent() const;
 
 	uint32_t	GetCodecOption(uint32_t imagetype = 0);
@@ -384,17 +384,17 @@ public:
 	bool	IsIndexed() const;
 	bool	IsSamePalette(CxImage& img, bool bCheckAlpha = true);
 	uint32_t	GetPaletteSize();
-	RGBQUAD* GetPalette() const;
-	RGBQUAD GetPaletteColor(uint8_t idx);
+	RGBQuad* GetPalette() const;
+	RGBQuad GetPaletteColor(uint8_t idx);
 	bool	GetPaletteColor(uint8_t i, uint8_t* r, uint8_t* g, uint8_t* b);
-	uint8_t	GetNearestIndex(RGBQUAD c);
+	uint8_t	GetNearestIndex(RGBQuad c);
 	void	BlendPalette(COLORREF cr,int32_t perc);
 	void	SetGrayPalette();
 	void	SetPalette(uint32_t n, uint8_t* r, uint8_t* g, uint8_t* b);
-	void	SetPalette(RGBQUAD* pPal,uint32_t nColors=256);
+	void	SetPalette(RGBQuad* pPal,uint32_t nColors=256);
 	void	SetPalette(rgb_color* rgb,uint32_t nColors=256);
 	void	SetPaletteColor(uint8_t idx, uint8_t r, uint8_t g, uint8_t b, uint8_t alpha=0);
-	void	SetPaletteColor(uint8_t idx, RGBQUAD c);
+	void	SetPaletteColor(uint8_t idx, RGBQuad c);
 	void	SetPaletteColor(uint8_t idx, COLORREF cr);
 	void	SwapIndex(uint8_t idx1, uint8_t idx2);
 	void	SwapRGB2BGR();
@@ -405,23 +405,23 @@ public:
 	bool	IsInside(int32_t x, int32_t y);
 	bool	IsTransparent(int32_t x, int32_t y);
 	bool	GetTransparentMask(CxImage* iDst = 0);
-	RGBQUAD GetPixelColor(int32_t x, int32_t y, bool bGetAlpha = true);
+	RGBQuad GetPixelColor(int32_t x, int32_t y, bool bGetAlpha = true);
 	uint8_t	GetPixelIndex(int32_t x, int32_t y);
 	uint8_t	GetPixelGray(int32_t x, int32_t y);
-	void	SetPixelColor(int32_t x, int32_t y, RGBQUAD c, bool bSetAlpha = false);
+	void	SetPixelColor(int32_t x, int32_t y, RGBQuad c, bool bSetAlpha = false);
 	void	SetPixelColor(int32_t x, int32_t y, COLORREF cr);
 	void	SetPixelIndex(int32_t x, int32_t y, uint8_t i);
-	void	DrawLine(int32_t StartX, int32_t EndX, int32_t StartY, int32_t EndY, RGBQUAD color, bool bSetAlpha = false);
+	void	DrawLine(int32_t StartX, int32_t EndX, int32_t StartY, int32_t EndY, RGBQuad color, bool bSetAlpha = false);
 	void	DrawLine(int32_t StartX, int32_t EndX, int32_t StartY, int32_t EndY, COLORREF cr);
-	void	BlendPixelColor(int32_t x,int32_t y,RGBQUAD c, float blend, bool bSetAlpha = false);
+	void	BlendPixelColor(int32_t x,int32_t y,RGBQuad c, float blend, bool bSetAlpha = false);
 //@}
 
 protected:
 /** \addtogroup Protected */ //@{
 	uint8_t BlindGetPixelIndex(const int32_t x, const int32_t y);
-	RGBQUAD BlindGetPixelColor(const int32_t x, const int32_t y, bool bGetAlpha = true);
+	RGBQuad BlindGetPixelColor(const int32_t x, const int32_t y, bool bGetAlpha = true);
 	void*	BlindGetPixelPointer(const int32_t x, const  int32_t y);
-	void	BlindSetPixelColor(int32_t x, int32_t y, RGBQUAD c, bool bSetAlpha = false);
+	void	BlindSetPixelColor(int32_t x, int32_t y, RGBQuad c, bool bSetAlpha = false);
 	void	BlindSetPixelIndex(int32_t x, int32_t y, uint8_t i);
 //@}
 
@@ -442,7 +442,7 @@ public:
 
 	void OverflowCoordinates(float& x, float& y, OverflowMethod const ofMethod);
 	void OverflowCoordinates(int32_t& x, int32_t& y, OverflowMethod const ofMethod);
-	RGBQUAD GetPixelColorWithOverflow(int32_t x, int32_t y, OverflowMethod const ofMethod = OM_BACKGROUND, RGBQUAD* const rplColor = 0);
+	RGBQuad GetPixelColorWithOverflow(int32_t x, int32_t y, OverflowMethod const ofMethod = OM_BACKGROUND, RGBQuad* const rplColor = 0);
 	//interpolation methods:
 	enum InterpolationMethod
 	{
@@ -465,13 +465,13 @@ public:
 		IM_HANNING		= 17,
 		IM_POWER		= 18
 	};
-	RGBQUAD GetPixelColorInterpolated(float x, float y, InterpolationMethod const inMethod = IM_BILINEAR, OverflowMethod const ofMethod = OM_BACKGROUND, RGBQUAD* const rplColor = 0);
-	RGBQUAD GetAreaColorInterpolated(float const xc, float const yc, float const w, float const h, InterpolationMethod const inMethod, OverflowMethod const ofMethod = OM_BACKGROUND, RGBQUAD* const rplColor = 0);
+	RGBQuad GetPixelColorInterpolated(float x, float y, InterpolationMethod const inMethod = IM_BILINEAR, OverflowMethod const ofMethod = OM_BACKGROUND, RGBQuad* const rplColor = 0);
+	RGBQuad GetAreaColorInterpolated(float const xc, float const yc, float const w, float const h, InterpolationMethod const inMethod, OverflowMethod const ofMethod = OM_BACKGROUND, RGBQuad* const rplColor = 0);
 //@}
 
 protected:
 /** \addtogroup Protected */ //@{
-	void  AddAveragingCont(RGBQUAD const& color, float const surf, float& rr, float& gg, float& bb, float& aa);
+	void  AddAveragingCont(RGBQuad const& color, float const surf, float& rr, float& gg, float& bb, float& aa);
 //@}
 
 /** \addtogroup Kernels */ //@{
@@ -517,8 +517,8 @@ public:
 	int32_t	Tile(HDC hdc, Rect* rc);
 	int32_t	Draw2(HDC hdc, int32_t x = 0, int32_t y = 0, int32_t cx = -1, int32_t cy = -1);
 	int32_t	Draw2(HDC hdc, const Rect& rect);
-	//int32_t	DrawString(HDC hdc, int32_t x, int32_t y, const char* text, RGBQUAD color, const char* font, int32_t lSize=0, int32_t lWeight=400, uint8_t bItalic=0, uint8_t bUnderline=0, bool bSetAlpha=false);
-	int32_t	DrawString(HDC hdc, int32_t x, int32_t y, const TCHAR* text, RGBQUAD color, const TCHAR* font, int32_t lSize = 0, int32_t lWeight = 400, uint8_t bItalic = 0, uint8_t bUnderline = 0, bool bSetAlpha = false);
+	//int32_t	DrawString(HDC hdc, int32_t x, int32_t y, const char* text, RGBQuad color, const char* font, int32_t lSize=0, int32_t lWeight=400, uint8_t bItalic=0, uint8_t bUnderline=0, bool bSetAlpha=false);
+	int32_t	DrawString(HDC hdc, int32_t x, int32_t y, const TCHAR* text, RGBQuad color, const TCHAR* font, int32_t lSize = 0, int32_t lWeight = 400, uint8_t bItalic = 0, uint8_t bUnderline = 0, bool bSetAlpha = false);
 	// <VATI> extensions
 	int32_t    DrawStringEx(HDC hdc, int32_t x, int32_t y, CXTEXTINFO* pTextType, bool bSetAlpha = false);
 	void    InitTextInfo(CXTEXTINFO* txt);
@@ -600,19 +600,19 @@ public:
 /** \addtogroup Transformations */ //@{
 	// image operations
 	bool Rotate(float angle, CxImage* iDst = NULL);
-	bool Rotate2(float angle, CxImage *iDst = NULL, InterpolationMethod inMethod = IM_BILINEAR, OverflowMethod ofMethod = OM_BACKGROUND, RGBQUAD* replColor = 0, bool const optimizeRightAngles = true, bool const bKeepOriginalSize = false);
+	bool Rotate2(float angle, CxImage *iDst = NULL, InterpolationMethod inMethod = IM_BILINEAR, OverflowMethod ofMethod = OM_BACKGROUND, RGBQuad* replColor = 0, bool const optimizeRightAngles = true, bool const bKeepOriginalSize = false);
 	bool Rotate180(CxImage* iDst = NULL);
 	bool Resample(int32_t newx, int32_t newy, int32_t mode = 1, CxImage* iDst = NULL);
 	bool Resample2(int32_t newx, int32_t newy, InterpolationMethod const inMethod = IM_BICUBIC2, OverflowMethod const ofMethod = OM_REPEAT, CxImage* const iDst = NULL, bool const disableAveraging = false);
-	bool DecreaseBpp(uint32_t nbit, bool errordiffusion, RGBQUAD* ppal = 0, uint32_t clrimportant = 0);
+	bool DecreaseBpp(uint32_t nbit, bool errordiffusion, RGBQuad* ppal = 0, uint32_t clrimportant = 0);
 	bool Dither(int32_t method = 0);
 	bool Crop(int32_t left, int32_t top, int32_t right, int32_t bottom, CxImage* iDst = NULL);
 	bool Crop(const Rect& rect, CxImage* iDst = NULL);
 	bool CropRotatedRectangle(int32_t topx, int32_t topy, int32_t width, int32_t height, float angle, CxImage* iDst = NULL);
 	bool Skew(float xgain, float ygain, int32_t xpivot = 0, int32_t ypivot = 0, bool bEnableInterpolation = false);
-	bool Expand(int32_t left, int32_t top, int32_t right, int32_t bottom, RGBQUAD canvascolor, CxImage* iDst = 0);
-	bool Expand(int32_t newx, int32_t newy, RGBQUAD canvascolor, CxImage* iDst = 0);
-	bool Thumbnail(int32_t newx, int32_t newy, RGBQUAD canvascolor, CxImage* iDst = 0);
+	bool Expand(int32_t left, int32_t top, int32_t right, int32_t bottom, RGBQuad canvascolor, CxImage* iDst = 0);
+	bool Expand(int32_t newx, int32_t newy, RGBQuad canvascolor, CxImage* iDst = 0);
+	bool Thumbnail(int32_t newx, int32_t newy, RGBQuad canvascolor, CxImage* iDst = 0);
 	bool CircleTransform(int32_t type,int32_t rmax = 0, float Koeff = 1.0f);
 	bool QIShrink(int32_t newx, int32_t newy, CxImage* const iDst = NULL, bool bChangeBpp = false);
 
@@ -655,7 +655,7 @@ public:
 	bool	ShiftRGB(int32_t r, int32_t g, int32_t b);
 	bool	Threshold(uint8_t level);
 	bool	Threshold(CxImage* pThresholdMask);
-	bool	Threshold2(uint8_t level, bool bDirection, RGBQUAD nBkgndColor, bool bSetAlpha = false);
+	bool	Threshold2(uint8_t level, bool bDirection, RGBQuad nBkgndColor, bool bSetAlpha = false);
 	bool	Colorize(uint8_t hue, uint8_t sat, float blend = 1.0f);
 	bool	Light(int32_t brightness, int32_t contrast = 0);
 	float	Mean();
@@ -673,13 +673,13 @@ public:
 	bool	TextBlur(uint8_t threshold = 100, uint8_t decay = 2, uint8_t max_depth = 5, bool bBlurHorizontal = true, bool bBlurVertical = true, CxImage* iDst = 0);
 	bool	SelectiveBlur(float radius = 1.0f, uint8_t threshold = 25, CxImage* iDst = 0);
 	bool	Solarize(uint8_t level = 128, bool bLinkedChannels = true);
-	bool	FloodFill(const int32_t xStart, const int32_t yStart, const RGBQUAD cFillColor, const uint8_t tolerance = 0, uint8_t nOpacity = 255, const bool bSelectFilledArea = false, const uint8_t nSelectionLevel = 255);
+	bool	FloodFill(const int32_t xStart, const int32_t yStart, const RGBQuad cFillColor, const uint8_t tolerance = 0, uint8_t nOpacity = 255, const bool bSelectFilledArea = false, const uint8_t nSelectionLevel = 255);
 	bool	Saturate(const int32_t saturation, const int32_t colorspace = 1);
 	bool	ConvertColorSpace(const int32_t dstColorSpace, const int32_t srcColorSpace);
 	int32_t	OptimalThreshold(int32_t method = 0, Rect* pBox = 0, CxImage* pContrastMask = 0);
 	bool	AdaptiveThreshold(int32_t method = 0, int32_t nBoxSize = 64, CxImage* pContrastMask = 0, int32_t nBias = 0, float fGlobalLocalBalance = 0.5f);
 	bool	RedEyeRemove(float strength = 0.8f);
-	bool	Trace(RGBQUAD color_target, RGBQUAD color_trace);
+	bool	Trace(RGBQuad color_target, RGBQuad color_trace);
 //@}
 
 protected:
@@ -703,18 +703,18 @@ public:
 	bool SplitYIQ(CxImage* y, CxImage* i, CxImage* q);
 	bool SplitXYZ(CxImage* x, CxImage* y, CxImage* z);
 	bool SplitCMYK(CxImage* c, CxImage* m, CxImage* y, CxImage* k);
-	static RGBQUAD HSLtoRGB(COLORREF cHSLColor);
-	static RGBQUAD RGBtoHSL(RGBQUAD lRGBColor);
-	static RGBQUAD HSLtoRGB(RGBQUAD lHSLColor);
-	static RGBQUAD YUVtoRGB(RGBQUAD lYUVColor);
-	static RGBQUAD RGBtoYUV(RGBQUAD lRGBColor);
-	static RGBQUAD YIQtoRGB(RGBQUAD lYIQColor);
-	static RGBQUAD RGBtoYIQ(RGBQUAD lRGBColor);
-	static RGBQUAD XYZtoRGB(RGBQUAD lXYZColor);
-	static RGBQUAD RGBtoXYZ(RGBQUAD lRGBColor);
+	static RGBQuad HSLtoRGB(COLORREF cHSLColor);
+	static RGBQuad RGBtoHSL(RGBQuad lRGBColor);
+	static RGBQuad HSLtoRGB(RGBQuad lHSLColor);
+	static RGBQuad YUVtoRGB(RGBQuad lYUVColor);
+	static RGBQuad RGBtoYUV(RGBQuad lRGBColor);
+	static RGBQuad YIQtoRGB(RGBQuad lYIQColor);
+	static RGBQuad RGBtoYIQ(RGBQuad lRGBColor);
+	static RGBQuad XYZtoRGB(RGBQuad lXYZColor);
+	static RGBQuad RGBtoXYZ(RGBQuad lRGBColor);
 #endif //CXIMAGE_SUPPORT_DSP
-	static RGBQUAD RGBtoRGBQUAD(COLORREF cr);
-	static COLORREF RGBQUADtoRGB(RGBQUAD c);
+	static RGBQuad RGBtoRGBQUAD(COLORREF cr);
+	static COLORREF RGBQUADtoRGB(RGBQuad c);
 //@}
 
 /** \addtogroup Selection */ //@{
@@ -728,8 +728,8 @@ public:
 	bool SelectionFlip();
 	bool SelectionAddRect(Rect r, uint8_t level = 255);
 	bool SelectionAddEllipse(Rect r, uint8_t level = 255);
-	bool SelectionAddPolygon(POINT* points, int32_t npoints, uint8_t level = 255);
-	bool SelectionAddColor(RGBQUAD c, uint8_t level = 255);
+	bool SelectionAddPolygon(Point* points, int32_t npoints, uint8_t level = 255);
+	bool SelectionAddColor(RGBQuad c, uint8_t level = 255);
 	bool SelectionAddPixel(int32_t x, int32_t y, uint8_t level = 255);
 	bool SelectionCopy(CxImage& from);
 	bool SelectionIsInside(int32_t x, int32_t y);

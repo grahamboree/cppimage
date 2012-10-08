@@ -1249,7 +1249,7 @@ bool CxImagePSD::Decode(CxFile *hFile)
 #endif
 
 	int32_t x,y;
-	RGBQUAD c;
+	RGBQuad c;
 	c.rgbReserved = 0;
 	if (rgba){
 		for(y =context->height-1; y--;){

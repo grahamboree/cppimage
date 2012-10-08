@@ -124,7 +124,7 @@ bool CxImageJBG::Encode(CxFile * hFile)
 	ew = (w + 7)>>3;
 
 	uint8_t mask;
-	RGBQUAD *rgb = GetPalette();
+	RGBQuad *rgb = GetPalette();
 	if (CompareColors(&rgb[0],&rgb[1])<0) mask=255; else mask=0;
 
 	uint8_t *buffer = (uint8_t*)malloc(ew*h*2);

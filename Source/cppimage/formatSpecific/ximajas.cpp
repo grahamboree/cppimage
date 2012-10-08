@@ -128,7 +128,7 @@ bool CxImageJAS::Decode(CxFile *hFile, uint32_t imagetype)
 		if(!Create(w,h,24,fmt))
 			cx_throw("");
 
-		RGBQUAD c;
+		RGBQuad c;
         for (y=0; y<h; y++) {
 			for (cmptno = 0; cmptno < image->numcmpts_; ++cmptno) {
 				jas_image_readcmpt(image, cmptno, 0, y, w, 1, bufs[cmptno]);
@@ -256,7 +256,7 @@ bool CxImageJAS::Encode(CxFile * hFile, uint32_t imagetype)
 		}
 	}
 
-	RGBQUAD c;
+	RGBQuad c;
 	for (y = 0; y < head.biHeight; ++y) {
 		for (x = 0; x < head.biWidth; ++x) {
 			if (head.biClrUsed==0){

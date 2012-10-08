@@ -93,11 +93,11 @@ bool CxImageICO::Decode(CxFile *hFile)
 				Create(icon_list[page].bWidth,icon_list[page].bHeight, c, CXIMAGE_FORMAT_ICO);	//image creation
 
 				// read the palette
-				RGBQUAD pal[256];
+				RGBQuad pal[256];
 				if (bih.biClrUsed)
-					hFile->Read(pal,bih.biClrUsed*sizeof(RGBQUAD), 1);
+					hFile->Read(pal,bih.biClrUsed*sizeof(RGBQuad), 1);
 				else
-					hFile->Read(pal,head.biClrUsed*sizeof(RGBQUAD), 1);
+					hFile->Read(pal,head.biClrUsed*sizeof(RGBQuad), 1);
 
 				SetPalette(pal,head.biClrUsed);	//palette assign
 
@@ -160,7 +160,7 @@ bool CxImageICO::Decode(CxFile *hFile)
 #endif //CXIMAGE_SUPPORT_ALPHA
 
 						//check if there is only one transparent color
-						RGBQUAD cc,ct;
+						RGBQuad cc,ct;
 						int32_t nTransColors=0;
 						int32_t nTransIndex=0;
 						for (y = 0; y < head.biHeight; y++){
@@ -172,7 +172,7 @@ bool CxImageICO::Decode(CxFile *hFile)
 										nTransColors++;
 										ct = cc;
 									} else {
-										if (memcmp(&cc, &ct, sizeof(RGBQUAD)) != 0){
+										if (memcmp(&cc, &ct, sizeof(RGBQuad)) != 0){
 											nTransColors++;
 										}
 									}
@@ -304,7 +304,7 @@ bool CxImageICO::Encode(CxFile * hFile, bool bAppend, int32_t nPageCount)
 #endif
 
 	//prepare the palette struct
-	RGBQUAD* pal=GetPalette();
+	RGBQuad* pal=GetPalette();
 	if (head.biBitCount<=8 && pal==NULL) return false;
 
 	int32_t maskwdt=((head.biWidth+31)/32)*4; //mask line width
@@ -328,7 +328,7 @@ bool CxImageICO::Encode(CxFile * hFile, bool bAppend, int32_t nPageCount)
 	if (!bAppend)
 		m_dwImageOffset = sizeof(ICONHEADER) + nPages * sizeof(ICONDIRENTRY);
 
-	uint32_t dwBytesInRes = sizeof(BITMAPINFOHEADER)+head.biClrUsed*sizeof(RGBQUAD)+imagesize+masksize;
+	uint32_t dwBytesInRes = sizeof(BITMAPINFOHEADER)+head.biClrUsed*sizeof(RGBQuad)+imagesize+masksize;
 
 	ICONDIRENTRY icon_list={
 		(uint8_t)head.biWidth,
@@ -408,10 +408,10 @@ bool CxImageICO::Encode(CxFile * hFile, bool bAppend, int32_t nPageCount)
 			bihtoh(&bi);
 
 			bool bTransparent = info.nBkgndIndex >= 0;
-			RGBQUAD ct = GetTransColor();
+			RGBQuad ct = GetTransColor();
 			if (pal){
 				if (bTransparent) SetPaletteColor((uint8_t)info.nBkgndIndex,0,0,0,0);
-			 	hFile->Write(pal,head.biClrUsed*sizeof(RGBQUAD),1); //write palette
+			 	hFile->Write(pal,head.biClrUsed*sizeof(RGBQuad),1); //write palette
 				if (bTransparent) SetPaletteColor((uint8_t)info.nBkgndIndex,ct);
 			}
 
@@ -444,7 +444,7 @@ bool CxImageICO::Encode(CxFile * hFile, bool bAppend, int32_t nPageCount)
 			//prepare the variables to build the mask
 			uint8_t* iDst;
 			int32_t pos,i;
-			RGBQUAD c={0,0,0,0};
+			RGBQuad c={0,0,0,0};
 			int32_t* pc = (int32_t*)&c;
 			int32_t* pct= (int32_t*)&ct;
 #if CXIMAGE_SUPPORT_ALPHA

@@ -264,7 +264,7 @@ void* CxImage::Create(uint32_t dwWidth, uint32_t dwHeight, uint32_t wBpp, uint32
 	}
 
 	//clear the palette
-	RGBQUAD* pal = GetPalette();
+	RGBQuad* pal = GetPalette();
 	if (pal)
 		memset(pal, 0, GetPaletteSize());
 	//Destroy the existing selection
@@ -633,8 +633,8 @@ bool CxImage::CreateFromMatrix(uint8_t** ppMatrix, uint32_t dwWidth, uint32_t dw
  */
 int32_t CxImage::CompareColors(const void* elem1, const void* elem2)
 {
-	RGBQUAD* c1 = (RGBQUAD*)elem1;
-	RGBQUAD* c2 = (RGBQUAD*)elem2;
+	RGBQuad* c1 = (RGBQuad*)elem1;
+	RGBQuad* c2 = (RGBQuad*)elem2;
 
 	int32_t g1 = (int32_t)RGB2GRAY(c1->rgbRed, c1->rgbGreen, c1->rgbBlue);
 	int32_t g2 = (int32_t)RGB2GRAY(c2->rgbRed, c2->rgbGreen, c2->rgbBlue);

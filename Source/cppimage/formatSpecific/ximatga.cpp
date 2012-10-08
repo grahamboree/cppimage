@@ -158,7 +158,7 @@ bool CxImageTGA::Encode(CxFile * hFile)
 
 	if (head.biBitCount==8){
 		rgb_color pal[256];
-		RGBQUAD* ppal = GetPalette();
+		RGBQuad* ppal = GetPalette();
 		for (int32_t i=0;i<256; i++){
 			pal[i].r = ppal[i].rgbBlue;
 			pal[i].g = ppal[i].rgbGreen;
@@ -176,7 +176,7 @@ bool CxImageTGA::Encode(CxFile * hFile)
 		}
 	} else {
 		pDest = (uint8_t*)malloc(4*tgaHead.ImageWidth);
-		RGBQUAD c;
+		RGBQuad c;
 		for (int32_t y=0; y < tgaHead.ImageHeight; y++){
 			for(int32_t x=0, x4=0;x<tgaHead.ImageWidth;x++, x4+=4){
 				c = BlindGetPixelColor(x,y);
@@ -219,7 +219,7 @@ uint8_t CxImageTGA::ExpandCompressedLine(uint8_t* pDest,TGAHEADER* ptgaHead,CxFi
 			switch (ptgaHead->PixelDepth)
 			{
 			case 32: {
-				RGBQUAD color;
+				RGBQuad color;
 				hFile->Read(&color,4,1);
 				for (int32_t ix = 0; ix < rle; ix++){
 					memcpy(&pDest[3*ix],&color,3);
@@ -293,7 +293,7 @@ void CxImageTGA::ExpandUncompressedLine(uint8_t* pDest,TGAHEADER* ptgaHead,CxFil
 	case 32:{
 		uint8_t* dst=pDest;
 		for (int32_t x=0; x<width; x++){
-			RGBQUAD pixel;
+			RGBQuad pixel;
 			hFile->Read(&pixel,4,1);
 			*dst++ = pixel.rgbBlue;
 			*dst++ = pixel.rgbGreen;

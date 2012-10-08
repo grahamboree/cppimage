@@ -578,7 +578,7 @@ void CxImageGIF::EncodeHeader(CxFile *fp)
 	fp->PutC(0);	 //GIF "pixel aspect ratio"
 
 	if (head.biClrUsed!=0){
-		RGBQUAD* pPal = GetPalette();
+		RGBQuad* pPal = GetPalette();
 		for(uint32_t i=0; i<head.biClrUsed; ++i) 
 		{
 			fp->PutC(pPal[i].rgbRed);
@@ -642,7 +642,7 @@ void CxImageGIF::EncodeBody(CxFile *fp, bool bLocalColorMap)
 
 	if (bLocalColorMap){
 		Flags|=0x87;
-		RGBQUAD* pPal = GetPalette();
+		RGBQuad* pPal = GetPalette();
 		for(uint32_t i=0; i<head.biClrUsed; ++i) 
 		{
 			fp->PutC(pPal[i].rgbRed);

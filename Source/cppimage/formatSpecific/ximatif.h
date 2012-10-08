@@ -54,7 +54,7 @@ protected:
 	bool m_multipage;
 	int32_t  m_pages;
 	void MoveBits( uint8_t* dest, uint8_t* from, int32_t count, int32_t bpp );
-	void MoveBitsPal( uint8_t* dest, uint8_t*from, int32_t count, int32_t bpp, RGBQUAD* pal );
+	void MoveBitsPal( uint8_t* dest, uint8_t*from, int32_t count, int32_t bpp, RGBQuad* pal );
 };
 
 #endif

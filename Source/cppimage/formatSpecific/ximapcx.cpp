@@ -212,7 +212,7 @@ bool CxImagePCX::Encode(CxFile * hFile)
 		pcxHeader.ColorMap[1][0] = pcxHeader.ColorMap[1][1] = pcxHeader.ColorMap[1][2] = 255;
 	}
 	if (pcxHeader.BitsPerPixel == 1 && pcxHeader.ColorPlanes == 4){
-		RGBQUAD c;
+		RGBQuad c;
 		for (int32_t i = 0; i < 16; i++){
 			c=GetPaletteColor(i);
 			pcxHeader.ColorMap[i][0] = c.rgbRed;
@@ -270,7 +270,7 @@ bool CxImagePCX::Encode(CxFile * hFile)
 		if (head.biBitCount == 8){
 			hFile->PutC(0x0C);
 			uint8_t* pal = (uint8_t*)malloc(768);
-			RGBQUAD c;
+			RGBQuad c;
 			for (int32_t i=0;i<256;i++){
 				c=GetPaletteColor(i);
 				pal[3*i+0] = c.rgbRed;
@@ -282,7 +282,7 @@ bool CxImagePCX::Encode(CxFile * hFile)
 		}
 	} else { //(head.biBitCount==4) || (head.biBitCount==1)
 
-		RGBQUAD *rgb = GetPalette();
+		RGBQuad *rgb = GetPalette();
 		bool binvert = false;
 		if (CompareColors(&rgb[0],&rgb[1])>0) binvert=(head.biBitCount==1);
 		

@@ -85,9 +85,11 @@ static const float PI = 3.141592653589793f;
 
 #ifdef __BORLANDC__
 #	ifndef _COMPLEX_DEFINED
-typedef struct tagcomplex {
-	double x,y;
-} _complex;
+struct _complex
+{
+	double x;
+	double y;
+};
 #	endif
 
 #	define _cabs(c) sqrt(c.x*c.x+c.y*c.y)
@@ -135,22 +137,24 @@ struct Rect
 	int32_t    bottom;
 };
 
-struct POINT
+struct Point
 {
 	int32_t  x;
 	int32_t  y;
 };
 
-typedef struct tagRGBQUAD {
+struct RGBQuad
+{
 	uint8_t    rgbBlue;
 	uint8_t    rgbGreen;
 	uint8_t    rgbRed;
 	uint8_t    rgbReserved;
-} RGBQUAD;
+};
 
 #	pragma pack(1)
 
-typedef struct tagBITMAPINFOHEADER{
+struct BITMAPINFOHEADER
+{
 	uint32_t   biSize;
 	int32_t    biWidth;
 	int32_t    biHeight;
@@ -162,29 +166,32 @@ typedef struct tagBITMAPINFOHEADER{
 	int32_t    biYPelsPerMeter;
 	uint32_t   biClrUsed;
 	uint32_t   biClrImportant;
-} BITMAPINFOHEADER;
+};
 
-typedef struct tagBITMAPFILEHEADER {
+struct BITMAPFILEHEADER
+{
 	uint16_t   bfType;
 	uint32_t   bfSize;
 	uint16_t   bfReserved1;
 	uint16_t   bfReserved2;
 	uint32_t   bfOffBits;
-} BITMAPFILEHEADER;
+};
 
-typedef struct tagBITMAPCOREHEADER {
+struct BITMAPCOREHEADER
+{
 	uint32_t   bcSize;
 	uint16_t   bcWidth;
 	uint16_t   bcHeight;
 	uint16_t   bcPlanes;
 	uint16_t   bcBitCount;
-} BITMAPCOREHEADER;
+};
 
-typedef struct tagRGBTRIPLE {
+struct RGBTRIPLE
+{
 	uint8_t    rgbtBlue;
 	uint8_t    rgbtGreen;
 	uint8_t    rgbtRed;
-} RGBTRIPLE;
+};
 
 #	pragma pack()
 
@@ -195,14 +202,16 @@ typedef struct tagRGBTRIPLE {
 
 #	define GetRValue(rgb)      ((uint8_t)(rgb))
 #	define GetGValue(rgb)      ((uint8_t)(((uint16_t)(rgb)) >> 8))
-#	define GetBValue(rgb)      ((uint8_t)((rgb)>>16))
-#	define RGB(r,g,b)          ((COLORREF)(((uint8_t)(r)|((uint16_t)((uint8_t)(g))<<8))|(((uint32_t)(uint8_t)(b))<<16)))
+#	define GetBValue(rgb)      ((uint8_t)((rgb) >> 16))
+#	define RGB(r,g,b)          ((COLORREF)(((uint8_t)(r) | ((uint16_t)((uint8_t)(g)) << 8)) | (((uint32_t)(uint8_t)(b)) << 16)))
 
 #	ifndef _COMPLEX_DEFINED
 
-typedef struct tagcomplex {
-	double x,y;
-} _complex;
+struct _complex
+{
+	double x;
+	double y;
+};
 
 #	endif // _COMPLEX_DEFINED
 #	define _cabs(c) sqrt(c.x*c.x+c.y*c.y)

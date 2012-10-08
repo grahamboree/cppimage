@@ -206,11 +206,11 @@ bool CxImage::SelectionCopy(CxImage &from)
 }
 ////////////////////////////////////////////////////////////////////////////////
 /**
- * Adds a polygonal region to the existing selection. points points to an array of POINT structures.
+ * Adds a polygonal region to the existing selection. points points to an array of Point structures.
  * Each structure specifies the x-coordinate and y-coordinate of one vertex of the polygon.
- * npoints specifies the number of POINT structures in the array pointed to by points.
+ * npoints specifies the number of Point structures in the array pointed to by points.
  */
-bool CxImage::SelectionAddPolygon(POINT *points, int32_t npoints, uint8_t level)
+bool CxImage::SelectionAddPolygon(Point *points, int32_t npoints, uint8_t level)
 {
 	if (points==NULL || npoints<3) return false;
 
@@ -221,9 +221,9 @@ bool CxImage::SelectionAddPolygon(POINT *points, int32_t npoints, uint8_t level)
 	Rect localbox = {head.biWidth,0,0,head.biHeight};
 
 	int32_t x,y,i=0;
-	POINT *current;
-	POINT *next = NULL;
-	POINT *start = NULL;
+	Point *current;
+	Point *next = NULL;
+	Point *start = NULL;
 	//trace contour
 	while (i < npoints){
 		current = &points[i];
@@ -279,7 +279,7 @@ bool CxImage::SelectionAddPolygon(POINT *points, int32_t npoints, uint8_t level)
 
 	//fill the outer region
 	int32_t npix=(localbox.right - localbox.left)*(localbox.top - localbox.bottom);
-	POINT* pix = (POINT*)calloc(npix,sizeof(POINT));
+	Point* pix = (Point*)calloc(npix,sizeof(Point));
 	uint8_t back=0, mark=1;
 	int32_t fx, fy, fxx, fyy, first, last;
 	int32_t xmin = 0;
@@ -400,7 +400,7 @@ bool CxImage::SelectionAddPolygon(POINT *points, int32_t npoints, uint8_t level)
 /**
  * Adds to the selection all the pixels matching the specified color.
  */
-bool CxImage::SelectionAddColor(RGBQUAD c, uint8_t level)
+bool CxImage::SelectionAddColor(RGBQuad c, uint8_t level)
 {
     if (pSelection==NULL) SelectionCreate();
 	if (pSelection==NULL) return false;
@@ -409,7 +409,7 @@ bool CxImage::SelectionAddColor(RGBQUAD c, uint8_t level)
 
     for (int32_t y = 0; y < head.biHeight; y++){
         for (int32_t x = 0; x < head.biWidth; x++){
-            RGBQUAD color = BlindGetPixelColor(x, y);
+            RGBQuad color = BlindGetPixelColor(x, y);
             if (color.rgbRed   == c.rgbRed &&
 				color.rgbGreen == c.rgbGreen &&
                 color.rgbBlue  == c.rgbBlue)

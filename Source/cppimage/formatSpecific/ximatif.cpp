@@ -199,8 +199,8 @@ bool CxImageTIF::Decode(CxFile * hFile)
 		if (BIG_palette && (bitspersample > 24))	// + VK
 			cx_throw("Too big palette to handle");		// + VK
 
-		RGBQUAD *pal;
-		pal=(RGBQUAD*)calloc(BIG_palette ? 1<<bitspersample : 256,sizeof(RGBQUAD)); 
+		RGBQuad *pal;
+		pal=(RGBQuad*)calloc(BIG_palette ? 1<<bitspersample : 256,sizeof(RGBQuad)); 
 			// ! VK: it coasts nothing but more correct to use 256 as temp palette storage
 			// ! VK: but for case of BIG palette it just copied
 		if (pal==NULL) cx_throw("Unable to allocate TIFF palette");
@@ -441,7 +441,7 @@ bool CxImageTIF::Decode(CxFile * hFile)
 					int32_t xi=0;
 					uint32 ii=0;
 					int32_t yi=height-ys-nrow+y;
-					RGBQUAD c;
+					RGBQuad c;
 					int32_t l,a,b,bitsoffset;
 					double p,cx,cy,cz,cr,cg,cb;
 					while (ii</*line*/width){		// * VK
@@ -644,7 +644,7 @@ bool CxImageTIF::EncodeBody(TIFF *m_tif, bool multipage, int32_t page, int32_t p
 	bitspersample = bitcount / samplesperpixel;
 
 	//set the PHOTOMETRIC tag
-	RGBQUAD *rgb = GetPalette();
+	RGBQuad *rgb = GetPalette();
 	switch (bitcount) {
 		case 1:
 			if (CompareColors(&rgb[0],&rgb[1])<0) {
@@ -652,7 +652,7 @@ bool CxImageTIF::EncodeBody(TIFF *m_tif, bool multipage, int32_t page, int32_t p
 				 * let's transform the image in PHOTOMETRIC_MINISWHITE
 				 */
 				//invert the colors
-				RGBQUAD tempRGB=GetPaletteColor(0);
+				RGBQuad tempRGB=GetPaletteColor(0);
 				SetPaletteColor(0,GetPaletteColor(1));
 				SetPaletteColor(1,tempRGB);
 				//invert the pixels
@@ -692,7 +692,7 @@ bool CxImageTIF::EncodeBody(TIFF *m_tif, bool multipage, int32_t page, int32_t p
 //	pitch = (uint16)CalculatePitch(line);
 
 	//prepare the palette struct
-	RGBQUAD pal[256];
+	RGBQuad pal[256];
 	if (GetPalette()){
 		uint8_t b;
 		memcpy(pal,GetPalette(),GetPaletteSize());
@@ -953,7 +953,7 @@ void CxImageTIF::MoveBits( uint8_t* dest, uint8_t* from, int32_t count, int32_t 
 	}
 }
 ////////////////////////////////////////////////////////////////////////////////
-void CxImageTIF::MoveBitsPal( uint8_t* dest, uint8_t*from, int32_t count, int32_t bpp, RGBQUAD* pal )
+void CxImageTIF::MoveBitsPal( uint8_t* dest, uint8_t*from, int32_t count, int32_t bpp, RGBQuad* pal )
 {	int32_t offbits = 0;
 	uint32 d;
 	uint16 palidx;

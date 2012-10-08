@@ -21,10 +21,10 @@
 
 struct DIBINFO : public BITMAPINFO
 {
-	RGBQUAD    arColors[255];    // Color table info - adds an extra 255 entries to palette
+	RGBQuad    arColors[255];    // Color table info - adds an extra 255 entries to palette
 	operator LPBITMAPINFO()          { return (LPBITMAPINFO) this; }
 	operator LPBITMAPINFOHEADER()    { return &bmiHeader;          }
-	RGBQUAD* ColorTable()            { return bmiColors;           }
+	RGBQuad* ColorTable()            { return bmiColors;           }
 };
 
 int32_t BytesPerLine(int32_t nWidth, int32_t nBitsPerPixel)
@@ -165,7 +165,7 @@ int32_t CxImage::Blt(HDC pDC, int32_t x, int32_t y)
 	if((pDib==0)||(pDC==0)||(!info.bEnabled)) return 0;
 
     HBRUSH brImage = CreateDIBPatternBrushPt(pDib, DIB_RGB_COLORS);
-    POINT pt;
+    Point pt;
     SetBrushOrgEx(pDC,x,y,&pt); //<RT>
     HBRUSH brOld = (HBRUSH) SelectObject(pDC, brImage);
     PatBlt(pDC, x, y, head.biWidth, head.biHeight, PATCOPY);
@@ -246,7 +246,7 @@ bool CxImage::CreateFromHANDLE(HANDLE hMem)
 		// <Michael Gandyra>
 		// fill in color map
 		bool bIsOldBmp = (head.biSize == sizeof(BITMAPCOREHEADER));
-		RGBQUAD *pRgb = GetPalette();
+		RGBQuad *pRgb = GetPalette();
 		if (pRgb) {
 			// number of colors to fill in
 			int32_t nColors = DibNumColors(pHead);
@@ -276,7 +276,7 @@ bool CxImage::CreateFromHANDLE(HANDLE hMem)
 		// compressed bitmap ?
 		if(dwCompression!=BI_RGB || pHead->biBitCount==32 || pHead->biBitCount ==16) {
 			// get the bitmap bits
-			LPSTR lpDIBBits = (LPSTR)((uint8_t*)pHead + *(uint32_t*)pHead + (uint16_t)(GetNumColors() * sizeof(RGBQUAD)));
+			LPSTR lpDIBBits = (LPSTR)((uint8_t*)pHead + *(uint32_t*)pHead + (uint16_t)(GetNumColors() * sizeof(RGBQuad)));
 			// decode and copy them to our image
 			switch (pHead->biBitCount) {
 			case 32 :
@@ -577,13 +577,13 @@ HBITMAP CxImage::MakeBitmap(HDC hdc, bool bTransparency)
 		}
 
 		// transfer Pixels from CxImage to Bitmap
-		RGBQUAD* pBit = (RGBQUAD*) ds.dsBm.bmBits;
+		RGBQuad* pBit = (RGBQuad*) ds.dsBm.bmBits;
 		int32_t lPx,lPy;
 		for( lPy=0 ; lPy < bi.bmiHeader.biHeight ; ++lPy )
 		{
 			for( lPx=0 ; lPx < bi.bmiHeader.biWidth ; ++lPx )
 			{
-				RGBQUAD lPixel = GetPixelColor(lPx,lPy,true);
+				RGBQuad lPixel = GetPixelColor(lPx,lPy,true);
 				*pBit = lPixel;
 				pBit++;
 			}
@@ -644,7 +644,7 @@ bool CxImage::IsHBITMAPAlphaValid( HBITMAP hbmp )
 			l_BitmapInfo.bmiHeader.biCompression = BI_RGB;
 
 			// create Buffer for Image
-			RGBQUAD * l_pRawBytes = new RGBQUAD[bm.bmWidth * bm.bmHeight];
+			RGBQuad * l_pRawBytes = new RGBQuad[bm.bmWidth * bm.bmHeight];
 
 			HDC dc = ::GetDC(NULL);
 
@@ -653,8 +653,8 @@ bool CxImage::IsHBITMAPAlphaValid( HBITMAP hbmp )
 				// Get Pixel Data from Image
 				if(GetDIBits(dc, hbmp, 0, bm.bmHeight, l_pRawBytes, &l_BitmapInfo, DIB_RGB_COLORS))
 				{
-					RGBQUAD * lpArray		= l_pRawBytes;
-					RGBQUAD * lpArrayEnd	= l_pRawBytes + (bm.bmWidth * bm.bmHeight);
+					RGBQuad * lpArray		= l_pRawBytes;
+					RGBQuad * lpArrayEnd	= l_pRawBytes + (bm.bmWidth * bm.bmHeight);
 
 					// check if Alpha Channel is realy valid (anny value not zero)
 					for( ;lpArray != lpArrayEnd ; ++lpArray )
@@ -709,7 +709,7 @@ bool CxImage::CreateFromHBITMAP(HBITMAP hbmp, HPALETTE hpal, bool bTransparency)
 			l_BitmapInfo.bmiHeader.biBitCount = bm.bmBitsPixel;
 			l_BitmapInfo.bmiHeader.biCompression = BI_RGB;
 
-			RGBQUAD *l_pRawBytes = new RGBQUAD[bm.bmWidth * bm.bmHeight];
+			RGBQuad *l_pRawBytes = new RGBQuad[bm.bmWidth * bm.bmHeight];
 
 			HDC dc = ::GetDC(NULL);
 
@@ -869,7 +869,7 @@ int32_t CxImage::Draw(HDC hdc, int32_t x, int32_t y, int32_t cx, int32_t cy, Rec
 			}
 		} else { //STRETCH
 			//pixel informations
-			RGBQUAD c={0,0,0,0};
+			RGBQuad c={0,0,0,0};
 			//Preparing Bitmap Info
 			BITMAPINFO bmInfo;
 			memset(&bmInfo.bmiHeader,0,sizeof(BITMAPINFOHEADER));
@@ -945,8 +945,8 @@ int32_t CxImage::Draw(HDC hdc, int32_t x, int32_t y, int32_t cx, int32_t cy, Rec
 		//Alpha blend - Thanks to Florian Egel
 
 		//pixel informations
-		RGBQUAD c={0,0,0,0};
-		RGBQUAD ct = GetTransColor();
+		RGBQuad c={0,0,0,0};
+		RGBQuad ct = GetTransColor();
 		int32_t* pc = (int32_t*)&c;
 		int32_t* pct= (int32_t*)&ct;
 		int32_t cit = GetTransIndex();
@@ -1189,7 +1189,7 @@ HBITMAP CxImage::Draw2HBITMAP(HDC hdc, int32_t x, int32_t y, int32_t cx, int32_t
 						info.pImage,(BITMAPINFO*)pDib,DIB_RGB_COLORS);
 		} else { //STRETCH
 			//pixel informations
-			RGBQUAD c={0,0,0,0};
+			RGBQuad c={0,0,0,0};
 			//Preparing Bitmap Info
 			BITMAPINFO bmInfo;
 			memset(&bmInfo.bmiHeader,0,sizeof(BITMAPINFOHEADER));
@@ -1260,8 +1260,8 @@ HBITMAP CxImage::Draw2HBITMAP(HDC hdc, int32_t x, int32_t y, int32_t cx, int32_t
 		//Alpha blend - Thanks to Florian Egel
 
 		//pixel informations
-		RGBQUAD c={0,0,0,0};
-		RGBQUAD ct = GetTransColor();
+		RGBQuad c={0,0,0,0};
+		RGBQuad ct = GetTransColor();
 		int32_t* pc = (int32_t*)&c;
 		int32_t* pct= (int32_t*)&ct;
 		int32_t cit = GetTransIndex();
@@ -1494,7 +1494,7 @@ int32_t CxImage::Draw2(HDC hdc, int32_t x, int32_t y, int32_t cx, int32_t cy)
 			// Select the mask bitmap into the appropriate dc
 			HBITMAP pOldBitmapTrans = (HBITMAP)SelectObject(dcTrans, bitmapTrans);
 			// Build mask based on transparent colour
-			RGBQUAD rgbBG;
+			RGBQuad rgbBG;
 			if (head.biBitCount<24) rgbBG = GetPaletteColor((uint8_t)info.nBkgndIndex);
 			else rgbBG = info.nBkgndColor;
 			COLORREF crColour = RGB(rgbBG.rgbRed, rgbBG.rgbGreen, rgbBG.rgbBlue);
@@ -1577,8 +1577,8 @@ int32_t CxImage::Tile(HDC hdc, Rect *rc)
 }
 ////////////////////////////////////////////////////////////////////////////////
 // For UNICODE support: char -> TCHAR
-int32_t CxImage::DrawString(HDC hdc, int32_t x, int32_t y, const TCHAR* text, RGBQUAD color, const TCHAR* font, int32_t lSize, int32_t lWeight, uint8_t bItalic, uint8_t bUnderline, bool bSetAlpha)
-//int32_t CxImage::DrawString(HDC hdc, int32_t x, int32_t y, const char* text, RGBQUAD color, const char* font, int32_t lSize, int32_t lWeight, uint8_t bItalic, uint8_t bUnderline, bool bSetAlpha)
+int32_t CxImage::DrawString(HDC hdc, int32_t x, int32_t y, const TCHAR* text, RGBQuad color, const TCHAR* font, int32_t lSize, int32_t lWeight, uint8_t bItalic, uint8_t bUnderline, bool bSetAlpha)
+//int32_t CxImage::DrawString(HDC hdc, int32_t x, int32_t y, const char* text, RGBQuad color, const char* font, int32_t lSize, int32_t lWeight, uint8_t bItalic, uint8_t bUnderline, bool bSetAlpha)
 {
 	if (IsValid()){
 		//get the background
@@ -1675,9 +1675,9 @@ int32_t CxImage::DrawStringEx(HDC hdc, int32_t x, int32_t y, CXTEXTINFO *pTextTy
 	HFONT m_Font;
     m_Font=CreateFontIndirect( &pTextType->lfont );
     
-    // get colors in RGBQUAD
-    RGBQUAD p_forecolor = RGBtoRGBQUAD(pTextType->fcolor);
-    RGBQUAD p_backcolor = RGBtoRGBQUAD(pTextType->bcolor);
+    // get colors in RGBQuad
+    RGBQuad p_forecolor = RGBtoRGBQUAD(pTextType->fcolor);
+    RGBQuad p_backcolor = RGBtoRGBQUAD(pTextType->bcolor);
 
     // check alignment and re-set default if necessary
     if ( pTextType->align != DT_CENTER &&
@@ -1794,7 +1794,7 @@ int32_t CxImage::DrawStringEx(HDC hdc, int32_t x, int32_t y, CXTEXTINFO *pTextTy
                 else
                     if ( pTextType->b_opacity > 0.0 && pTextType->b_opacity < 1.0 )
                     {
-                        RGBQUAD bcolor, pcolor;
+                        RGBQuad bcolor, pcolor;
                         // calculate a transition color from original image to background color:
                         pcolor = GetPixelColor(x+ix,y+iy);
 						bcolor.rgbBlue = (uint8_t)(pTextType->b_opacity * pcolor.rgbBlue + (1.0-pTextType->b_opacity) * p_backcolor.rgbBlue );
@@ -1814,8 +1814,8 @@ int32_t CxImage::DrawStringEx(HDC hdc, int32_t x, int32_t y, CXTEXTINFO *pTextTy
     {
 		for (iy=0;iy<height;iy++)
         {
-			RGBQUAD pcolor = GetPixelColor(x+ix,y+iy);
-			RGBQUAD tcolor = itext.GetPixelColor(ix,iy);
+			RGBQuad pcolor = GetPixelColor(x+ix,y+iy);
+			RGBQuad tcolor = itext.GetPixelColor(ix,iy);
             if (tcolor.rgbBlue!=255){
 				float a = tcolor.rgbBlue/255.0f;
 				pcolor.rgbBlue  = (uint8_t)(a * (pcolor.rgbBlue  - p_forecolor.rgbBlue)  + p_forecolor.rgbBlue );
