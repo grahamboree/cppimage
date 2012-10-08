@@ -245,7 +245,7 @@ bool CxImage::CreateFromHANDLE(HANDLE hMem)
 
 		// <Michael Gandyra>
 		// fill in color map
-		bool bIsOldBmp = (head.biSize == sizeof(BITMAPCOREHEADER));
+		bool bIsOldBmp = (head.biSize == sizeof(BitmapCoreHeader));
 		RGBQuad *pRgb = GetPalette();
 		if (pRgb) {
 			// number of colors to fill in

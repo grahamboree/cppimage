@@ -19,13 +19,13 @@ bool CxImageBMP::Encode(CxFile * hFile)
 	if (EncodeSafeCheck(hFile))
 		return false;
 
-	BITMAPFILEHEADER hdr;
+	BitmapFileHeader hdr;
 
 	hdr.bfType = 0x4d42;   // 'BM' WINDOWS_BITMAP_SIGNATURE
-	hdr.bfSize = GetSize() + 14 /*sizeof(BITMAPFILEHEADER)*/;
+	hdr.bfSize = GetSize() + 14 /*sizeof(BitmapFileHeader)*/;
 	hdr.bfReserved1 = 0;
 	hdr.bfReserved2 = 0;
-	hdr.bfOffBits = 14 /*sizeof(BITMAPFILEHEADER)*/ + head.biSize + GetPaletteSize();
+	hdr.bfOffBits = 14 /*sizeof(BitmapFileHeader)*/ + head.biSize + GetPaletteSize();
 
 	hdr.bfType = m_ntohs(hdr.bfType); 
 	hdr.bfSize = m_ntohl(hdr.bfSize); 
@@ -41,13 +41,13 @@ bool CxImageBMP::Encode(CxFile * hFile)
 		uint32_t dwEffWidth = ((((infohdr.biBitCount * infohdr.biWidth) + 31) / 32) * 4);
 		infohdr.biSizeImage = dwEffWidth * infohdr.biHeight;
 
-		hdr.bfSize = infohdr.biSize + infohdr.biSizeImage + 14 /*sizeof(BITMAPFILEHEADER)*/;
+		hdr.bfSize = infohdr.biSize + infohdr.biSizeImage + 14 /*sizeof(BitmapFileHeader)*/;
 
 		hdr.bfSize = m_ntohl(hdr.bfSize);
 		bihtoh(&infohdr);
 
 		// Write the file header
-		hFile->Write(&hdr, min(14, sizeof(BITMAPFILEHEADER)), 1);
+		hFile->Write(&hdr, min(14, sizeof(BitmapFileHeader)), 1);
 		hFile->Write(&infohdr, sizeof(BitmapInfoHeader), 1);
 		 //and DIB+ALPHA interlaced
 		uint8_t *srcalpha = AlphaGetPointer();
@@ -67,7 +67,7 @@ bool CxImageBMP::Encode(CxFile * hFile)
 #endif //CXIMAGE_SUPPORT_ALPHA
 	{
 		// Write the file header
-		hFile->Write(&hdr, min(14, sizeof(BITMAPFILEHEADER)), 1);
+		hFile->Write(&hdr, min(14, sizeof(BitmapFileHeader)), 1);
 		//copy attributes
 		memcpy(pDib, &head, sizeof(BitmapInfoHeader));
 		bihtoh(static_cast<BitmapInfoHeader*>(pDib));
@@ -87,7 +87,7 @@ bool CxImageBMP::Decode(CxFile * hFile)
 	if (hFile == NULL)
 		return false;
 
-	BITMAPFILEHEADER bf;
+	BitmapFileHeader bf;
 	uint32_t off = hFile->Tell(); //<CSC>
 	cx_try 
 	{
@@ -108,7 +108,7 @@ bool CxImageBMP::Decode(CxFile * hFile)
 			cx_throw("Error reading BMP info");
 		uint32_t dwCompression = bmpHeader.biCompression;
 		uint32_t dwBitCount = bmpHeader.biBitCount; //preserve for BI_BITFIELDS compression <Thomas Ernst>
-		bool bIsOldBmp = (bmpHeader.biSize == sizeof(BITMAPCOREHEADER));
+		bool bIsOldBmp = (bmpHeader.biSize == sizeof(BitmapCoreHeader));
 
 		bool bTopDownDib = bmpHeader.biHeight < 0; //<Flanders> check if it's a top-down bitmap
 		if (bTopDownDib)
@@ -139,16 +139,16 @@ bool CxImageBMP::Decode(CxFile * hFile)
 			{
 				// convert a old color table (3 byte entries) to a new
 				// color table (4 byte entries)
-				hFile->Read(reinterpret_cast<void*>(pRgb), DibNumColors(&bmpHeader) * sizeof(RGBTRIPLE), 1);
+				hFile->Read(reinterpret_cast<void*>(pRgb), DibNumColors(&bmpHeader) * sizeof(RGBTriple), 1);
 				for (int32_t i = DibNumColors(&head) - 1; i >= 0; i--)
 				{
-					pRgb[i].rgbRed      = (reinterpret_cast<RGBTRIPLE*>(pRgb))[i].rgbtRed;
-					pRgb[i].rgbBlue     = (reinterpret_cast<RGBTRIPLE*>(pRgb))[i].rgbtBlue;
-					pRgb[i].rgbGreen    = (reinterpret_cast<RGBTRIPLE*>(pRgb))[i].rgbtGreen;
+					pRgb[i].rgbRed      = (reinterpret_cast<RGBTriple*>(pRgb))[i].rgbtRed;
+					pRgb[i].rgbBlue     = (reinterpret_cast<RGBTriple*>(pRgb))[i].rgbtBlue;
+					pRgb[i].rgbGreen    = (reinterpret_cast<RGBTriple*>(pRgb))[i].rgbtGreen;
 					/*
-					pRgb[i].rgbRed      = ((RGBTRIPLE*)(pRgb))[i].rgbtRed;
-					pRgb[i].rgbBlue     = ((RGBTRIPLE*)(pRgb))[i].rgbtBlue;
-					pRgb[i].rgbGreen    = ((RGBTRIPLE*)(pRgb))[i].rgbtGreen;
+					pRgb[i].rgbRed      = ((RGBTriple*)(pRgb))[i].rgbtRed;
+					pRgb[i].rgbBlue     = ((RGBTriple*)(pRgb))[i].rgbtBlue;
+					pRgb[i].rgbGreen    = ((RGBTriple*)(pRgb))[i].rgbtGreen;
 					 */
 					pRgb[i].rgbReserved = static_cast<uint8_t>(0);
 				}
@@ -487,9 +487,9 @@ bool CxImageBMP::DibReadBitmapInfo(CxFile* fh, BitmapInfoHeader *pdib)
 		fh->Seek((long)(124-sizeof(BitmapInfoHeader)), SEEK_CUR);
 		break;
 
-	case sizeof(BITMAPCOREHEADER):
+	case sizeof(BitmapCoreHeader):
 		{
-			BITMAPCOREHEADER bc = *(BITMAPCOREHEADER*)pdib;
+			BitmapCoreHeader bc = *(BitmapCoreHeader*)pdib;
 			pdib->biSize			= bc.bcSize;
 			pdib->biWidth			= (uint32_t)bc.bcWidth;
 			pdib->biHeight			= (uint32_t)bc.bcHeight;
@@ -502,7 +502,7 @@ bool CxImageBMP::DibReadBitmapInfo(CxFile* fh, BitmapInfoHeader *pdib)
 			pdib->biClrUsed      	= 0;
 			pdib->biClrImportant 	= 0;
 
-			fh->Seek((int32_t)(sizeof(BITMAPCOREHEADER) - sizeof(BitmapInfoHeader)), SEEK_CUR);
+			fh->Seek((int32_t)(sizeof(BitmapCoreHeader) - sizeof(BitmapInfoHeader)), SEEK_CUR);
 		}
 		break;
 	default:

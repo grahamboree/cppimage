@@ -168,7 +168,7 @@ struct BitmapInfoHeader
 	uint32_t   biClrImportant;
 };
 
-struct BITMAPFILEHEADER
+struct BitmapFileHeader
 {
 	uint16_t   bfType;
 	uint32_t   bfSize;
@@ -177,7 +177,7 @@ struct BITMAPFILEHEADER
 	uint32_t   bfOffBits;
 };
 
-struct BITMAPCOREHEADER
+struct BitmapCoreHeader
 {
 	uint32_t   bcSize;
 	uint16_t   bcWidth;
@@ -186,7 +186,7 @@ struct BITMAPCOREHEADER
 	uint16_t   bcBitCount;
 };
 
-struct RGBTRIPLE
+struct RGBTriple
 {
 	uint8_t    rgbtBlue;
 	uint8_t    rgbtGreen;
