@@ -124,13 +124,12 @@
 		C92689AC162212CB00D4EB54 /* CxConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CxConfig.h; path = Source/cppimage/CxConfig.h; sourceTree = "<group>"; };
 		C92689AD162212CC00D4EB54 /* CxDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CxDefines.h; path = Source/cppimage/CxDefines.h; sourceTree = "<group>"; };
 		C935CA6B1612A6EE00C72CD1 /* Types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Types.h; path = Source/cppimage/Types.h; sourceTree = "<group>"; };
-		C98496F7164B6F2A00F7F2B4 /* libgtest_d.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgtest_d.a; path = "../gtest-1.6.0/lib/libgtest_d.a"; sourceTree = "<group>"; };
-		C98496F8164B6F2A00F7F2B4 /* libgtest.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgtest.a; path = "../gtest-1.6.0/lib/libgtest.a"; sourceTree = "<group>"; };
+		C98496F8164B6F2A00F7F2B4 /* libgtest.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgtest.a; path = "gtest-1.6.0/lib/libgtest.a"; sourceTree = "<group>"; };
 		C984971B164B6F8300F7F2B4 /* cppimage_tests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cppimage_tests; sourceTree = BUILT_PRODUCTS_DIR; };
 		C984971E164B6F8300F7F2B4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		C9849720164B6F8300F7F2B4 /* cppimage_tests.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = cppimage_tests.1; sourceTree = "<group>"; };
 		C9FA0F541610296F0010C75D /* libcppimage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libcppimage.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		C9FA104216102B9E0010C75D /* tif_xfile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tif_xfile.cpp; path = Source/cppimage/tif_xfile.cpp; sourceTree = "<group>"; };
+		C9FA104216102B9E0010C75D /* tif_xfile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tif_xfile.cpp; path = ../tif_xfile.cpp; sourceTree = "<group>"; };
 		C9FA104816102B9E0010C75D /* ximadsp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximadsp.cpp; path = Source/cppimage/ximadsp.cpp; sourceTree = "<group>"; };
 		C9FA104916102B9E0010C75D /* ximaenc.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximaenc.cpp; path = Source/cppimage/ximaenc.cpp; sourceTree = "<group>"; };
 		C9FA104A16102B9E0010C75D /* ximaexif.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximaexif.cpp; path = Source/cppimage/ximaexif.cpp; sourceTree = "<group>"; };
@@ -165,9 +164,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C92685A91621667300D4EB54 /* formatSpecific */ = {
+		C92685A91621667300D4EB54 /* Format Specific */ = {
 			isa = PBXGroup;
 			children = (
+				C9FA104216102B9E0010C75D /* tif_xfile.cpp */,
 				C92685AA1621667300D4EB54 /* ximabmp.cpp */,
 				C92685AB1621667300D4EB54 /* ximabmp.h */,
 				C92685AC1621667300D4EB54 /* ximagif.cpp */,
@@ -201,63 +201,17 @@
 				C92685C81621667300D4EB54 /* ximawmf.cpp */,
 				C92685C91621667300D4EB54 /* ximawmf.h */,
 			);
-			name = formatSpecific;
+			name = "Format Specific";
 			path = Source/cppimage/formatSpecific;
 			sourceTree = "<group>";
 		};
 		C92685EE1622074900D4EB54 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				C9FA0F5B1610297E0010C75D /* CppImage */,
-			);
-			name = Source;
-			sourceTree = "<group>";
-		};
-		C92689B01622156600D4EB54 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
-		C984971D164B6F8300F7F2B4 /* cppimage_tests */ = {
-			isa = PBXGroup;
-			children = (
-				C98496F7164B6F2A00F7F2B4 /* libgtest_d.a */,
-				C98496F8164B6F2A00F7F2B4 /* libgtest.a */,
-				C984971E164B6F8300F7F2B4 /* main.cpp */,
-				C9849720164B6F8300F7F2B4 /* cppimage_tests.1 */,
-			);
-			path = cppimage_tests;
-			sourceTree = "<group>";
-		};
-		C9FA0F491610296F0010C75D = {
-			isa = PBXGroup;
-			children = (
-				C92689B01622156600D4EB54 /* Resources */,
-				C92685EE1622074900D4EB54 /* Source */,
-				C984971D164B6F8300F7F2B4 /* cppimage_tests */,
-				C9FA0F551610296F0010C75D /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		C9FA0F551610296F0010C75D /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				C9FA0F541610296F0010C75D /* libcppimage.a */,
-				C984971B164B6F8300F7F2B4 /* cppimage_tests */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		C9FA0F5B1610297E0010C75D /* CppImage */ = {
-			isa = PBXGroup;
-			children = (
-				C92685A91621667300D4EB54 /* formatSpecific */,
+				C92685A91621667300D4EB54 /* Format Specific */,
 				C92689AC162212CB00D4EB54 /* CxConfig.h */,
 				C92689AD162212CC00D4EB54 /* CxDefines.h */,
 				C92685EA1621F2D300D4EB54 /* CxMath.cpp */,
-				C9FA104216102B9E0010C75D /* tif_xfile.cpp */,
 				C9FA104816102B9E0010C75D /* ximadsp.cpp */,
 				C9FA104916102B9E0010C75D /* ximaenc.cpp */,
 				C9FA104A16102B9E0010C75D /* ximaexif.cpp */,
@@ -279,7 +233,52 @@
 				C92685A316215C6800D4EB54 /* CxMemFile.h */,
 				C935CA6B1612A6EE00C72CD1 /* Types.h */,
 			);
-			name = CppImage;
+			name = Source;
+			sourceTree = "<group>";
+		};
+		C92689B01622156600D4EB54 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C98496F8164B6F2A00F7F2B4 /* libgtest.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C984971D164B6F8300F7F2B4 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				C984972B164B771A00F7F2B4 /* App */,
+			);
+			name = Tests;
+			path = cppimage_tests;
+			sourceTree = "<group>";
+		};
+		C984972B164B771A00F7F2B4 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				C984971E164B6F8300F7F2B4 /* main.cpp */,
+				C9849720164B6F8300F7F2B4 /* cppimage_tests.1 */,
+			);
+			name = App;
+			sourceTree = "<group>";
+		};
+		C9FA0F491610296F0010C75D = {
+			isa = PBXGroup;
+			children = (
+				C92685EE1622074900D4EB54 /* Source */,
+				C984971D164B6F8300F7F2B4 /* Tests */,
+				C92689B01622156600D4EB54 /* Frameworks */,
+				C9FA0F551610296F0010C75D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C9FA0F551610296F0010C75D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C9FA0F541610296F0010C75D /* libcppimage.a */,
+				C984971B164B6F8300F7F2B4 /* cppimage_tests */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
