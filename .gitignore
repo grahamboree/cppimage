@@ -7,3 +7,5 @@
 
 
 *.xcsettings
+
+cppimage.xcodeproj/xcuserdata/*

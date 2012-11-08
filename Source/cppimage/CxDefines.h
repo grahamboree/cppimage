@@ -15,9 +15,9 @@
 #	 define cx_throw(message) throw(message)
 #	 define cx_catch catch (const char *message)
 #else
-#	 define cx_try bool cx_error=false;
-#	 define cx_throw(message) {cx_error=true; if(strcmp(message,"")) strncpy(info.szLastError,message,255); goto cx_error_catch;}
-#	 define cx_catch cx_error_catch: char message[]=""; if(cx_error)
+#	 define cx_try bool cx_error = false;
+#	 define cx_throw(message) { cx_error = true; if (strcmp(message, "")) strncpy(info.szLastError, message, 255); goto cx_error_catch; }
+#	 define cx_catch cx_error_catch: char message[] = ""; if (cx_error)
 #endif
 
 #if CXIMAGE_SUPPORT_JP2 || CXIMAGE_SUPPORT_JPC || CXIMAGE_SUPPORT_PGX || CXIMAGE_SUPPORT_PNM || CXIMAGE_SUPPORT_RAS
@@ -56,15 +56,15 @@
 #endif
 
 #ifndef min
-#	define min(a,b) (((a)<(b))?(a):(b))
-#	define MIN(a,b) (((a)<(b))?(a):(b))
+#	define min(a,b) (((a) < (b)) ? (a) : (b))
+#	define MIN(a,b) (((a) < (b)) ? (a) : (b))
 //template<typename T>
 //inline static T min(const T& a, const T& b) { return (a < b) ? a : b; }
 #endif
 
 #ifndef max
-#	define max(a,b) (((a)>(b))?(a):(b))
-#	define MAX(a,b) (((a)>(b))?(a):(b))
+#	define max(a,b) (((a) > (b)) ? (a) : (b))
+#	define MAX(a,b) (((a) > (b)) ? (a) : (b))
 //template<typename T>
 //inline static T max(const T& a, const T& b) { return (a > b) ? a : b; }
 #endif
@@ -90,10 +90,10 @@ struct _complex
 	double x;
 	double y;
 };
-#	endif
+#	endif // ndef _COMPLEX_DEFINED
 
-#	define _cabs(c) sqrt(c.x*c.x+c.y*c.y)
-#endif // __BORLANDC__)
+#	define _cabs(c) sqrt(c.x * c.x + c.y * c.y)
+#endif // def __BORLANDC__
 
 #if defined(WIN32) || defined(_WIN32_WCE)
 #	include "stdint.h"
@@ -105,10 +105,10 @@ struct _complex
 #	include <string.h>
 #	include <ctype.h>
 
-typedef uint32_t   COLORREF;
-typedef void*      HANDLE;
-typedef void*      HRGN;
-typedef unsigned char BYTE;
+typedef uint32_t		COLORREF;
+typedef void*			HANDLE;
+typedef void*      		HRGN;
+typedef unsigned char	BYTE;
 
 /*
 #	ifndef BOOL
@@ -131,66 +131,66 @@ typedef unsigned char BYTE;
 
 struct Rect
 {
-	int32_t    left;
-	int32_t    top;
-	int32_t    right;
-	int32_t    bottom;
+	int32_t left;
+	int32_t top;
+	int32_t right;
+	int32_t bottom;
 };
 
 struct Point
 {
-	int32_t  x;
-	int32_t  y;
+	int32_t x;
+	int32_t y;
 };
 
 struct RGBQuad
 {
-	uint8_t    rgbBlue;
-	uint8_t    rgbGreen;
-	uint8_t    rgbRed;
-	uint8_t    rgbReserved;
+	uint8_t rgbBlue;
+	uint8_t rgbGreen;
+	uint8_t rgbRed;
+	uint8_t rgbReserved;
 };
 
 #	pragma pack(1)
 
 struct BitmapInfoHeader
 {
-	uint32_t   biSize;
-	int32_t    biWidth;
-	int32_t    biHeight;
-	uint16_t   biPlanes;
-	uint16_t   biBitCount;
-	uint32_t   biCompression;
-	uint32_t   biSizeImage;
-	int32_t    biXPelsPerMeter;
-	int32_t    biYPelsPerMeter;
-	uint32_t   biClrUsed;
-	uint32_t   biClrImportant;
+	uint32_t biSize;
+	int32_t  biWidth;
+	int32_t  biHeight;
+	uint16_t biPlanes;
+	uint16_t biBitCount;
+	uint32_t biCompression;
+	uint32_t biSizeImage;
+	int32_t  biXPelsPerMeter;
+	int32_t  biYPelsPerMeter;
+	uint32_t biClrUsed;
+	uint32_t biClrImportant;
 };
 
 struct BitmapFileHeader
 {
-	uint16_t   bfType;
-	uint32_t   bfSize;
-	uint16_t   bfReserved1;
-	uint16_t   bfReserved2;
-	uint32_t   bfOffBits;
+	uint16_t bfType;
+	uint32_t bfSize;
+	uint16_t bfReserved1;
+	uint16_t bfReserved2;
+	uint32_t bfOffBits;
 };
 
 struct BitmapCoreHeader
 {
-	uint32_t   bcSize;
-	uint16_t   bcWidth;
-	uint16_t   bcHeight;
-	uint16_t   bcPlanes;
-	uint16_t   bcBitCount;
+	uint32_t bcSize;
+	uint16_t bcWidth;
+	uint16_t bcHeight;
+	uint16_t bcPlanes;
+	uint16_t bcBitCount;
 };
 
 struct RGBTriple
 {
-	uint8_t    rgbtBlue;
-	uint8_t    rgbtGreen;
-	uint8_t    rgbtRed;
+	uint8_t rgbtBlue;
+	uint8_t rgbtGreen;
+	uint8_t rgbtRed;
 };
 
 #	pragma pack()
@@ -213,7 +213,9 @@ struct _complex
 	double y;
 };
 
-#	endif // _COMPLEX_DEFINED
+#	endif // ndef _COMPLEX_DEFINED
+
 #	define _cabs(c) sqrt(c.x*c.x+c.y*c.y)
+
 #endif // !defined(WIN32) && !defined(_WIN32_WCE)
 

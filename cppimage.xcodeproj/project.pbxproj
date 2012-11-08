@@ -49,6 +49,9 @@
 		C92689AE162212CC00D4EB54 /* CxConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = C92689AC162212CB00D4EB54 /* CxConfig.h */; };
 		C92689AF162212CC00D4EB54 /* CxDefines.h in Headers */ = {isa = PBXBuildFile; fileRef = C92689AD162212CC00D4EB54 /* CxDefines.h */; };
 		C935CA6C1612A6EF00C72CD1 /* Types.h in Headers */ = {isa = PBXBuildFile; fileRef = C935CA6B1612A6EE00C72CD1 /* Types.h */; };
+		C984971F164B6F8300F7F2B4 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C984971E164B6F8300F7F2B4 /* main.cpp */; };
+		C9849721164B6F8300F7F2B4 /* cppimage_tests.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C9849720164B6F8300F7F2B4 /* cppimage_tests.1 */; };
+		C9849728164B6FF100F7F2B4 /* libgtest.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C98496F8164B6F2A00F7F2B4 /* libgtest.a */; };
 		C9FA107A16102B9E0010C75D /* tif_xfile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA104216102B9E0010C75D /* tif_xfile.cpp */; };
 		C9FA108016102B9E0010C75D /* ximadsp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA104816102B9E0010C75D /* ximadsp.cpp */; };
 		C9FA108116102B9E0010C75D /* ximaenc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA104916102B9E0010C75D /* ximaenc.cpp */; };
@@ -64,6 +67,19 @@
 		C9FA10A916102B9E0010C75D /* ximatran.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA107116102B9E0010C75D /* ximatran.cpp */; };
 		C9FA10AE16102B9E0010C75D /* ximawnd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA107616102B9E0010C75D /* ximawnd.cpp */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C9849719164B6F8300F7F2B4 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				C9849721164B6F8300F7F2B4 /* cppimage_tests.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C926859E16215C5500D4EB54 /* CxFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CxFile.h; path = Source/cppimage/CxFile.h; sourceTree = "<group>"; };
@@ -108,6 +124,11 @@
 		C92689AC162212CB00D4EB54 /* CxConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CxConfig.h; path = Source/cppimage/CxConfig.h; sourceTree = "<group>"; };
 		C92689AD162212CC00D4EB54 /* CxDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CxDefines.h; path = Source/cppimage/CxDefines.h; sourceTree = "<group>"; };
 		C935CA6B1612A6EE00C72CD1 /* Types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Types.h; path = Source/cppimage/Types.h; sourceTree = "<group>"; };
+		C98496F7164B6F2A00F7F2B4 /* libgtest_d.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgtest_d.a; path = "../gtest-1.6.0/lib/libgtest_d.a"; sourceTree = "<group>"; };
+		C98496F8164B6F2A00F7F2B4 /* libgtest.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgtest.a; path = "../gtest-1.6.0/lib/libgtest.a"; sourceTree = "<group>"; };
+		C984971B164B6F8300F7F2B4 /* cppimage_tests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cppimage_tests; sourceTree = BUILT_PRODUCTS_DIR; };
+		C984971E164B6F8300F7F2B4 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		C9849720164B6F8300F7F2B4 /* cppimage_tests.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = cppimage_tests.1; sourceTree = "<group>"; };
 		C9FA0F541610296F0010C75D /* libcppimage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libcppimage.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9FA104216102B9E0010C75D /* tif_xfile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tif_xfile.cpp; path = Source/cppimage/tif_xfile.cpp; sourceTree = "<group>"; };
 		C9FA104816102B9E0010C75D /* ximadsp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximadsp.cpp; path = Source/cppimage/ximadsp.cpp; sourceTree = "<group>"; };
@@ -126,6 +147,14 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		C9849718164B6F8300F7F2B4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9849728164B6FF100F7F2B4 /* libgtest.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C9FA0F511610296F0010C75D /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -191,11 +220,23 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		C984971D164B6F8300F7F2B4 /* cppimage_tests */ = {
+			isa = PBXGroup;
+			children = (
+				C98496F7164B6F2A00F7F2B4 /* libgtest_d.a */,
+				C98496F8164B6F2A00F7F2B4 /* libgtest.a */,
+				C984971E164B6F8300F7F2B4 /* main.cpp */,
+				C9849720164B6F8300F7F2B4 /* cppimage_tests.1 */,
+			);
+			path = cppimage_tests;
+			sourceTree = "<group>";
+		};
 		C9FA0F491610296F0010C75D = {
 			isa = PBXGroup;
 			children = (
 				C92689B01622156600D4EB54 /* Resources */,
 				C92685EE1622074900D4EB54 /* Source */,
+				C984971D164B6F8300F7F2B4 /* cppimage_tests */,
 				C9FA0F551610296F0010C75D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -204,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				C9FA0F541610296F0010C75D /* libcppimage.a */,
+				C984971B164B6F8300F7F2B4 /* cppimage_tests */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -278,6 +320,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		C984971A164B6F8300F7F2B4 /* cppimage_tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C9849722164B6F8300F7F2B4 /* Build configuration list for PBXNativeTarget "cppimage_tests" */;
+			buildPhases = (
+				C9849717164B6F8300F7F2B4 /* Sources */,
+				C9849718164B6F8300F7F2B4 /* Frameworks */,
+				C9849719164B6F8300F7F2B4 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = cppimage_tests;
+			productName = cppimage_tests;
+			productReference = C984971B164B6F8300F7F2B4 /* cppimage_tests */;
+			productType = "com.apple.product-type.tool";
+		};
 		C9FA0F531610296F0010C75D /* cppimage */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C9FA0F581610296F0010C75D /* Build configuration list for PBXNativeTarget "cppimage" */;
@@ -317,11 +376,20 @@
 			projectRoot = "";
 			targets = (
 				C9FA0F531610296F0010C75D /* cppimage */,
+				C984971A164B6F8300F7F2B4 /* cppimage_tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		C9849717164B6F8300F7F2B4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C984971F164B6F8300F7F2B4 /* main.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		C9FA0F501610296F0010C75D /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -363,6 +431,30 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		C9849723164B6F8300F7F2B4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/gtest-1.6.0/lib\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "./gtest-1.6.0/include/**";
+			};
+			name = Debug;
+		};
+		C9849724164B6F8300F7F2B4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/gtest-1.6.0/lib\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				USER_HEADER_SEARCH_PATHS = "./gtest-1.6.0/include/**";
+			};
+			name = Release;
+		};
 		C9FA0F561610296F0010C75D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -468,6 +560,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				EXECUTABLE_PREFIX = lib;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/gtest-1.6.0/lib\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -476,6 +572,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				EXECUTABLE_PREFIX = lib;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/gtest-1.6.0/lib\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -483,6 +583,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		C9849722164B6F8300F7F2B4 /* Build configuration list for PBXNativeTarget "cppimage_tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9849723164B6F8300F7F2B4 /* Debug */,
+				C9849724164B6F8300F7F2B4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		C9FA0F4E1610296F0010C75D /* Build configuration list for PBXProject "cppimage" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
