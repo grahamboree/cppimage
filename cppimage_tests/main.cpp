@@ -2,19 +2,28 @@
 //  main.cpp
 //  cppimage_tests
 //
-//  Created by Graham Pentheny on 11/7/12.
+//  Created by Graham Pentheny on 11/11/12.
 //  Copyright (c) 2012 Graham Pentheny. All rights reserved.
 //
 
+// STL
 #include <iostream>
 
-#include "gtest/gtest.h"
+// Test framework
+#include "cpptest.h"
 
-int main(int argc, const char * argv[])
+// Test suites
+#include "TestCxDefines.h"
+
+using namespace std;
+
+//////////////////////////////////////////////////////////////////////////
+int main()
 {
+	Test::TextOutput output(Test::TextOutput::Verbose);
 
-	// insert code here...
-	std::cout << "Hello, World!\n";
-    return 0;
+	Test::Suite suite;
+	suite.add(auto_ptr<Test::Suite>(new TestCxDefines));
+
+	return suite.run(output);
 }
-

@@ -203,7 +203,24 @@ struct RGBTriple
 #	define GetRValue(rgb)      ((uint8_t)(rgb))
 #	define GetGValue(rgb)      ((uint8_t)(((uint16_t)(rgb)) >> 8))
 #	define GetBValue(rgb)      ((uint8_t)((rgb) >> 16))
+//#	define MACRO_RGB(r,g,b)          ((COLORREF)(((uint8_t)(r) | ((uint16_t)((uint8_t)(g)) << 8)) | (((uint32_t)(uint8_t)(b)) << 16)))
 #	define RGB(r,g,b)          ((COLORREF)(((uint8_t)(r) | ((uint16_t)((uint8_t)(g)) << 8)) | (((uint32_t)(uint8_t)(b)) << 16)))
+#if 0
+template <typename T1, typename T2, typename T3>
+inline COLORREF RGB(T1 r, T2 g, T2 b)
+{
+	/*
+	return (COLORREF) ( (uint8_t) r << 16 |
+						(uint8_t) g <<  8 |
+						(uint8_t) b);
+						*/
+
+	return (COLORREF) ( (uint8_t) r |
+						(uint8_t) g << 8 |
+						(uint8_t) b << 16);
+	//return (COLORREF)(((uint8_t)r | ((uint16_t)((uint8_t)g) << 8)) | ((uint32_t) ((uint8_t)b)) << 16);
+}
+#endif
 
 #	ifndef _COMPLEX_DEFINED
 
