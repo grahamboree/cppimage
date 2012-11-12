@@ -5,9 +5,7 @@
 #if defined(WIN32) || defined(_WIN32_WCE)
 #	include <windows.h>
 #	include <tchar.h>
-#endif
-
-#if !defined(WIN32) && !defined(_WIN32_WCE)
+#else
 #	include <stdint.h>
 #	include <stdlib.h>
 #	include <string.h>
@@ -30,7 +28,6 @@
 #else
 #	define DLL_EXP
 #endif
-
 
 
 #if CXIMAGE_SUPPORT_EXCEPTION_HANDLING
@@ -87,17 +84,20 @@ namespace CppImage
 //template<typename T>
 //inline static T min(const T& a, const T& b) { return (a < b) ? a : b; }
 //#	define min std::min
-	using namespace std;
-
+	
 //#	define max(a,b) (((a) > (b)) ? (a) : (b))
 //#	define MAX(a,b) (((a) > (b)) ? (a) : (b))
 //template<typename T>
 //inline static T max(const T& a, const T& b) { return (a > b) ? a : b; }
+	using namespace std;
 
 	static const float PI = 3.141592653589793f;
+	
+	static const long int BI_RGB		= 0L;
+	static const long int BI_RLE8		= 1L;
+	static const long int BI_RLE4		= 2L;
+	static const long int BI_BITFIELDS	= 3L;
 
-#if !defined(WIN32) && !defined(_WIN32_WCE)
-	typedef uint32_t		COLORREF;
 	typedef void*			HANDLE;
 	typedef void*      		HRGN;
 	typedef unsigned char	BYTE;
@@ -129,8 +129,7 @@ namespace CppImage
 		uint8_t rgbReserved;
 	};
 
-#	pragma pack(1)
-
+#	pragma pack(push, 1)
 	struct BitmapInfoHeader
 	{
 		uint32_t biSize;
@@ -170,18 +169,13 @@ namespace CppImage
 		uint8_t rgbtGreen;
 		uint8_t rgbtRed;
 	};
+#	pragma pack(pop)
 
-#	pragma pack()
-
-	static const long int BI_RGB		= 0L;
-	static const long int BI_RLE8		= 1L;
-	static const long int BI_RLE4		= 2L;
-	static const long int BI_BITFIELDS	= 3L;
 
 #ifdef CPPIMAGE_TESTING
 #	define MACRO_GetRValue(rgb)      ((uint8_t)(rgb))
 #	define MACRO_GetGValue(rgb)      ((uint8_t)(((uint16_t)(rgb)) >> 8))
-#	define MACRO_GetBValue(rgb)      ((uint8_t)((rgb) >> 16))
+#	define MACRO_GetBValue(rgb)      ((uint8_t)(((uint16_t)(rgb)) >> 16))
 	
 #	define MACRO_RGB(r,g,b)          ((COLORREF)(((uint8_t)(r) | ((uint16_t)((uint8_t)(g)) << 8)) | (((uint32_t)(uint8_t)(b)) << 16)))
 	
@@ -189,6 +183,39 @@ namespace CppImage
 #	define MACRO_RGB2GRAY(r,g,b) (((b)*117 + (g)*601 + (r)*306) >> 10)
 #endif
 
+#if 1
+	class COLORREF
+	{
+	public:
+		inline COLORREF(uint8_t r, uint8_t g, uint8_t b)
+		: mValue(static_cast<uint32_t>(r) << 0 |
+				 static_cast<uint32_t>(g) << 8 |
+				 static_cast<uint32_t>(b) << 16)
+		{}
+		
+		inline COLORREF(uint32_t rgb) : mValue(rgb) {}
+		
+		inline uint8_t GetRValue() const { return static_cast<uint8_t>(mValue); }
+		inline uint8_t GetGValue() const { return static_cast<uint8_t>(mValue >> 8); }
+		inline uint8_t GetBValue() const { return static_cast<uint8_t>(mValue >> 16); }
+		
+		inline operator uint8_t() { return static_cast<uint8_t>(mValue); }
+		inline operator uint16_t() { return static_cast<uint16_t>(mValue); }
+		inline operator uint32_t() { return mValue; }
+		inline bool operator==(const COLORREF& color) { return color.mValue == mValue; }
+	private:
+		uint32_t mValue;
+	};
+	
+	// For compatibility..
+	static inline COLORREF RGB(uint8_t r, uint8_t g, uint8_t b) { return COLORREF(r, g, b); }
+	static inline uint8_t GetRValue(COLORREF rgb) { return rgb.GetRValue(); }
+	static inline uint8_t GetGValue(COLORREF rgb) { return rgb.GetGValue(); }
+	static inline uint8_t GetBValue(COLORREF rgb) { return rgb.GetBValue(); }
+	
+#else
+	typedef uint32_t COLORREF;
+	
 	static inline uint8_t GetRValue(COLORREF rgb) { return static_cast<uint8_t>(rgb); }
 	static inline uint8_t GetGValue(COLORREF rgb) { return static_cast<uint16_t>(rgb) >> 8; }
 	static inline uint8_t GetBValue(COLORREF rgb) { return static_cast<uint8_t>(rgb >> 16); }
@@ -199,6 +226,7 @@ namespace CppImage
 									 static_cast<uint32_t>(g) << 8 |
 									 static_cast<uint32_t>(b) << 16);
 	}
+#endif
 	
 	template<typename T>
 	inline T RGB2GRAY(const T r, const T g, const T b)
@@ -206,23 +234,16 @@ namespace CppImage
 		return (b * 117 + g * 601 + r * 306) >> 10;
 	}
 
-#	ifndef _COMPLEX_DEFINED
-
 	struct _complex
 	{
 		double x;
 		double y;
 	};
 
-#	endif // ndef _COMPLEX_DEFINED
-
 #ifdef CPPIMAGE_TESTING
 #	define MACRO__cabs(c) sqrt(c.x*c.x+c.y*c.y)
 #endif
 	static inline double _cabs(const _complex& c) { return sqrt(c.x * c.x + c.y * c.y); }
-
-#endif // !defined(WIN32) && !defined(_WIN32_WCE)
-
 }
 
 using namespace CppImage;
