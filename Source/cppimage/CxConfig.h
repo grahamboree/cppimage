@@ -46,14 +46,7 @@
 
 #define CXIMAGE_DEFAULT_DPI 96
 
-//#define CXIMAGE_ERR_NOFILE "null file handler"
 static const char* CXIMAGE_ERR_NOFILE = "null file handler";
-//#define CXIMAGE_ERR_NOIMAGE "null image!!!"
 static const char* CXIMAGE_ERR_NOIMAGE = "null image!!!";
 
 #define CXIMAGE_SUPPORT_EXCEPTION_HANDLING 1
-
-/////////////////////////////////////////////////////////////////////////////
-//color to grey mapping <H. Muelner> <jurgene>
-//#define RGB2GRAY(r,g,b) (((b)*114 + (g)*587 + (r)*299)/1000)
-#define RGB2GRAY(r,g,b) (((b)*117 + (g)*601 + (r)*306) >> 10)

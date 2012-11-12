@@ -12,6 +12,7 @@
 // Test framework
 #include "cpptest.h"
 
+#define CPPIMAGE_TESTING
 // Test suites
 #include "TestCxDefines.h"
 

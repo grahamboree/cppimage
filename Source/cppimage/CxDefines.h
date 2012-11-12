@@ -1,6 +1,27 @@
 #pragma once
 
+#include <algorithm>
+
+#if defined(WIN32) || defined(_WIN32_WCE)
+#	include <windows.h>
+#	include <tchar.h>
+#endif
+
+#if !defined(WIN32) && !defined(_WIN32_WCE)
+#	include <stdint.h>
+#	include <stdlib.h>
+#	include <string.h>
+#	include <ctype.h>
+#endif
+
 #include "CxConfig.h"
+
+#include <stdio.h>
+#include <math.h>
+
+#if defined(WIN32) || defined(_WIN32_WCE)
+#	include "stdint.h"
+#endif
 
 #if /*defined(_AFXDLL)||*/ defined(_USRDLL)
 #	define DLL_EXP __declspec(dllexport)
@@ -9,6 +30,8 @@
 #else
 #	define DLL_EXP
 #endif
+
+
 
 #if CXIMAGE_SUPPORT_EXCEPTION_HANDLING
 #	 define cx_try try
@@ -19,6 +42,8 @@
 #	 define cx_throw(message) { cx_error = true; if (strcmp(message, "")) strncpy(info.szLastError, message, 255); goto cx_error_catch; }
 #	 define cx_catch cx_error_catch: char message[] = ""; if (cx_error)
 #endif
+
+
 
 #if CXIMAGE_SUPPORT_JP2 || CXIMAGE_SUPPORT_JPC || CXIMAGE_SUPPORT_PGX || CXIMAGE_SUPPORT_PNM || CXIMAGE_SUPPORT_RAS
 #	define CXIMAGE_SUPPORT_JASPER 1
@@ -55,184 +80,150 @@
 #	define CXIMAGE_SUPPORT_WINDOWS 0
 #endif
 
-#ifndef min
-#	define min(a,b) (((a) < (b)) ? (a) : (b))
-#	define MIN(a,b) (((a) < (b)) ? (a) : (b))
+namespace CppImage
+{
+//#	define min(a,b) (((a) < (b)) ? (a) : (b))
+//#	define MIN(a,b) (((a) < (b)) ? (a) : (b))
 //template<typename T>
 //inline static T min(const T& a, const T& b) { return (a < b) ? a : b; }
-#endif
+//#	define min std::min
+	using namespace std;
 
-#ifndef max
-#	define max(a,b) (((a) > (b)) ? (a) : (b))
-#	define MAX(a,b) (((a) > (b)) ? (a) : (b))
+//#	define max(a,b) (((a) > (b)) ? (a) : (b))
+//#	define MAX(a,b) (((a) > (b)) ? (a) : (b))
 //template<typename T>
 //inline static T max(const T& a, const T& b) { return (a > b) ? a : b; }
-#endif
 
-static const float PI = 3.141592653589793f;
-
-/*#ifndef PI
-#	define PI 3.141592653589793f
-#endif*/
-
-#if defined(WIN32) || defined(_WIN32_WCE)
-#	include <windows.h>
-#	include <tchar.h>
-#endif
-
-#include <stdio.h>
-#include <math.h>
-
-#ifdef __BORLANDC__
-#	ifndef _COMPLEX_DEFINED
-struct _complex
-{
-	double x;
-	double y;
-};
-#	endif // ndef _COMPLEX_DEFINED
-
-#	define _cabs(c) sqrt(c.x * c.x + c.y * c.y)
-#endif // def __BORLANDC__
-
-#if defined(WIN32) || defined(_WIN32_WCE)
-#	include "stdint.h"
-#endif
+	static const float PI = 3.141592653589793f;
 
 #if !defined(WIN32) && !defined(_WIN32_WCE)
-#	include <stdint.h>
-#	include <stdlib.h>
-#	include <string.h>
-#	include <ctype.h>
-
-typedef uint32_t		COLORREF;
-typedef void*			HANDLE;
-typedef void*      		HRGN;
-typedef unsigned char	BYTE;
-
-/*
-#	ifndef BOOL
-#		define	BOOL bool
-#	endif
-
-#	ifndef TRUE
-#		define	TRUE true
-#	endif
-
-#	ifndef FALSE
-#		define	FALSE false
-#	endif
-*/
+	typedef uint32_t		COLORREF;
+	typedef void*			HANDLE;
+	typedef void*      		HRGN;
+	typedef unsigned char	BYTE;
 
 #	ifndef TCHAR
 #		define TCHAR char
 #		define _T
 #	endif
 
-struct Rect
-{
-	int32_t left;
-	int32_t top;
-	int32_t right;
-	int32_t bottom;
-};
+	struct Rect
+	{
+		int32_t left;
+		int32_t top;
+		int32_t right;
+		int32_t bottom;
+	};
 
-struct Point
-{
-	int32_t x;
-	int32_t y;
-};
+	struct Point
+	{
+		int32_t x;
+		int32_t y;
+	};
 
-struct RGBQuad
-{
-	uint8_t rgbBlue;
-	uint8_t rgbGreen;
-	uint8_t rgbRed;
-	uint8_t rgbReserved;
-};
+	struct RGBQuad
+	{
+		uint8_t rgbBlue;
+		uint8_t rgbGreen;
+		uint8_t rgbRed;
+		uint8_t rgbReserved;
+	};
 
 #	pragma pack(1)
 
-struct BitmapInfoHeader
-{
-	uint32_t biSize;
-	int32_t  biWidth;
-	int32_t  biHeight;
-	uint16_t biPlanes;
-	uint16_t biBitCount;
-	uint32_t biCompression;
-	uint32_t biSizeImage;
-	int32_t  biXPelsPerMeter;
-	int32_t  biYPelsPerMeter;
-	uint32_t biClrUsed;
-	uint32_t biClrImportant;
-};
+	struct BitmapInfoHeader
+	{
+		uint32_t biSize;
+		int32_t  biWidth;
+		int32_t  biHeight;
+		uint16_t biPlanes;
+		uint16_t biBitCount;
+		uint32_t biCompression;
+		uint32_t biSizeImage;
+		int32_t  biXPelsPerMeter;
+		int32_t  biYPelsPerMeter;
+		uint32_t biClrUsed;
+		uint32_t biClrImportant;
+	};
 
-struct BitmapFileHeader
-{
-	uint16_t bfType;
-	uint32_t bfSize;
-	uint16_t bfReserved1;
-	uint16_t bfReserved2;
-	uint32_t bfOffBits;
-};
+	struct BitmapFileHeader
+	{
+		uint16_t bfType;
+		uint32_t bfSize;
+		uint16_t bfReserved1;
+		uint16_t bfReserved2;
+		uint32_t bfOffBits;
+	};
 
-struct BitmapCoreHeader
-{
-	uint32_t bcSize;
-	uint16_t bcWidth;
-	uint16_t bcHeight;
-	uint16_t bcPlanes;
-	uint16_t bcBitCount;
-};
+	struct BitmapCoreHeader
+	{
+		uint32_t bcSize;
+		uint16_t bcWidth;
+		uint16_t bcHeight;
+		uint16_t bcPlanes;
+		uint16_t bcBitCount;
+	};
 
-struct RGBTriple
-{
-	uint8_t rgbtBlue;
-	uint8_t rgbtGreen;
-	uint8_t rgbtRed;
-};
+	struct RGBTriple
+	{
+		uint8_t rgbtBlue;
+		uint8_t rgbtGreen;
+		uint8_t rgbtRed;
+	};
 
 #	pragma pack()
 
-#	define BI_RGB        0L
-#	define BI_RLE8       1L
-#	define BI_RLE4       2L
-#	define BI_BITFIELDS  3L
+	static const long int BI_RGB		= 0L;
+	static const long int BI_RLE8		= 1L;
+	static const long int BI_RLE4		= 2L;
+	static const long int BI_BITFIELDS	= 3L;
 
-#	define GetRValue(rgb)      ((uint8_t)(rgb))
-#	define GetGValue(rgb)      ((uint8_t)(((uint16_t)(rgb)) >> 8))
-#	define GetBValue(rgb)      ((uint8_t)((rgb) >> 16))
-//#	define MACRO_RGB(r,g,b)          ((COLORREF)(((uint8_t)(r) | ((uint16_t)((uint8_t)(g)) << 8)) | (((uint32_t)(uint8_t)(b)) << 16)))
-#	define RGB(r,g,b)          ((COLORREF)(((uint8_t)(r) | ((uint16_t)((uint8_t)(g)) << 8)) | (((uint32_t)(uint8_t)(b)) << 16)))
-#if 0
-template <typename T1, typename T2, typename T3>
-inline COLORREF RGB(T1 r, T2 g, T2 b)
-{
-	/*
-	return (COLORREF) ( (uint8_t) r << 16 |
-						(uint8_t) g <<  8 |
-						(uint8_t) b);
-						*/
-
-	return (COLORREF) ( (uint8_t) r |
-						(uint8_t) g << 8 |
-						(uint8_t) b << 16);
-	//return (COLORREF)(((uint8_t)r | ((uint16_t)((uint8_t)g) << 8)) | ((uint32_t) ((uint8_t)b)) << 16);
-}
+#ifdef CPPIMAGE_TESTING
+#	define MACRO_GetRValue(rgb)      ((uint8_t)(rgb))
+#	define MACRO_GetGValue(rgb)      ((uint8_t)(((uint16_t)(rgb)) >> 8))
+#	define MACRO_GetBValue(rgb)      ((uint8_t)((rgb) >> 16))
+	
+#	define MACRO_RGB(r,g,b)          ((COLORREF)(((uint8_t)(r) | ((uint16_t)((uint8_t)(g)) << 8)) | (((uint32_t)(uint8_t)(b)) << 16)))
+	
+//#	define RGB2GRAY(r,g,b) (((b)*114 + (g)*587 + (r)*299)/1000)
+#	define MACRO_RGB2GRAY(r,g,b) (((b)*117 + (g)*601 + (r)*306) >> 10)
 #endif
+
+	static inline uint8_t GetRValue(COLORREF rgb) { return static_cast<uint8_t>(rgb); }
+	static inline uint8_t GetGValue(COLORREF rgb) { return static_cast<uint16_t>(rgb) >> 8; }
+	static inline uint8_t GetBValue(COLORREF rgb) { return static_cast<uint8_t>(rgb >> 16); }
+
+	static inline COLORREF RGB(uint8_t r, uint8_t g, uint8_t b)
+	{
+		return static_cast<COLORREF>(static_cast<uint32_t>(r) << 0 |
+									 static_cast<uint32_t>(g) << 8 |
+									 static_cast<uint32_t>(b) << 16);
+	}
+	
+	template<typename T>
+	inline T RGB2GRAY(const T r, const T g, const T b)
+	{
+		return (b * 117 + g * 601 + r * 306) >> 10;
+	}
 
 #	ifndef _COMPLEX_DEFINED
 
-struct _complex
-{
-	double x;
-	double y;
-};
+	struct _complex
+	{
+		double x;
+		double y;
+	};
 
 #	endif // ndef _COMPLEX_DEFINED
 
-#	define _cabs(c) sqrt(c.x*c.x+c.y*c.y)
+#ifdef CPPIMAGE_TESTING
+#	define MACRO__cabs(c) sqrt(c.x*c.x+c.y*c.y)
+#endif
+	static inline double _cabs(const _complex& c) { return sqrt(c.x * c.x + c.y * c.y); }
 
 #endif // !defined(WIN32) && !defined(_WIN32_WCE)
+
+}
+
+using namespace CppImage;
 
