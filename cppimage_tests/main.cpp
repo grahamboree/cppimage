@@ -8,6 +8,7 @@
 
 // STL
 #include <iostream>
+#include <memory>
 
 // Test framework
 #include "cpptest.h"
