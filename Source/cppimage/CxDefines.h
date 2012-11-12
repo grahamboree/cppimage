@@ -175,7 +175,7 @@ namespace CppImage
 #ifdef CPPIMAGE_TESTING
 #	define MACRO_GetRValue(rgb)      ((uint8_t)(rgb))
 #	define MACRO_GetGValue(rgb)      ((uint8_t)(((uint16_t)(rgb)) >> 8))
-#	define MACRO_GetBValue(rgb)      ((uint8_t)(((uint16_t)(rgb)) >> 16))
+#	define MACRO_GetBValue(rgb)      ((uint8_t)((rgb) >> 16))
 	
 #	define MACRO_RGB(r,g,b)          ((COLORREF)(((uint8_t)(r) | ((uint16_t)((uint8_t)(g)) << 8)) | (((uint32_t)(uint8_t)(b)) << 16)))
 	
@@ -203,6 +203,8 @@ namespace CppImage
 		inline operator uint16_t() { return static_cast<uint16_t>(mValue); }
 		inline operator uint32_t() { return mValue; }
 		inline bool operator==(const COLORREF& color) { return color.mValue == mValue; }
+		inline uint32_t operator >>(int inShift) const { return mValue >> inShift; }
+		inline uint32_t operator <<(int inShift) const { return mValue << inShift; }
 	private:
 		uint32_t mValue;
 	};
