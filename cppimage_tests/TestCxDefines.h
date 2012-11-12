@@ -39,6 +39,7 @@ inline void TestCxDefines::testRGB()
 	TEST_ASSERT(GetRValue(red) == 255);
 	TEST_ASSERT(GetGValue(green) == 255);
 	TEST_ASSERT(GetBValue(blue) == 255);
+	std::cout << "blue = " << (unsigned short)(MACRO_GetBValue(blue)) << std::endl;
 	
 	COLORREF someColor = RGB(1,2,3);
 	TEST_ASSERT(GetRValue(someColor) == MACRO_GetRValue(someColor));

@@ -235,7 +235,22 @@ namespace CppImage
 	{
 		return (b * 117 + g * 601 + r * 306) >> 10;
 	}
-
+	
+#if 1
+	class Complex
+	{
+	public:
+		inline Complex(double inX, double inY) : mX(inX), mY(inY) {}
+		inline double Abs() const { return sqrt(mX * mX + mY * mY); }
+	private:
+		double mX;
+		double mY;
+	};
+	
+	// Compatibility...
+	typedef Complex _complex;
+	static inline double _cabs(const _complex& c) { return c.Abs(); }
+#else
 	struct _complex
 	{
 		double x;
@@ -246,6 +261,7 @@ namespace CppImage
 #	define MACRO__cabs(c) sqrt(c.x*c.x+c.y*c.y)
 #endif
 	static inline double _cabs(const _complex& c) { return sqrt(c.x * c.x + c.y * c.y); }
+#endif
 }
 
 using namespace CppImage;
