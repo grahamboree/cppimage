@@ -1,129 +1,135 @@
+//
+//  CxMath.h
+//  cppimage
+//
+//  Created by Graham Pentheny on 11/10/12.
+//  Copyright (c) 2012 Graham Pentheny. All rights reserved.
+//
+
 #pragma once
 
 #include "CxDefines.h"
 
-//////////////////////////////////////////////////////////////////////////
-class DLL_EXP CxPoint2
+namespace CppImage
 {
-public:
-	CxPoint2();
-	CxPoint2(const float inX, const float inY);
-	CxPoint2(const CxPoint2& inPoint);
+	//////////////////////////////////////////////////////////////////////////
+	class DLL_EXP Point2
+	{
+	public:
+		Point2();
+		Point2(float inX, float inY);
 
-	float Distance(const CxPoint2& p2) const;
-	float Distance(float inX, float inY) const;
+		float Distance(const Point2& p2) const;
+		float Distance(float inX, float inY) const;
 
-	float x;
-	float y;
-};
+		float x;
+		float y;
+	};
+	/// @todo remove this.  Exists for compatibility.
+	typedef Point2 CxPoint2;
 
-//////////////////////////////////////////////////////////////////////////
-class DLL_EXP CxRect2
-{
-public:
-	CxRect2();
-	CxRect2(const float inBotLeftX, const float inBotLeftY, const float inTopRightX, const float inTopRightY);
-	CxRect2(CxPoint2 const& bl, CxPoint2 const& tr);
-	CxRect2(const CxRect2& inRect);
+	//////////////////////////////////////////////////////////////////////////
+	class DLL_EXP Rect2
+	{
+	public:
+		Rect2(float inBotLeftX, float inBotLeftY, float inTopRightX, float inTopRightY);
+		Rect2(const Point2& inBottomLeft, const Point2& inTopRight);
 
-	float 	Surface() const;
-	CxRect2 	CrossSection(const CxRect2& inRect2) const;
-	CxPoint2 	Center() const;
-	float		Width() const;
-	float 	Height() const;
+		float 	Area() const;
+		Rect2 	CrossSection(const Rect2& inRect2) const;
+		Point2 	Center() const;
+		float	Width() const;
+		float 	Height() const;
 
-	CxPoint2 botLeft;
-	CxPoint2 topRight;
-};
-
-//////////////////////////////////////////////////////////////////////////
-inline CxPoint2::CxPoint2()
-: x(0.0f)
-, y(0.0f)
-{
+		Point2 botLeft;
+		Point2 topRight;
+	};
+	/// @todo remove this.  Exists for compatibility.
+	typedef Rect2 CxRect2;
 }
 
-//////////////////////////////////////////////////////////////////////////
-inline CxPoint2::CxPoint2(const float inX, const float inY)
-: x(inX)
-, y(inY)
-{
-}
 
-//////////////////////////////////////////////////////////////////////////
-inline CxPoint2::CxPoint2(const CxPoint2& inPoint)
-: x(inPoint.x)
-, y(inPoint.y)
+namespace CppImage
 {
-}
+	//////////////////////////////////////////////////////////////////////////
+	/// Default constructs a point at the origin.
+	inline Point2::Point2()
+	: x(0.0f)
+	, y(0.0f)
+	{
+	}
 
-//////////////////////////////////////////////////////////////////////////
-inline float CxPoint2::Distance(const CxPoint2& p2) const
-{
-	return (float)sqrt((x - p2.x) * (x - p2.x) + (y - p2.y) * (y - p2.y));
-}
+	//////////////////////////////////////////////////////////////////////////
+	/// @param[in] inX The point's x coordinate.
+	/// @param[in] inY The point's y coordinate.
+	inline Point2::Point2(const float inX, const float inY)
+	: x(inX)
+	, y(inY)
+	{
+	}
 
-//////////////////////////////////////////////////////////////////////////
-inline float CxPoint2::Distance(float inX, float inY) const
-{
-	return (float)sqrt((x - inX) * (x - inX) + (y - inY) * (y - inY));
-}
+	//////////////////////////////////////////////////////////////////////////
+	/// @param[in] inPoint The other point.
+	/// @returns The distance between this point and the other point.
+	inline float Point2::Distance(const Point2& p2) const
+	{
+		return (float)sqrt((x - p2.x) * (x - p2.x) + (y - p2.y) * (y - p2.y));
+	}
 
-//////////////////////////////////////////////////////////////////////////
-inline CxRect2::CxRect2()
-{
-}
+	//////////////////////////////////////////////////////////////////////////
+	/// @param[in] inX The x coordinate of the other point.
+	/// @param[in] inY The y coordinate of the other point.
+	/// @returns The distance between this and the other point.
+	inline float Point2::Distance(const float inX, const float inY) const
+	{
+		return (float)sqrt((x - inX) * (x - inX) + (y - inY) * (y - inY));
+	}
 
-//////////////////////////////////////////////////////////////////////////
-inline CxRect2::CxRect2(const float inBotLeftX, const float inBotLeftY, const float inTopRightX, const float inTopRightY)
-: botLeft(inBotLeftX, inBotLeftY)
-, topRight(inTopRightX, inTopRightY)
-{
-}
+	//////////////////////////////////////////////////////////////////////////
+	/// @param[in] inLeft	The rect's minimum x extent.
+	/// @param[in] inBottom The rect's minimum y extent.
+	/// @param[in] inRight	The rect's maximum x extent.
+	/// @param[in] inTop	The rect's maximum y extent.
+	inline Rect2::Rect2(const float inLeft, const float inBottom, const float inRight, const float inTop)
+	: botLeft(inLeft, inBottom)
+	, topRight(inRight, inTop)
+	{
+	}
 
-//////////////////////////////////////////////////////////////////////////
-inline CxRect2::CxRect2(const CxRect2& inRect)
-: botLeft(inRect.botLeft)
-, topRight(inRect.topRight)
-{
-}
+	//////////////////////////////////////////////////////////////////////////
+	/// @param[in] inBototmLeft The bottom left corner of the rectangle.
+	/// @param[in] inTopRight The top right corner of the rectangle.
+	inline Rect2::Rect2(const Point2& inBottomLeft, const Point2& inTopRight)
+	: botLeft(inBottomLeft)
+	, topRight(inTopRight)
+	{
+	}
 
-//////////////////////////////////////////////////////////////////////////
-inline CxRect2::CxRect2(const CxPoint2& inBottomLeft, const CxPoint2& inTopRight)
-: botLeft(inBottomLeft)
-, topRight(inTopRight)
-{
-}
+	//////////////////////////////////////////////////////////////////////////
+	/// @returns The area of the rectangle.
+	inline float Rect2::Area() const
+	{
+	  return (topRight.x - botLeft.x) * (topRight.y - botLeft.y);
+	}
 
-//////////////////////////////////////////////////////////////////////////
-inline float CxRect2::Surface() const
-/*
- * Returns the surface of rectangle.
- */
-{
-  return (topRight.x - botLeft.x) * (topRight.y - botLeft.y);
-}
+	//////////////////////////////////////////////////////////////////////////
+	/// @returns The center point of rectangle.
+	inline Point2 Rect2::Center() const
+	{
+		return Point2((topRight.x + botLeft.x) / 2.0f, (topRight.y + botLeft.y) / 2.0f);
+	}
 
-//////////////////////////////////////////////////////////////////////////
-inline CxPoint2 CxRect2::Center() const
-/*
- * Returns the center point of rectangle.
- */
-{
-	return CxPoint2((topRight.x + botLeft.x) / 2.0f, (topRight.y + botLeft.y) / 2.0f);
-}
+	//////////////////////////////////////////////////////////////////////////
+	/// @returns The rectangle width.
+	inline float Rect2::Width() const
+	{
+		return topRight.x - botLeft.x;
+	}
 
-//////////////////////////////////////////////////////////////////////////
-inline float CxRect2::Width() const
-//returns rectangle width
-{
-	return topRight.x - botLeft.x;
+	//////////////////////////////////////////////////////////////////////////
+	/// @returns The rectangle height.
+	inline float Rect2::Height() const
+	{
+		return topRight.y - botLeft.y;
+	}
 }
-
-//////////////////////////////////////////////////////////////////////////
-inline float CxRect2::Height() const
-//returns rectangle height
-{
-	return topRight.y - botLeft.y;
-}
-

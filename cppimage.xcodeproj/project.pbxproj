@@ -158,6 +158,7 @@
 		C9CA7AD61650742500192514 /* cppimage_tests */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = cppimage_tests; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9CA7AD91650742500192514 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		C9CA7ADB1650742500192514 /* cppimage_tests.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = cppimage_tests.1; sourceTree = "<group>"; };
+		C9CA7AEA1651FF3000192514 /* TestCxMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = TestCxMath.h; path = CppImageTests/TestCxMath.h; sourceTree = "<group>"; };
 		C9FA0F541610296F0010C75D /* libcppimage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libcppimage.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9FA104216102B9E0010C75D /* tif_xfile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tif_xfile.cpp; path = ../tif_xfile.cpp; sourceTree = "<group>"; };
 		C9FA104816102B9E0010C75D /* ximadsp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximadsp.cpp; path = Source/cppimage/ximadsp.cpp; sourceTree = "<group>"; };
@@ -238,9 +239,16 @@
 			isa = PBXGroup;
 			children = (
 				C92685A91621667300D4EB54 /* Format Specific */,
+				C92685A716215C8600D4EB54 /* CImageIterator.h */,
 				C92689AC162212CB00D4EB54 /* CxConfig.h */,
 				C92689AD162212CC00D4EB54 /* CxDefines.h */,
+				C926859E16215C5500D4EB54 /* CxFile.h */,
+				C92685A116215C6800D4EB54 /* CxImage.h */,
+				C92685A216215C6800D4EB54 /* CxIOFile.h */,
 				C92685EA1621F2D300D4EB54 /* CxMath.cpp */,
+				C92685EB1621F2D400D4EB54 /* CxMath.h */,
+				C92685A316215C6800D4EB54 /* CxMemFile.h */,
+				C935CA6B1612A6EE00C72CD1 /* Types.h */,
 				C9FA104816102B9E0010C75D /* ximadsp.cpp */,
 				C9FA104916102B9E0010C75D /* ximaenc.cpp */,
 				C9FA104A16102B9E0010C75D /* ximaexif.cpp */,
@@ -254,13 +262,6 @@
 				C9FA106816102B9E0010C75D /* ximasel.cpp */,
 				C9FA107116102B9E0010C75D /* ximatran.cpp */,
 				C9FA107616102B9E0010C75D /* ximawnd.cpp */,
-				C92685A716215C8600D4EB54 /* CImageIterator.h */,
-				C926859E16215C5500D4EB54 /* CxFile.h */,
-				C92685A116215C6800D4EB54 /* CxImage.h */,
-				C92685A216215C6800D4EB54 /* CxIOFile.h */,
-				C92685EB1621F2D400D4EB54 /* CxMath.h */,
-				C92685A316215C6800D4EB54 /* CxMemFile.h */,
-				C935CA6B1612A6EE00C72CD1 /* Types.h */,
 			);
 			name = Source;
 			sourceTree = "<group>";
@@ -275,9 +276,9 @@
 		C984971D164B6F8300F7F2B4 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				C9CA7AE91651FF0B00192514 /* CppImageTests */,
 				C9CA7AA616506FC000192514 /* CPPTest */,
 				C984972B164B771A00F7F2B4 /* App */,
-				C984972C164ECEC600F7F2B4 /* TestCxDefines.h */,
 			);
 			name = Tests;
 			path = cppimage_tests;
@@ -327,6 +328,15 @@
 			children = (
 			);
 			path = cppimage_tests;
+			sourceTree = "<group>";
+		};
+		C9CA7AE91651FF0B00192514 /* CppImageTests */ = {
+			isa = PBXGroup;
+			children = (
+				C9CA7AEA1651FF3000192514 /* TestCxMath.h */,
+				C984972C164ECEC600F7F2B4 /* TestCxDefines.h */,
+			);
+			name = CppImageTests;
 			sourceTree = "<group>";
 		};
 		C9FA0F491610296F0010C75D = {

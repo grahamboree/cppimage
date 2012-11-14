@@ -184,6 +184,7 @@ namespace CppImage
 #endif
 
 #if 1
+	//////////////////////////////////////////////////////////////////////////
 	class COLORREF
 	{
 	public:
@@ -230,6 +231,7 @@ namespace CppImage
 	}
 #endif
 	
+	//////////////////////////////////////////////////////////////////////////
 	template<typename T>
 	inline T RGB2GRAY(const T r, const T g, const T b)
 	{
@@ -237,6 +239,7 @@ namespace CppImage
 	}
 	
 #if 1
+	//////////////////////////////////////////////////////////////////////////
 	class Complex
 	{
 	public:
@@ -256,10 +259,9 @@ namespace CppImage
 		double x;
 		double y;
 	};
-
-#ifdef CPPIMAGE_TESTING
-#	define MACRO__cabs(c) sqrt(c.x*c.x+c.y*c.y)
-#endif
+#	ifdef CPPIMAGE_TESTING
+#		define MACRO__cabs(c) sqrt(c.x*c.x+c.y*c.y)
+#	endif
 	static inline double _cabs(const _complex& c) { return sqrt(c.x * c.x + c.y * c.y); }
 #endif
 }

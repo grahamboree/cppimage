@@ -18,20 +18,24 @@ class TestCxDefines : public Test::Suite
 public:
 	TestCxDefines()
 	{
-		TEST_ADD(TestCxDefines::testRGB);
+		TEST_ADD(TestCxDefines::testColorRef);
+		TEST_ADD(TestCxDefines::testRGB2GRAY);
 	}
 private:
-	void testRGB();
+	void testColorRef();
+	void testRGB2GRAY();
 };
 
 //////////////////////////////////////////////////////////////////////////
-inline void TestCxDefines::testRGB()
+inline void TestCxDefines::testColorRef()
 {
+	// Test that the template version works the same as the original macro version.
 	COLORREF white = RGB(255,255,255);
 	COLORREF macro_white = MACRO_RGB(255,255,255);
 
 	TEST_ASSERT(white == macro_white);
 
+	// Test the Get_Value functions...
 	COLORREF red = RGB(255, 0, 0);
 	COLORREF green = RGB(0, 255, 0);
 	COLORREF blue = RGB(0, 0, 255);
@@ -39,18 +43,28 @@ inline void TestCxDefines::testRGB()
 	TEST_ASSERT(GetRValue(red) == 255);
 	TEST_ASSERT(GetGValue(green) == 255);
 	TEST_ASSERT(GetBValue(blue) == 255);
-	std::cout << "blue = " << (unsigned short)(MACRO_GetBValue(blue)) << std::endl;
 	
+	// Test that the function values work the same as the macro values.
 	COLORREF someColor = RGB(1,2,3);
 	TEST_ASSERT(GetRValue(someColor) == MACRO_GetRValue(someColor));
 	TEST_ASSERT(GetGValue(someColor) == MACRO_GetGValue(someColor));
 	TEST_ASSERT(GetBValue(someColor) == MACRO_GetBValue(someColor));
 	
+	// Make sure the layout in memory is the same.
 	uint32_t testColorLayout = 0x00030201;
 	TEST_ASSERT(memcmp(&testColorLayout, &someColor, sizeof(COLORREF)) == 0);
+}
+
+//////////////////////////////////////////////////////////////////////////
+inline void TestCxDefines::testRGB2GRAY()
+{
+	COLORREF red = RGB(255, 0, 0);
 	
+	// Test that the grayscale function works the same as the macro greyscale function.
 	int32_t redGreyscale = (int32_t)RGB2GRAY(GetRValue(red), GetGValue(red), GetBValue(red));
 	int32_t macroRedGreyscale = (int32_t)MACRO_RGB2GRAY(GetRValue(red), GetGValue(red), GetBValue(red));
 	
 	TEST_ASSERT(redGreyscale == macroRedGreyscale);
 }
+
+

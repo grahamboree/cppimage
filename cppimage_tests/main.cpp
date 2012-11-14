@@ -14,8 +14,11 @@
 #include "cpptest.h"
 
 #define CPPIMAGE_TESTING
+static const float kFloatEpsilon = 0.001f;
+
 // Test suites
 #include "TestCxDefines.h"
+#include "TestCxMath.h"
 
 using namespace std;
 
