@@ -89,7 +89,8 @@ namespace CppImage
 //#	define MAX(a,b) (((a) > (b)) ? (a) : (b))
 //template<typename T>
 //inline static T max(const T& a, const T& b) { return (a > b) ? a : b; }
-	using namespace std;
+	using std::min;
+	using std::max;
 
 	static const float PI = 3.141592653589793f;
 	
@@ -200,15 +201,19 @@ namespace CppImage
 		inline uint8_t GetGValue() const { return static_cast<uint8_t>(mValue >> 8); }
 		inline uint8_t GetBValue() const { return static_cast<uint8_t>(mValue >> 16); }
 		
-		inline operator uint8_t() { return static_cast<uint8_t>(mValue); }
+		/*inline operator uint8_t() { return static_cast<uint8_t>(mValue); }
 		inline operator uint16_t() { return static_cast<uint16_t>(mValue); }
-		inline operator uint32_t() { return mValue; }
+		inline operator uint32_t() { return mValue; }*/
 		inline bool operator==(const COLORREF& color) { return color.mValue == mValue; }
+		inline bool operator==(uint32_t inColor) { return inColor == mValue; }
+		
 		inline uint32_t operator >>(int inShift) const { return mValue >> inShift; }
 		inline uint32_t operator <<(int inShift) const { return mValue << inShift; }
 	private:
 		uint32_t mValue;
 	};
+			
+	
 	
 	// For compatibility..
 	static inline COLORREF RGB(uint8_t r, uint8_t g, uint8_t b) { return COLORREF(r, g, b); }
@@ -238,7 +243,7 @@ namespace CppImage
 		return (b * 117 + g * 601 + r * 306) >> 10;
 	}
 	
-#if 1
+#if 0
 	//////////////////////////////////////////////////////////////////////////
 	class Complex
 	{

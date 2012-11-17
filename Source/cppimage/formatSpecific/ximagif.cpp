@@ -214,7 +214,8 @@ bool CxImageGIF::Decode(CxFile *fp)
 						r[i] = pcurpal[i].r;
 						g[i] = pcurpal[i].g;
 						b[i] = pcurpal[i].b;
-						if (RGB(r[i],g[i],b[i]) == 0xFFFFFF) has_white = 1;
+						if (RGB(r[i],g[i],b[i]) == 0xFFFFFF)
+							has_white = 1;
 					}
 
 					// Force transparency colour white...

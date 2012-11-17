@@ -47,7 +47,7 @@ bool CxImageBMP::Encode(CxFile * hFile)
 		bihtoh(&infohdr);
 
 		// Write the file header
-		hFile->Write(&hdr, min(14, sizeof(BitmapFileHeader)), 1);
+		hFile->Write(&hdr, min(14, (int)sizeof(BitmapFileHeader)), 1);
 		hFile->Write(&infohdr, sizeof(BitmapInfoHeader), 1);
 		 //and DIB+ALPHA interlaced
 		uint8_t *srcalpha = AlphaGetPointer();
@@ -67,7 +67,7 @@ bool CxImageBMP::Encode(CxFile * hFile)
 #endif //CXIMAGE_SUPPORT_ALPHA
 	{
 		// Write the file header
-		hFile->Write(&hdr, min(14, sizeof(BitmapFileHeader)), 1);
+		hFile->Write(&hdr, min(14, (int)sizeof(BitmapFileHeader)), 1);
 		//copy attributes
 		memcpy(pDib, &head, sizeof(BitmapInfoHeader));
 		bihtoh(static_cast<BitmapInfoHeader*>(pDib));
@@ -91,7 +91,7 @@ bool CxImageBMP::Decode(CxFile * hFile)
 	uint32_t off = hFile->Tell(); //<CSC>
 	cx_try 
 	{
-		if (hFile->Read(&bf, min(14, sizeof(bf)), 1) == 0)
+		if (hFile->Read(&bf, min(14, (int)sizeof(bf)), 1) == 0)
 			cx_throw("Not a BMP");
 
 		bf.bfSize = m_ntohl(bf.bfSize); 

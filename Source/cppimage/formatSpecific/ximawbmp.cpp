@@ -89,16 +89,17 @@ bool CxImageWBMP::Encode(CxFile * hFile)
 	if (EncodeSafeCheck(hFile)) return false;
 
 	//check format limits
-	if (head.biBitCount!=1){
+	if (head.biBitCount != 1)
+	{
 		strcpy(info.szLastError,"Can't save this image as WBMP");
 		return false;
 	}
 
 	WBMPHEADER wbmpHead;
-	wbmpHead.Type=0;
-	wbmpHead.FixHeader=0;
-	wbmpHead.ImageWidth=head.biWidth;
-	wbmpHead.ImageHeight=head.biHeight;
+	wbmpHead.Type = 0;
+	wbmpHead.FixHeader = 0;
+	wbmpHead.ImageWidth = static_cast<uint32_t>(head.biWidth);
+	wbmpHead.ImageHeight = static_cast<uint32_t>(head.biHeight);
 
     // Write the file header
 	hFile->PutC('\0');
@@ -109,8 +110,9 @@ bool CxImageWBMP::Encode(CxFile * hFile)
 	int32_t linewidth=(wbmpHead.ImageWidth+7)/8;
     CImageIterator iter(this);
 	iter.Upset();
-    for (uint32_t y=0; y < wbmpHead.ImageHeight; y++){
-		hFile->Write(iter.GetRow(),linewidth,1);
+    for (uint32_t y=0; y < wbmpHead.ImageHeight; y++)
+	{
+		hFile->Write(iter.GetRow(), linewidth, 1);
 		iter.PrevRow();
     }
 	return true;

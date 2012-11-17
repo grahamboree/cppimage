@@ -1,160 +1,174 @@
+//
+//  CxIOFile.h
+//  cppimage
+//
+//  Created by Graham Pentheny on 11/10/12.
+//  Copyright (c) 2012 Graham Pentheny. All rights reserved.
+//
 
 #pragma once
 
 #include "CxFile.h"
 //#include <TCHAR.h>
 
-class DLL_EXP CxIOFile : public CxFile
+namespace CppImage 
 {
-public:
-	CxIOFile(FILE* fp = NULL);
+	class DLL_EXP CxIOFile : public CxFile
+	{
+	public:
+		CxIOFile(FILE* inFilePointer = NULL);
+		~CxIOFile();
 
-	~CxIOFile();
-
-	bool Open(const TCHAR * filename, const TCHAR * mode);
-	virtual bool Close();
-	virtual size_t	Read(void *buffer, size_t size, size_t count);
-	virtual size_t	Write(const void *buffer, size_t size, size_t count);
-	virtual bool Seek(int32_t offset, int32_t origin);
-	virtual int32_t Tell();
-	virtual int32_t	Size();
-	virtual bool	Flush();
-	virtual bool	Eof();
-	virtual int32_t	Error();
-	virtual bool PutC(uint8_t c);
-	virtual int32_t	GetC();
-	virtual char *	GetS(char *string, int32_t n);
-	virtual int32_t	Scanf(const char *format, void* output);
-protected:
-	FILE *m_fp;
-	bool m_bCloseFile;
-};
-
-//////////////////////////////////////////////////////////
-inline CxIOFile::CxIOFile(FILE* fp)
-{
-	m_fp = fp;
-	m_bCloseFile = (bool)(fp==0);
+		bool 			Open(const TCHAR* inFilename, const TCHAR* inMode);
+		virtual bool 	Close();
+		virtual size_t	Read(void* buffer, size_t size, size_t count);
+		virtual size_t	Write(const void *buffer, size_t size, size_t count);
+		virtual bool 	Seek(int32_t offset, int32_t origin);
+		virtual int32_t Tell();
+		virtual int32_t	Size();
+		virtual bool	Flush();
+		virtual bool	Eof();
+		virtual int32_t	Error();
+		virtual bool 	PutC(uint8_t c);
+		virtual int32_t	GetC();
+		virtual char *	GetS(char* string, int32_t n);
+		virtual int32_t	Scanf(const char* format, void* output);
+	protected:
+		FILE* mFilePointer;
+		bool mbCloseFile;
+	};
 }
 
-//////////////////////////////////////////////////////////
-inline CxIOFile::~CxIOFile()
+namespace CppImage  
 {
-	Close();
-}
-
-//////////////////////////////////////////////////////////
-inline bool CxIOFile::Open(const TCHAR * filename, const TCHAR * mode)
-{
-	if (m_fp) return false;	// Can't re-open without closing first
-
-	//m_fp = _tfopen(filename, mode);
-	m_fp = fopen(filename, mode);
-	if (!m_fp) return false;
-
-	m_bCloseFile = true;
-
-	return true;
-}
-
-//////////////////////////////////////////////////////////
-inline bool CxIOFile::Close()
-{
-	int32_t iErr = 0;
-	if ( (m_fp) && (m_bCloseFile) ){ 
-		iErr = fclose(m_fp);
-		m_fp = NULL;
+	//////////////////////////////////////////////////////////
+	inline CxIOFile::CxIOFile(FILE* inFilePointer)
+	{
+		mFilePointer = inFilePointer;
+		mbCloseFile = (inFilePointer == NULL);
 	}
-	return (bool)(iErr==0);
-}
 
-//////////////////////////////////////////////////////////
-inline size_t CxIOFile::Read(void *buffer, size_t size, size_t count)
-{
-	if (!m_fp) return 0;
-	return fread(buffer, size, count, m_fp);
-}
+	//////////////////////////////////////////////////////////
+	inline CxIOFile::~CxIOFile()
+	{
+		Close();
+	}
 
-//////////////////////////////////////////////////////////
-inline size_t CxIOFile::Write(const void *buffer, size_t size, size_t count)
-{
-	if (!m_fp) return 0;
-	return fwrite(buffer, size, count, m_fp);
-}
+	//////////////////////////////////////////////////////////
+	inline bool CxIOFile::Open(const TCHAR * inFilename, const TCHAR * inMode)
+	{
+		if (mFilePointer != NULL)
+			return false; // Can't re-open without closing first
 
-//////////////////////////////////////////////////////////
-inline bool CxIOFile::Seek(int32_t offset, int32_t origin)
-{
-	if (!m_fp) return false;
-	return (bool)(fseek(m_fp, offset, origin) == 0);
-}
+		//mFilePointer = _tfopen(inFilename, inMode);
+		mFilePointer = fopen(inFilename, inMode);
+		if (!mFilePointer)
+			return false;
 
-//////////////////////////////////////////////////////////
-inline int32_t CxIOFile::Tell()
-{
-	if (!m_fp) return 0;
-	return static_cast<int32_t>(ftell(m_fp));
-}
+		mbCloseFile = true;
 
-//////////////////////////////////////////////////////////
-inline int32_t CxIOFile::Size()
-{
-	if (!m_fp) return -1;
-	int32_t pos;
-	int32_t size;
-	pos = static_cast<int32_t>(ftell(m_fp));
-	fseek(m_fp, 0, SEEK_END);
-	size = static_cast<int32_t>(ftell(m_fp));
-	fseek(m_fp, pos,SEEK_SET);
-	return size;
-}
+		return true;
+	}
 
-//////////////////////////////////////////////////////////
-inline bool CxIOFile::Flush()
-{
-	if (!m_fp) return false;
-	return (bool)(fflush(m_fp) == 0);
-}
+	//////////////////////////////////////////////////////////
+	inline bool CxIOFile::Close()
+	{
+		int32_t error = 0;
+		if (mFilePointer != NULL && mbCloseFile)
+		{ 
+			error = fclose(mFilePointer);
+			mFilePointer = NULL;
+		}
+		return (error == 0);
+	}
 
-//////////////////////////////////////////////////////////
-inline bool CxIOFile::Eof()
-{
-	if (!m_fp) return true;
-	return (bool)(feof(m_fp) != 0);
-}
+	//////////////////////////////////////////////////////////
+	inline size_t CxIOFile::Read(void* buffer, size_t size, size_t count)
+	{
+		if (!mFilePointer) return 0;
+		return fread(buffer, size, count, mFilePointer);
+	}
 
-//////////////////////////////////////////////////////////
-inline int32_t CxIOFile::Error()
-{
-	if (!m_fp) return -1;
-	return ferror(m_fp);
-}
+	//////////////////////////////////////////////////////////
+	inline size_t CxIOFile::Write(const void* buffer, size_t size, size_t count)
+	{
+		if (!mFilePointer) return 0;
+		return fwrite(buffer, size, count, mFilePointer);
+	}
 
-//////////////////////////////////////////////////////////
-inline bool CxIOFile::PutC(uint8_t c)
-{
-	if (!m_fp) return false;
-	return (bool)(fputc(c, m_fp) == c);
-}
+	//////////////////////////////////////////////////////////
+	inline bool CxIOFile::Seek(int32_t offset, int32_t origin)
+	{
+		if (!mFilePointer) return false;
+		return (fseek(mFilePointer, offset, origin) == 0);
+	}
 
-//////////////////////////////////////////////////////////
-inline int32_t CxIOFile::GetC()
-{
-	if (!m_fp) return EOF;
-	return getc(m_fp);
-}
+	//////////////////////////////////////////////////////////
+	inline int32_t CxIOFile::Tell()
+	{
+		if (!mFilePointer) return 0;
+		return static_cast<int32_t>(ftell(mFilePointer));
+	}
 
-//////////////////////////////////////////////////////////
-inline char* CxIOFile::GetS(char *string, int32_t n)
-{
-	if (!m_fp) return NULL;
-	return fgets(string,n,m_fp);
-}
+	//////////////////////////////////////////////////////////
+	inline int32_t CxIOFile::Size()
+	{
+		if (!mFilePointer) return -1;
+		int32_t pos;
+		int32_t size;
+		pos = static_cast<int32_t>(ftell(mFilePointer));
+		fseek(mFilePointer, 0, SEEK_END);
+		size = static_cast<int32_t>(ftell(mFilePointer));
+		fseek(mFilePointer, pos, SEEK_SET);
+		return size;
+	}
 
-//////////////////////////////////////////////////////////
-inline int32_t	CxIOFile::Scanf(const char *format, void* output)
-{
-	if (!m_fp) return EOF;
-	return fscanf(m_fp, format, output);
-}
+	//////////////////////////////////////////////////////////
+	inline bool CxIOFile::Flush()
+	{
+		if (!mFilePointer) return false;
+		return (fflush(mFilePointer) == 0);
+	}
 
+	//////////////////////////////////////////////////////////
+	inline bool CxIOFile::Eof()
+	{
+		if (!mFilePointer) return true;
+		return (feof(mFilePointer) != 0);
+	}
+
+	//////////////////////////////////////////////////////////
+	inline int32_t CxIOFile::Error()
+	{
+		if (!mFilePointer) return -1;
+		return ferror(mFilePointer);
+	}
+
+	//////////////////////////////////////////////////////////
+	inline bool CxIOFile::PutC(uint8_t c)
+	{
+		if (!mFilePointer) return false;
+		return (fputc(c, mFilePointer) == c);
+	}
+
+	//////////////////////////////////////////////////////////
+	inline int32_t CxIOFile::GetC()
+	{
+		if (!mFilePointer) return EOF;
+		return getc(mFilePointer);
+	}
+
+	//////////////////////////////////////////////////////////
+	inline char* CxIOFile::GetS(char *string, int32_t n)
+	{
+		if (!mFilePointer) return NULL;
+		return fgets(string,n,mFilePointer);
+	}
+
+	//////////////////////////////////////////////////////////
+	inline int32_t	CxIOFile::Scanf(const char *format, void* output)
+	{
+		if (!mFilePointer) return EOF;
+		return fscanf(mFilePointer, format, output);
+	}
+}

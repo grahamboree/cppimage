@@ -32,6 +32,7 @@ namespace CppImage
 	class DLL_EXP Rect2
 	{
 	public:
+		Rect2() {}
 		Rect2(float inBotLeftX, float inBotLeftY, float inTopRightX, float inTopRightY);
 		Rect2(const Point2& inBottomLeft, const Point2& inTopRight);
 

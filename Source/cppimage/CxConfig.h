@@ -46,7 +46,10 @@
 
 #define CXIMAGE_DEFAULT_DPI 96
 
-static const char* CXIMAGE_ERR_NOFILE = "null file handler";
-static const char* CXIMAGE_ERR_NOIMAGE = "null image!!!";
+namespace CppImage
+{
+	static const char* CXIMAGE_ERR_NOFILE = "null file handler";
+	static const char* CXIMAGE_ERR_NOIMAGE = "null image!!!";
+}
 
 #define CXIMAGE_SUPPORT_EXCEPTION_HANDLING 1

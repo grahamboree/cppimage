@@ -60,6 +60,7 @@
 		C9CA7AE6165075EE00192514 /* missing.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9CA7AB616506FC000192514 /* missing.cpp */; };
 		C9CA7AE7165075F300192514 /* collectoroutput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9CA7AA716506FC000192514 /* collectoroutput.cpp */; };
 		C9CA7AE8165075F300192514 /* compileroutput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9CA7AA816506FC000192514 /* compileroutput.cpp */; };
+		C9CA7AEC1655F1E000192514 /* CxMemFile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9CA7AEB1655F1E000192514 /* CxMemFile.cpp */; };
 		C9FA107A16102B9E0010C75D /* tif_xfile.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA104216102B9E0010C75D /* tif_xfile.cpp */; };
 		C9FA108016102B9E0010C75D /* ximadsp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA104816102B9E0010C75D /* ximadsp.cpp */; };
 		C9FA108116102B9E0010C75D /* ximaenc.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C9FA104916102B9E0010C75D /* ximaenc.cpp */; };
@@ -159,6 +160,7 @@
 		C9CA7AD91650742500192514 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		C9CA7ADB1650742500192514 /* cppimage_tests.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = cppimage_tests.1; sourceTree = "<group>"; };
 		C9CA7AEA1651FF3000192514 /* TestCxMath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; name = TestCxMath.h; path = CppImageTests/TestCxMath.h; sourceTree = "<group>"; };
+		C9CA7AEB1655F1E000192514 /* CxMemFile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = CxMemFile.cpp; path = Source/cppimage/CxMemFile.cpp; sourceTree = "<group>"; };
 		C9FA0F541610296F0010C75D /* libcppimage.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libcppimage.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9FA104216102B9E0010C75D /* tif_xfile.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = tif_xfile.cpp; path = ../tif_xfile.cpp; sourceTree = "<group>"; };
 		C9FA104816102B9E0010C75D /* ximadsp.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ximadsp.cpp; path = Source/cppimage/ximadsp.cpp; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 				C92685EA1621F2D300D4EB54 /* CxMath.cpp */,
 				C92685EB1621F2D400D4EB54 /* CxMath.h */,
 				C92685A316215C6800D4EB54 /* CxMemFile.h */,
+				C9CA7AEB1655F1E000192514 /* CxMemFile.cpp */,
 				C935CA6B1612A6EE00C72CD1 /* Types.h */,
 				C9FA104816102B9E0010C75D /* ximadsp.cpp */,
 				C9FA104916102B9E0010C75D /* ximaenc.cpp */,
@@ -511,6 +514,7 @@
 				C92685E61621667300D4EB54 /* ximawbmp.cpp in Sources */,
 				C92685E81621667300D4EB54 /* ximawmf.cpp in Sources */,
 				C92685EC1621F2D400D4EB54 /* CxMath.cpp in Sources */,
+				C9CA7AEC1655F1E000192514 /* CxMemFile.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
