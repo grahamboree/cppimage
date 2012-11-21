@@ -1,62 +1,16 @@
 /*
- * File:	ximage.h
+ * File:	CxImage.h
  * Purpose:	General Purpose Image Class 
- */
-/*
-  --------------------------------------------------------------------------------
-
-	COPYRIGHT NOTICE, DISCLAIMER, and LICENSE:
-
-	CxImage version 7.0.1 07/Jan/2011
-
-	CxImage : Copyright (C) 2001 - 2010, Davide Pizzolato
-
-	Original CImage and CImageIterator implementation are:
-	Copyright (C) 1995, Alejandro Aguilar Sierra (asierra(at)servidor(dot)unam(dot)mx)
-
-	Covered code is provided under this license on an "as is" basis, without warranty
-	of any kind, either expressed or implied, including, without limitation, warranties
-	that the covered code is free of defects, merchantable, fit for a particular purpose
-	or non-infringing. The entire risk as to the quality and performance of the covered
-	code is with you. Should any covered code prove defective in any respect, you (not
-	the initial developer or any other contributor) assume the cost of any necessary
-	servicing, repair or correction. This disclaimer of warranty constitutes an essential
-	part of this license. No use of any covered code is authorized hereunder except under
-	this disclaimer.
-
-	Permission is hereby granted to use, copy, modify, and distribute this
-	source code, or portions hereof, for any purpose, including commercial applications,
-	freely and without fee, subject to the following restrictions: 
-
-	1. The origin of this software must not be misrepresented; you must not
-	claim that you wrote the original software. If you use this software
-	in a product, an acknowledgment in the product documentation would be
-	appreciated but is not required.
-
-	2. Altered source versions must be plainly marked as such, and must not be
-	misrepresented as being the original software.
-
-	3. This notice may not be removed or altered from any source distribution.
-
-  --------------------------------------------------------------------------------
-
-	Other information about CxImage, and the latest version, can be found at the
-	CxImage home page: http://www.xdp.it/cximage/
-
-  --------------------------------------------------------------------------------
  */
 
 #pragma once
-/*#if !defined(__CXIMAGE_H)
-#define __CXIMAGE_H*/
 
 #ifdef _LINUX
-#define _XOPEN_SOURCE
+#	define _XOPEN_SOURCE
 #	include <unistd.h>
 #	include <arpa/inet.h>
 #endif
 
-/////////////////////////////////////////////////////////////////////////////
 #include "CxFile.h"
 #include "CxIOFile.h"
 #include "CxMemfile.h"
@@ -71,66 +25,66 @@ namespace CppImage
 	enum ENUM_CXIMAGE_FORMATS
 	{
 		CXIMAGE_FORMAT_UNKNOWN = 0,
-	#if CXIMAGE_SUPPORT_BMP
+#if CXIMAGE_SUPPORT_BMP
 		CXIMAGE_FORMAT_BMP = 1,
-	#endif
-	#if CXIMAGE_SUPPORT_GIF
+#endif
+#if CXIMAGE_SUPPORT_GIF
 		CXIMAGE_FORMAT_GIF = 2,
-	#endif
-	#if CXIMAGE_SUPPORT_JPG
+#endif
+#if CXIMAGE_SUPPORT_JPG
 		CXIMAGE_FORMAT_JPG = 3,
-	#endif
-	#if CXIMAGE_SUPPORT_PNG
+#endif
+#if CXIMAGE_SUPPORT_PNG
 		CXIMAGE_FORMAT_PNG = 4,
-	#endif
-	#if CXIMAGE_SUPPORT_ICO
+#endif
+#if CXIMAGE_SUPPORT_ICO
 		CXIMAGE_FORMAT_ICO = 5,
-	#endif
-	#if CXIMAGE_SUPPORT_TIF
+#endif
+#if CXIMAGE_SUPPORT_TIF
 		CXIMAGE_FORMAT_TIF = 6,
-	#endif
-	#if CXIMAGE_SUPPORT_TGA
+#endif
+#if CXIMAGE_SUPPORT_TGA
 		CXIMAGE_FORMAT_TGA = 7,
-	#endif
-	#if CXIMAGE_SUPPORT_PCX
+#endif
+#if CXIMAGE_SUPPORT_PCX
 		CXIMAGE_FORMAT_PCX = 8,
-	#endif
-	#if CXIMAGE_SUPPORT_WBMP
+#endif
+#if CXIMAGE_SUPPORT_WBMP
 		CXIMAGE_FORMAT_WBMP = 9,
-	#endif
-	#if CXIMAGE_SUPPORT_WMF
+#endif
+#if CXIMAGE_SUPPORT_WMF
 		CXIMAGE_FORMAT_WMF = 10,
-	#endif
-	#if CXIMAGE_SUPPORT_JP2
+#endif
+#if CXIMAGE_SUPPORT_JP2
 		CXIMAGE_FORMAT_JP2 = 11,
-	#endif
-	#if CXIMAGE_SUPPORT_JPC
+#endif
+#if CXIMAGE_SUPPORT_JPC
 		CXIMAGE_FORMAT_JPC = 12,
-	#endif
-	#if CXIMAGE_SUPPORT_PGX
+#endif
+#if CXIMAGE_SUPPORT_PGX
 		CXIMAGE_FORMAT_PGX = 13,
-	#endif
-	#if CXIMAGE_SUPPORT_PNM
+#endif
+#if CXIMAGE_SUPPORT_PNM
 		CXIMAGE_FORMAT_PNM = 14,
-	#endif
-	#if CXIMAGE_SUPPORT_RAS
+#endif
+#if CXIMAGE_SUPPORT_RAS
 		CXIMAGE_FORMAT_RAS = 15,
-	#endif
-	#if CXIMAGE_SUPPORT_JBG
+#endif
+#if CXIMAGE_SUPPORT_JBG
 		CXIMAGE_FORMAT_JBG = 16,
-	#endif
-	#if CXIMAGE_SUPPORT_MNG
+#endif
+#if CXIMAGE_SUPPORT_MNG
 		CXIMAGE_FORMAT_MNG = 17,
-	#endif
-	#if CXIMAGE_SUPPORT_SKA
+#endif
+#if CXIMAGE_SUPPORT_SKA
 		CXIMAGE_FORMAT_SKA = 18,
-	#endif
-	#if CXIMAGE_SUPPORT_RAW
+#endif
+#if CXIMAGE_SUPPORT_RAW
 		CXIMAGE_FORMAT_RAW = 19,
-	#endif
-	#if CXIMAGE_SUPPORT_PSD
+#endif
+#if CXIMAGE_SUPPORT_PSD
 		CXIMAGE_FORMAT_PSD = 20,
-	#endif
+#endif
 		CMAX_IMAGE_FORMATS = CXIMAGE_SUPPORT_BMP + CXIMAGE_SUPPORT_GIF + CXIMAGE_SUPPORT_JPG +
 							 CXIMAGE_SUPPORT_PNG + CXIMAGE_SUPPORT_MNG + CXIMAGE_SUPPORT_ICO +
 							 CXIMAGE_SUPPORT_TIF + CXIMAGE_SUPPORT_TGA + CXIMAGE_SUPPORT_PCX +
@@ -141,11 +95,11 @@ namespace CppImage
 	};
 
 	//////////////////////////////////////////////////////////////////////////
-	#if CXIMAGE_SUPPORT_EXIF
+#if CXIMAGE_SUPPORT_EXIF
 
-	#	define MAX_COMMENT 255
-	#	define MAX_SECTIONS 20
-	struct tag_ExifInfo
+#	define MAX_COMMENT 255
+#	define MAX_SECTIONS 20
+	struct ExifInfo
 	{
 		char  	Version      [5];
 		char  	CameraMake   [32];
@@ -179,10 +133,9 @@ namespace CppImage
 		uint8_t* ThumbnailPointer;  /* Pointer at the thumbnail */
 		unsigned ThumbnailSize;     /* Size of thumbnail. */
 
-		bool  IsExif;
+		bool	IsExif;
 	};
-	typedef tag_ExifInfo EXIFINFO;
-	#endif //CXIMAGE_SUPPORT_EXIF
+#endif //CXIMAGE_SUPPORT_EXIF
 
 	/////////////////////////////////////////////////////////////////////////////
 	// CxImage class
@@ -190,11 +143,11 @@ namespace CppImage
 	{
 	private:
 		//extensible information collector
-		struct CXIMAGEINFO
+		struct tagCxImageInfo
 		{
 			uint32_t	dwEffWidth;			///< uint32_t aligned scan line width
 			uint8_t*	pImage;				///< THE IMAGE BITS
-			CxImage*	pGhost;			///< if this is a ghost, pGhost points to the body
+			CxImage*	pGhost;				///< if this is a ghost, pGhost points to the body
 			CxImage*	pParent;			///< if this is a layer, pParent points to the body
 			uint32_t	dwType;				///< original image format
 			char		szLastError[256];	///< debugging
@@ -211,7 +164,7 @@ namespace CppImage
 			int32_t		yDPI;				///< vertical resolution
 			Rect		rSelectionBox;		///< bounding rectangle
 			uint8_t		nAlphaMax;			///< max opacity (fade)
-			bool		bAlphaPaletteEnabled; ///< true if alpha values in the palette are enabled.
+			bool		bAlphaPaletteEnabled;///< true if alpha values in the palette are enabled.
 			bool		bEnabled;			///< enables the painting functions
 			int32_t		xOffset;
 			int32_t		yOffset;
@@ -225,11 +178,10 @@ namespace CppImage
 			bool		bGetAllFrames;
 			bool		bLittleEndianHost;
 
-	#if CXIMAGE_SUPPORT_EXIF
-			EXIFINFO	ExifInfo;
-	#endif
+#if CXIMAGE_SUPPORT_EXIF
+			ExifInfo	ExifInfo;
+#endif
 		};
-		typedef CXIMAGEINFO tagCxImageInfo;
 
 	public: //public structures
 		struct rgb_color
@@ -237,53 +189,52 @@ namespace CppImage
 			uint8_t r,g,b;
 		};
 
-	#if CXIMAGE_SUPPORT_WINDOWS
+#if CXIMAGE_SUPPORT_WINDOWS
 		// <VATI> text placement data
 		// members must be initialized with the InitTextInfo(&this) function.
-		struct CXTEXTINFO
+		struct tagCxTextInfo
 		{
-	#if defined (_WIN32_WCE)
+#	if defined (_WIN32_WCE)
 			TCHAR	text[256];  ///< text for windows CE
-	#else
+#	else
 			TCHAR	text[4096]; ///< text (char -> TCHAR for UNICODE [Cesar M])
-	#endif
+#	endif
 			LOGFONT	lfont;      ///< font and codepage data
-			COLORREF fcolor;    ///< foreground color
+			ColorRef fcolor;    ///< foreground color
 			int32_t	align;      ///< DT_CENTER, DT_RIGHT, DT_LEFT aligment for multiline text
 			uint8_t	smooth;     ///< text smoothing option. Default is false.
 			uint8_t	opaque;     ///< text has background or hasn't. Default is true.
 								///< data for background (ignored if .opaque==false) 
-			COLORREF bcolor;    ///< background color
+			ColorRef bcolor;    ///< background color
 			float	b_opacity;	///< opacity value for background between 0.0-1.0 Default is 0. (opaque)
 			uint8_t	b_outline;	///< outline width for background (zero: no outline)
 			uint8_t	b_round;    ///< rounding radius for background rectangle. % of the height, between 0-50. Default is 10.
 								///< (backgr. always has a frame: width = 3 pixel + 10% of height by default.)
 		};
-		typedef CXTEXTINFO tagCxTextInfo
-	#endif
+#endif
 
 	public:
-	/** \addtogroup Constructors */ //@{
+		/** \addtogroup Constructors */ //@{
 		CxImage(uint32_t imagetype = 0);
 		CxImage(uint32_t dwWidth, uint32_t dwHeight, uint32_t wBpp, uint32_t imagetype = 0);
 		CxImage(const CxImage& src, bool copypixels = true, bool copyselection = true, bool copyalpha = true);
-	#if CXIMAGE_SUPPORT_DECODE
+#if CXIMAGE_SUPPORT_DECODE
 		CxImage(const TCHAR* filename, uint32_t imagetype);	// For UNICODE support: char -> TCHAR
 		CxImage(FILE* stream, uint32_t imagetype);
 		CxImage(CxFile* stream, uint32_t imagetype);
 		CxImage(uint8_t* buffer, uint32_t size, uint32_t imagetype);
-	#endif
-	//@}
+#endif
+		//@}
 
-	/** \addtogroup Destructors */ //@{
+		/** \addtogroup Destructors */ //@{
 		virtual ~CxImage() { DestroyFrames(); Destroy(); };
-	//@}
+		//@}
 
-	/** \addtogroup Operators */ //@{
+		/** \addtogroup Operators */ //@{
 		CxImage& operator=(const CxImage&);
-	//@}
+		//@}
 
-	/** \addtogroup Initialization */ //@{
+		/** \addtogroup Initialization */ //@{
 		void	Clear(uint8_t bval = 0);
 		void	Copy(const CxImage& src, bool copypixels = true, bool copyselection = true, bool copyalpha = true);
 		void*	Create(uint32_t dwWidth, uint32_t dwHeight, uint32_t wBpp, uint32_t imagetype = 0);
@@ -297,9 +248,9 @@ namespace CppImage
 		uint32_t Dump(uint8_t* dst);
 		uint32_t DumpSize();
 		uint32_t UnDump(const uint8_t* src);
-	//@}
+		//@}
 
-	/** \addtogroup Attributes */ //@{
+		/** \addtogroup Attributes */ //@{
 		int32_t		GetSize();
 		uint8_t*	GetBits(uint32_t row = 0);
 		uint8_t		GetColorType();
@@ -328,13 +279,13 @@ namespace CppImage
 		uint8_t	GetJpegScale() const;
 		void	SetJpegScale(uint8_t q);
 
-	#if CXIMAGE_SUPPORT_EXIF
-		EXIFINFO* 	GetExifInfo() {return &info.ExifInfo; }
+#if CXIMAGE_SUPPORT_EXIF
+		ExifInfo* 	GetExifInfo() {return &info.ExifInfo; }
 		bool  		GetExifThumbnail(const TCHAR* filename, const TCHAR* outname, int32_t imageType);
-	  #if CXIMAGE_SUPPORT_TRANSFORMATION
+#	if CXIMAGE_SUPPORT_TRANSFORMATION
 		bool  RotateExif(int32_t orientation = 0);
-	  #endif
-	#endif
+#	endif
+#endif
 
 		int32_t	GetXDPI() const;
 		int32_t	GetYDPI() const;
@@ -377,33 +328,33 @@ namespace CppImage
 
 		//void*	GetUserData() const {return info.pUserData;}
 		//void	SetUserData(void* pUserData) {info.pUserData = pUserData;}
-	//@}
+		//@}
 
-	/** \addtogroup Palette
-	 * These functions have no effects on RGB images and in this case the returned value is always 0.
-	 * @{ */
-		bool	IsGrayScale();
-		bool	IsIndexed() const;
-		bool	IsSamePalette(CxImage& img, bool bCheckAlpha = true);
+		/** \addtogroup Palette
+		 * These functions have no effects on RGB images and in this case the returned value is always 0.
+		 * @{ */
+		bool		IsGrayScale();
+		bool		IsIndexed() const;
+		bool		IsSamePalette(CxImage& img, bool bCheckAlpha = true);
 		uint32_t	GetPaletteSize();
-		RGBQuad* GetPalette() const;
-		RGBQuad GetPaletteColor(uint8_t idx);
-		bool	GetPaletteColor(uint8_t i, uint8_t* r, uint8_t* g, uint8_t* b);
-		uint8_t	GetNearestIndex(RGBQuad c);
-		void	BlendPalette(COLORREF cr,int32_t perc);
-		void	SetGrayPalette();
-		void	SetPalette(uint32_t n, uint8_t* r, uint8_t* g, uint8_t* b);
-		void	SetPalette(RGBQuad* pPal,uint32_t nColors=256);
-		void	SetPalette(rgb_color* rgb,uint32_t nColors=256);
-		void	SetPaletteColor(uint8_t idx, uint8_t r, uint8_t g, uint8_t b, uint8_t alpha=0);
-		void	SetPaletteColor(uint8_t idx, RGBQuad c);
-		void	SetPaletteColor(uint8_t idx, COLORREF cr);
-		void	SwapIndex(uint8_t idx1, uint8_t idx2);
-		void	SwapRGB2BGR();
-		void	SetStdPalette();
-	//@}
+		RGBQuad*	GetPalette() const;
+		RGBQuad		GetPaletteColor(uint8_t idx);
+		bool		GetPaletteColor(uint8_t i, uint8_t* r, uint8_t* g, uint8_t* b);
+		uint8_t		GetNearestIndex(RGBQuad c);
+		void		BlendPalette(ColorRef cr,int32_t perc);
+		void		SetGrayPalette();
+		void		SetPalette(uint32_t n, uint8_t* r, uint8_t* g, uint8_t* b);
+		void		SetPalette(RGBQuad* pPal,uint32_t nColors=256);
+		void		SetPalette(rgb_color* rgb,uint32_t nColors=256);
+		void		SetPaletteColor(uint8_t idx, uint8_t r, uint8_t g, uint8_t b, uint8_t alpha=0);
+		void		SetPaletteColor(uint8_t idx, RGBQuad c);
+		void		SetPaletteColor(uint8_t idx, ColorRef cr);
+		void		SwapIndex(uint8_t idx1, uint8_t idx2);
+		void		SwapRGB2BGR();
+		void		SetStdPalette();
+		//@}
 
-	/** \addtogroup Pixel */ //@{
+		/** \addtogroup Pixel */ //@{
 		bool	IsInside(int32_t x, int32_t y);
 		bool	IsTransparent(int32_t x, int32_t y);
 		bool	GetTransparentMask(CxImage* iDst = 0);
@@ -411,26 +362,26 @@ namespace CppImage
 		uint8_t	GetPixelIndex(int32_t x, int32_t y);
 		uint8_t	GetPixelGray(int32_t x, int32_t y);
 		void	SetPixelColor(int32_t x, int32_t y, RGBQuad c, bool bSetAlpha = false);
-		void	SetPixelColor(int32_t x, int32_t y, COLORREF cr);
+		void	SetPixelColor(int32_t x, int32_t y, ColorRef cr);
 		void	SetPixelIndex(int32_t x, int32_t y, uint8_t i);
 		void	DrawLine(int32_t StartX, int32_t EndX, int32_t StartY, int32_t EndY, RGBQuad color, bool bSetAlpha = false);
-		void	DrawLine(int32_t StartX, int32_t EndX, int32_t StartY, int32_t EndY, COLORREF cr);
+		void	DrawLine(int32_t StartX, int32_t EndX, int32_t StartY, int32_t EndY, ColorRef cr);
 		void	BlendPixelColor(int32_t x,int32_t y,RGBQuad c, float blend, bool bSetAlpha = false);
-	//@}
+		//@}
 
 	protected:
-	/** \addtogroup Protected */ //@{
+		/** \addtogroup Protected */ //@{
 		uint8_t BlindGetPixelIndex(const int32_t x, const int32_t y);
 		RGBQuad BlindGetPixelColor(const int32_t x, const int32_t y, bool bGetAlpha = true);
 		void*	BlindGetPixelPointer(const int32_t x, const  int32_t y);
 		void	BlindSetPixelColor(int32_t x, int32_t y, RGBQuad c, bool bSetAlpha = false);
 		void	BlindSetPixelIndex(int32_t x, int32_t y, uint8_t i);
-	//@}
+		//@}
 
 	public:
 
-	#if CXIMAGE_SUPPORT_INTERPOLATION
-	/** \addtogroup Interpolation */ //@{
+#if CXIMAGE_SUPPORT_INTERPOLATION
+		/** \addtogroup Interpolation */ //@{
 		//overflow methods:
 		enum OverflowMethod
 		{ 
@@ -469,14 +420,14 @@ namespace CppImage
 		};
 		RGBQuad GetPixelColorInterpolated(float x, float y, InterpolationMethod const inMethod = IM_BILINEAR, OverflowMethod const ofMethod = OM_BACKGROUND, RGBQuad* const rplColor = 0);
 		RGBQuad GetAreaColorInterpolated(float const xc, float const yc, float const w, float const h, InterpolationMethod const inMethod, OverflowMethod const ofMethod = OM_BACKGROUND, RGBQuad* const rplColor = 0);
-	//@}
+		//@}
 
 	protected:
-	/** \addtogroup Protected */ //@{
+		/** \addtogroup Protected */ //@{
 		void  AddAveragingCont(RGBQuad const& color, float const surf, float& rr, float& gg, float& bb, float& aa);
-	//@}
+		//@}
 
-	/** \addtogroup Kernels */ //@{
+		/** \addtogroup Kernels */ //@{
 	public:
 		static float KernelBSpline(const float x);
 		static float KernelLinear(const float t);
@@ -499,11 +450,11 @@ namespace CppImage
 		static float KernelCatrom(const float x);
 		static float KernelHanning(const float x);
 		static float KernelPower(const float x, const float a = 2);
-	//@}
-	#endif //CXIMAGE_SUPPORT_INTERPOLATION
+		//@}
+#endif //CXIMAGE_SUPPORT_INTERPOLATION
 			
-	/** \addtogroup Painting */ //@{
-	#if CXIMAGE_SUPPORT_WINDOWS
+		/** \addtogroup Painting */ //@{
+#if CXIMAGE_SUPPORT_WINDOWS
 		int32_t	Blt(HDC pDC, int32_t x = 0, int32_t y = 0);
 		HBITMAP Draw2HBITMAP(HDC hdc, int32_t x, int32_t y, int32_t cx, int32_t cy, Rect* pClipRect, bool bSmooth);
 		HBITMAP MakeBitmap(HDC hdc = NULL, bool bTransparency = false);
@@ -522,21 +473,21 @@ namespace CppImage
 		//int32_t	DrawString(HDC hdc, int32_t x, int32_t y, const char* text, RGBQuad color, const char* font, int32_t lSize=0, int32_t lWeight=400, uint8_t bItalic=0, uint8_t bUnderline=0, bool bSetAlpha=false);
 		int32_t	DrawString(HDC hdc, int32_t x, int32_t y, const TCHAR* text, RGBQuad color, const TCHAR* font, int32_t lSize = 0, int32_t lWeight = 400, uint8_t bItalic = 0, uint8_t bUnderline = 0, bool bSetAlpha = false);
 		// <VATI> extensions
-		int32_t    DrawStringEx(HDC hdc, int32_t x, int32_t y, CXTEXTINFO* pTextType, bool bSetAlpha = false);
-		void    InitTextInfo(CXTEXTINFO* txt);
+		int32_t    DrawStringEx(HDC hdc, int32_t x, int32_t y, tagCxTextInfo* pTextType, bool bSetAlpha = false);
+		void    InitTextInfo(tagCxTextInfo* txt);
 	protected:
 		bool IsHBITMAPAlphaValid(HBITMAP hbmp);
 	public:
-	#endif //CXIMAGE_SUPPORT_WINDOWS
-	//@}
+#endif //CXIMAGE_SUPPORT_WINDOWS
+		//@}
 
 		// file operations
-	#if CXIMAGE_SUPPORT_DECODE
-	/** \addtogroup Decode */ //@{
-	#ifdef WIN32
+#if CXIMAGE_SUPPORT_DECODE
+		/** \addtogroup Decode */ //@{
+#	ifdef WIN32
 		//bool Load(LPCWSTR filename, uint32_t imagetype=0);
 		bool LoadResource(HRSRC hRes, uint32_t imagetype, HMODULE hModule = NULL);
-	#endif
+#	endif
 		// For UNICODE support: char -> TCHAR
 		bool Load(const TCHAR* filename, uint32_t imagetype = 0);
 		//bool Load(const char * filename, uint32_t imagetype=0);
@@ -546,20 +497,20 @@ namespace CppImage
 
 		bool CheckFormat(CxFile* hFile, uint32_t imagetype = 0);
 		bool CheckFormat(uint8_t* buffer, uint32_t size, uint32_t imagetype = 0);
-	//@}
-	#endif //CXIMAGE_SUPPORT_DECODE
+		//@}
+#endif //CXIMAGE_SUPPORT_DECODE
 
-	#if CXIMAGE_SUPPORT_ENCODE
+#if CXIMAGE_SUPPORT_ENCODE
 	protected:
-	/** \addtogroup Protected */ //@{
+		/** \addtogroup Protected */ //@{
 		bool EncodeSafeCheck(CxFile* hFile);
-	//@}
+		//@}
 
 	public:
-	/** \addtogroup Encode */ //@{
-	#ifdef WIN32
+		/** \addtogroup Encode */ //@{
+#	ifdef WIN32
 		//bool Save(LPCWSTR filename, uint32_t imagetype=0);
-	#endif
+#	endif
 		// For UNICODE support: char -> TCHAR
 		bool Save(const TCHAR* filename, uint32_t imagetype);
 		//bool Save(const char * filename, uint32_t imagetype=0);
@@ -571,10 +522,10 @@ namespace CppImage
 
 		bool Encode2RGBA(CxFile* hFile, bool bFlipY = false);
 		bool Encode2RGBA(uint8_t*& buffer, int32_t& size, bool bFlipY = false);
-	//@}
-	#endif //CXIMAGE_SUPPORT_ENCODE
+		//@}
+#endif //CXIMAGE_SUPPORT_ENCODE
 
-	/** \addtogroup Attributes */ //@{
+		/** \addtogroup Attributes */ //@{
 		//misc.
 		bool IsValid() const;
 		bool IsEnabled() const;
@@ -584,10 +535,10 @@ namespace CppImage
 		int32_t GetNumFrames() const;
 		int32_t GetFrame() const;
 		void SetFrame(int32_t nFrame);
-	//@}
+		//@}
 
-	#if CXIMAGE_SUPPORT_BASICTRANSFORMATIONS
-	/** \addtogroup BasicTransformations */ //@{
+#if CXIMAGE_SUPPORT_BASICTRANSFORMATIONS
+		/** \addtogroup BasicTransformations */ //@{
 		bool GrayScale();
 		bool Flip(bool bFlipSelection = false, bool bFlipAlpha = true);
 		bool Mirror(bool bMirrorSelection = false, bool bMirrorAlpha = true);
@@ -595,11 +546,11 @@ namespace CppImage
 		bool RotateLeft(CxImage* iDst = NULL);
 		bool RotateRight(CxImage* iDst = NULL);
 		bool IncreaseBpp(uint32_t nbit);
-	//@}
-	#endif //CXIMAGE_SUPPORT_BASICTRANSFORMATIONS
+		//@}
+#endif //CXIMAGE_SUPPORT_BASICTRANSFORMATIONS
 
-	#if CXIMAGE_SUPPORT_TRANSFORMATION
-	/** \addtogroup Transformations */ //@{
+#if CXIMAGE_SUPPORT_TRANSFORMATION
+		/** \addtogroup Transformations */ //@{
 		// image operations
 		bool Rotate(float angle, CxImage* iDst = NULL);
 		bool Rotate2(float angle, CxImage *iDst = NULL, InterpolationMethod inMethod = IM_BILINEAR, OverflowMethod ofMethod = OM_BACKGROUND, RGBQuad* replColor = 0, bool const optimizeRightAngles = true, bool const bKeepOriginalSize = false);
@@ -618,11 +569,11 @@ namespace CppImage
 		bool CircleTransform(int32_t type,int32_t rmax = 0, float Koeff = 1.0f);
 		bool QIShrink(int32_t newx, int32_t newy, CxImage* const iDst = NULL, bool bChangeBpp = false);
 
-	//@}
-	#endif //CXIMAGE_SUPPORT_TRANSFORMATION
+		//@}
+#endif //CXIMAGE_SUPPORT_TRANSFORMATION
 
-	#if CXIMAGE_SUPPORT_DSP
-	/** \addtogroup DSP */ //@{
+#if CXIMAGE_SUPPORT_DSP
+		/** \addtogroup DSP */ //@{
 		enum ImageOpType
 		{
 			OpAdd,
@@ -682,10 +633,10 @@ namespace CppImage
 		bool	AdaptiveThreshold(int32_t method = 0, int32_t nBoxSize = 64, CxImage* pContrastMask = 0, int32_t nBias = 0, float fGlobalLocalBalance = 0.5f);
 		bool	RedEyeRemove(float strength = 0.8f);
 		bool	Trace(RGBQuad color_target, RGBQuad color_trace);
-	//@}
+		//@}
 
 	protected:
-	/** \addtogroup Protected */ //@{
+		/** \addtogroup Protected */ //@{
 		bool	IsPowerof2(int32_t x);
 		bool	FFT(int32_t dir, int32_t m, double *x, double *y);
 		bool	DFT(int32_t dir, int32_t m, double *x1, double *y1, double *x2, double *y2);
@@ -695,17 +646,17 @@ namespace CppImage
 		float*	gen_lookup_table(float* cmatrix, int32_t cmatrix_length);
 		void	blur_line(float* ctable, float* cmatrix, int32_t cmatrix_length, uint8_t* cur_col, uint8_t* dest_col, int32_t y, int32_t bytes);
 		void	blur_text(uint8_t threshold, uint8_t decay, uint8_t max_depth, CxImage* iSrc, CxImage* iDst, uint8_t bytes);
-	//@}
+		//@}
 
 	public:
-	/** \addtogroup ColorSpace */ //@{
+		/** \addtogroup ColorSpace */ //@{
 		bool SplitRGB(CxImage* r, CxImage* g, CxImage* b);
 		bool SplitYUV(CxImage* y, CxImage* u, CxImage* v);
 		bool SplitHSL(CxImage* h, CxImage* s, CxImage* l);
 		bool SplitYIQ(CxImage* y, CxImage* i, CxImage* q);
 		bool SplitXYZ(CxImage* x, CxImage* y, CxImage* z);
 		bool SplitCMYK(CxImage* c, CxImage* m, CxImage* y, CxImage* k);
-		static RGBQuad HSLtoRGB(COLORREF cHSLColor);
+		static RGBQuad HSLtoRGB(ColorRef cHSLColor);
 		static RGBQuad RGBtoHSL(RGBQuad lRGBColor);
 		static RGBQuad HSLtoRGB(RGBQuad lHSLColor);
 		static RGBQuad YUVtoRGB(RGBQuad lYUVColor);
@@ -714,14 +665,14 @@ namespace CppImage
 		static RGBQuad RGBtoYIQ(RGBQuad lRGBColor);
 		static RGBQuad XYZtoRGB(RGBQuad lXYZColor);
 		static RGBQuad RGBtoXYZ(RGBQuad lRGBColor);
-	#endif //CXIMAGE_SUPPORT_DSP
-		static RGBQuad RGBtoRGBQUAD(COLORREF cr);
-		static COLORREF RGBQUADtoRGB(RGBQuad c);
-	//@}
+#endif //CXIMAGE_SUPPORT_DSP
+		static RGBQuad RGBtoRGBQUAD(ColorRef cr);
+		static ColorRef RGBQUADtoRGB(RGBQuad c);
+		//@}
 
-	/** \addtogroup Selection */ //@{
+		/** \addtogroup Selection */ //@{
 		bool SelectionIsValid();
-	#if CXIMAGE_SUPPORT_SELECTION
+#if CXIMAGE_SUPPORT_SELECTION
 		bool SelectionClear(uint8_t level = 0);
 		bool SelectionCreate();
 		bool SelectionDelete();
@@ -742,20 +693,20 @@ namespace CppImage
 		bool SelectionSet(CxImage& from);
 		void SelectionRebuildBox();
 		uint8_t* SelectionGetPointer(const int32_t x = 0, const int32_t y = 0);
-	//@}
+		//@}
 
 	protected:
-	/** \addtogroup Protected */ //@{
+		/** \addtogroup Protected */ //@{
 		bool BlindSelectionIsInside(int32_t x, int32_t y);
 		uint8_t BlindSelectionGet(const int32_t x, const int32_t y);
 		void SelectionSet(const int32_t x, const int32_t y, const uint8_t level);
-	//@}
+		//@}
 
 	public:
-	#endif //CXIMAGE_SUPPORT_SELECTION
+#endif //CXIMAGE_SUPPORT_SELECTION
 
-	#if CXIMAGE_SUPPORT_ALPHA
-	/** \addtogroup Alpha */ //@{
+#if CXIMAGE_SUPPORT_ALPHA
+		/** \addtogroup Alpha */ //@{
 		void	AlphaClear();
 		bool	AlphaCreate();
 		void	AlphaDelete();
@@ -780,32 +731,32 @@ namespace CppImage
 		bool	AlphaPaletteIsEnabled();
 		bool	AlphaPaletteIsValid();
 		bool	AlphaPaletteSplit(CxImage* dest);
-	//@}
+		//@}
 
 	protected:
-	/** \addtogroup Protected */ //@{
+		/** \addtogroup Protected */ //@{
 		uint8_t BlindAlphaGet(const int32_t x, const int32_t y);
-	//@}
-	#endif //CXIMAGE_SUPPORT_ALPHA
+		//@}
+#endif //CXIMAGE_SUPPORT_ALPHA
 
 	public:
-	#if CXIMAGE_SUPPORT_LAYERS
-	/** \addtogroup Layers */ //@{
+#if CXIMAGE_SUPPORT_LAYERS
+		/** \addtogroup Layers */ //@{
 		bool		LayerCreate(int32_t position = -1);
 		bool		LayerDelete(int32_t position = -1);
 		void		LayerDeleteAll();
 		CxImage*	GetLayer(int32_t position);
 		CxImage*	GetParent() const;
 		int32_t		GetNumLayers() const;
-	#ifdef WIN32 //@HACK
+#	ifdef WIN32 //@HACK
 		int32_t		LayerDrawAll(HDC hdc, int32_t x = 0, int32_t y = 0, int32_t cx = -1, int32_t cy = -1, Rect* pClipRect = 0, bool bSmooth = false);
 		int32_t		LayerDrawAll(HDC hdc, const Rect& rect, Rect* pClipRect = NULL, bool bSmooth = false);
-	#endif
-	//@}
-	#endif //CXIMAGE_SUPPORT_LAYERS
+#	endif
+		//@}
+#endif //CXIMAGE_SUPPORT_LAYERS
 
 	protected:
-	/** \addtogroup Protected */ //@{
+		/** \addtogroup Protected */ //@{
 		void	Startup(uint32_t imagetype = 0);
 		void	CopyInfo(const CxImage& src);
 		void	Ghost(const CxImage* src);
@@ -819,13 +770,11 @@ namespace CppImage
 
 		void*				pDib; 		//contains the header, the palette, the pixels
 		BitmapInfoHeader    head; 		//standard header
-		CXIMAGEINFO			info; 		//extended information
+		tagCxImageInfo		info; 		//extended information
 		uint8_t*			pSelection;	//selected region
 		uint8_t*			pAlpha;		//alpha channel
 		CxImage**			ppLayers; 	//generic layers
 		CxImage**			ppFrames;
-	//@}
+		//@}
 	};
-
-	//#endif
 }

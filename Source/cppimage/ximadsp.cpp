@@ -463,7 +463,7 @@ namespace CppImage
 		return rValue;
 	}
 	////////////////////////////////////////////////////////////////////////////////
-	RGBQuad CxImage::HSLtoRGB(COLORREF cHSLColor)
+	RGBQuad CxImage::HSLtoRGB(ColorRef cHSLColor)
 	{
 		return HSLtoRGB(RGBtoRGBQUAD(cHSLColor));
 	}

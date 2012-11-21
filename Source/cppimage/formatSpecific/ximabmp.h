@@ -32,23 +32,25 @@ const int32_t RLE_DELTA       = 2;
 #endif
 
 #if CXIMAGE_SUPPORT_BMP
-
-class CxImageBMP: public CxImage
+namespace CppImage
 {
-public:
-	CxImageBMP(): CxImage(CXIMAGE_FORMAT_BMP) {};
+	class CxImageBMP: public CxImage
+	{
+	public:
+		CxImageBMP(): CxImage(CXIMAGE_FORMAT_BMP) {};
 
-	bool Decode(CxFile * hFile);
-	bool Decode(FILE *hFile) { CxIOFile file(hFile); return Decode(&file); }
+		bool Decode(CxFile * hFile);
+		bool Decode(FILE *hFile) { CxIOFile file(hFile); return Decode(&file); }
 
-#if CXIMAGE_SUPPORT_ENCODE
-	bool Encode(CxFile * hFile);
-	bool Encode(FILE *hFile) { CxIOFile file(hFile); return Encode(&file); }
-#endif // CXIMAGE_SUPPORT_ENCODE
+	#if CXIMAGE_SUPPORT_ENCODE
+		bool Encode(CxFile * hFile);
+		bool Encode(FILE *hFile) { CxIOFile file(hFile); return Encode(&file); }
+	#endif // CXIMAGE_SUPPORT_ENCODE
 
-protected:
-	bool DibReadBitmapInfo(CxFile* fh, BitmapInfoHeader *pdib);
-};
+	protected:
+		bool DibReadBitmapInfo(CxFile* fh, BitmapInfoHeader *pdib);
+	};
+}
 
 #define BFT_ICON   0x4349   /* 'IC' */
 #define BFT_BITMAP 0x4d42   /* 'BM' */

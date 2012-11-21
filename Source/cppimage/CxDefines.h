@@ -178,7 +178,7 @@ namespace CppImage
 #	define MACRO_GetGValue(rgb)      ((uint8_t)(((uint16_t)(rgb)) >> 8))
 #	define MACRO_GetBValue(rgb)      ((uint8_t)((rgb) >> 16))
 	
-#	define MACRO_RGB(r,g,b)          ((COLORREF)(((uint8_t)(r) | ((uint16_t)((uint8_t)(g)) << 8)) | (((uint32_t)(uint8_t)(b)) << 16)))
+#	define MACRO_RGB(r,g,b)          ((ColorRef)(((uint8_t)(r) | ((uint16_t)((uint8_t)(g)) << 8)) | (((uint32_t)(uint8_t)(b)) << 16)))
 	
 //#	define RGB2GRAY(r,g,b) (((b)*114 + (g)*587 + (r)*299)/1000)
 #	define MACRO_RGB2GRAY(r,g,b) (((b)*117 + (g)*601 + (r)*306) >> 10)
@@ -186,16 +186,16 @@ namespace CppImage
 
 #if 1
 	//////////////////////////////////////////////////////////////////////////
-	class COLORREF
+	class ColorRef
 	{
 	public:
-		inline COLORREF(uint8_t r, uint8_t g, uint8_t b)
+		inline ColorRef(uint8_t r, uint8_t g, uint8_t b)
 		: mValue(static_cast<uint32_t>(r) << 0 |
 				 static_cast<uint32_t>(g) << 8 |
 				 static_cast<uint32_t>(b) << 16)
 		{}
 		
-		inline COLORREF(uint32_t rgb) : mValue(rgb) {}
+		inline ColorRef(uint32_t rgb) : mValue(rgb) {}
 		
 		inline uint8_t GetRValue() const { return static_cast<uint8_t>(mValue); }
 		inline uint8_t GetGValue() const { return static_cast<uint8_t>(mValue >> 8); }
@@ -204,7 +204,7 @@ namespace CppImage
 		/*inline operator uint8_t() { return static_cast<uint8_t>(mValue); }
 		inline operator uint16_t() { return static_cast<uint16_t>(mValue); }
 		inline operator uint32_t() { return mValue; }*/
-		inline bool operator==(const COLORREF& color) { return color.mValue == mValue; }
+		inline bool operator==(const ColorRef& color) { return color.mValue == mValue; }
 		inline bool operator==(uint32_t inColor) { return inColor == mValue; }
 		
 		inline uint32_t operator >>(int inShift) const { return mValue >> inShift; }
@@ -212,25 +212,23 @@ namespace CppImage
 	private:
 		uint32_t mValue;
 	};
-			
-	
 	
 	// For compatibility..
-	static inline COLORREF RGB(uint8_t r, uint8_t g, uint8_t b) { return COLORREF(r, g, b); }
-	static inline uint8_t GetRValue(COLORREF rgb) { return rgb.GetRValue(); }
-	static inline uint8_t GetGValue(COLORREF rgb) { return rgb.GetGValue(); }
-	static inline uint8_t GetBValue(COLORREF rgb) { return rgb.GetBValue(); }
+	static inline ColorRef RGB(uint8_t r, uint8_t g, uint8_t b) { return ColorRef(r, g, b); }
+	static inline uint8_t GetRValue(ColorRef rgb) { return rgb.GetRValue(); }
+	static inline uint8_t GetGValue(ColorRef rgb) { return rgb.GetGValue(); }
+	static inline uint8_t GetBValue(ColorRef rgb) { return rgb.GetBValue(); }
 	
 #else
-	typedef uint32_t COLORREF;
+	typedef uint32_t ColorRef;
 	
-	static inline uint8_t GetRValue(COLORREF rgb) { return static_cast<uint8_t>(rgb); }
-	static inline uint8_t GetGValue(COLORREF rgb) { return static_cast<uint16_t>(rgb) >> 8; }
-	static inline uint8_t GetBValue(COLORREF rgb) { return static_cast<uint8_t>(rgb >> 16); }
+	static inline uint8_t GetRValue(ColorRef rgb) { return static_cast<uint8_t>(rgb); }
+	static inline uint8_t GetGValue(ColorRef rgb) { return static_cast<uint16_t>(rgb) >> 8; }
+	static inline uint8_t GetBValue(ColorRef rgb) { return static_cast<uint8_t>(rgb >> 16); }
 
-	static inline COLORREF RGB(uint8_t r, uint8_t g, uint8_t b)
+	static inline ColorRef RGB(uint8_t r, uint8_t g, uint8_t b)
 	{
-		return static_cast<COLORREF>(static_cast<uint32_t>(r) << 0 |
+		return static_cast<ColorRef>(static_cast<uint32_t>(r) << 0 |
 									 static_cast<uint32_t>(g) << 8 |
 									 static_cast<uint32_t>(b) << 16);
 	}
@@ -271,5 +269,5 @@ namespace CppImage
 #endif
 }
 
-using namespace CppImage;
+//using namespace CppImage;
 

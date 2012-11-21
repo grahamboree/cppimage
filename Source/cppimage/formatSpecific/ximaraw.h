@@ -13,8 +13,7 @@
  * Copyright 1997-2007 by Dave Coffin, dcoffin a cybercom o net
  * ==========================================================
  */
-#if !defined(__ximaRAW_h)
-#define __ximaRAW_h
+#pragma once
 
 #include "CxImage.h"
 
@@ -22,92 +21,119 @@
 
 extern "C"
 {
-#include "../../raw/libdcr.h"
+#	include "../../raw/libdcr.h"
 }
 
-class CxImageRAW: public CxImage
+namespace CppImage
 {
-
-public:
-	CxImageRAW(): CxImage(CXIMAGE_FORMAT_RAW) {}
-
-//	bool Load(const char * imageFileName){ return CxImage::Load(imageFileName,CXIMAGE_FORMAT_ICO);}
-//	bool Save(const char * imageFileName){ return CxImage::Save(imageFileName,CXIMAGE_FORMAT_ICO);}
-	bool Decode(CxFile * hFile);
-	bool Decode(FILE *hFile) { CxIOFile file(hFile); return Decode(&file); }
-
-#if CXIMAGE_SUPPORT_EXIF
-	bool GetExifThumbnail(const TCHAR *filename, const TCHAR *outname, int32_t type);
-#endif //CXIMAGE_SUPPORT_EXIF
-
-#if CXIMAGE_SUPPORT_ENCODE
-	bool Encode(CxFile * hFile);
-	bool Encode(FILE *hFile) { CxIOFile file(hFile); return Encode(&file); }
-#endif // CXIMAGE_SUPPORT_ENCODE
-
-	enum CODEC_OPTION
-	{
-		DECODE_QUALITY_LIN = 0x00,
-		DECODE_QUALITY_VNG = 0x01,
-		DECODE_QUALITY_PPG = 0x02,
-		DECODE_QUALITY_AHD = 0x03,
-	}; 
-
-protected:
-
-	class CxFileRaw
+	class CxImageRAW: public CxImage
 	{
 	public:
-		CxFileRaw(CxFile* pFile,DCRAW *stream)
+		CxImageRAW(): CxImage(CXIMAGE_FORMAT_RAW) {}
+
+	//	bool Load(const char * imageFileName){ return CxImage::Load(imageFileName,CXIMAGE_FORMAT_ICO);}
+	//	bool Save(const char * imageFileName){ return CxImage::Save(imageFileName,CXIMAGE_FORMAT_ICO);}
+		bool Decode(CxFile * hFile);
+		bool Decode(FILE *hFile) { CxIOFile file(hFile); return Decode(&file); }
+
+#	if CXIMAGE_SUPPORT_EXIF
+		bool GetExifThumbnail(const TCHAR *filename, const TCHAR *outname, int32_t type);
+#	endif //CXIMAGE_SUPPORT_EXIF
+
+#	if CXIMAGE_SUPPORT_ENCODE
+		bool Encode(CxFile* hFile);
+		bool Encode(FILE* hFile);
+#	endif // CXIMAGE_SUPPORT_ENCODE
+
+		enum CODEC_OPTION
 		{
-			stream->obj_ = pFile;
+			DECODE_QUALITY_LIN = 0x00,
+			DECODE_QUALITY_VNG = 0x01,
+			DECODE_QUALITY_PPG = 0x02,
+			DECODE_QUALITY_AHD = 0x03
+		}; 
 
-			ras_stream_CxFile.read_ = raw_sfile_read;
-			ras_stream_CxFile.write_ = raw_sfile_write;
-			ras_stream_CxFile.seek_ = raw_sfile_seek;
-			ras_stream_CxFile.close_ = raw_sfile_close;
-			ras_stream_CxFile.gets_ = raw_sfile_gets;
-			ras_stream_CxFile.eof_ = raw_sfile_eof;
-			ras_stream_CxFile.tell_ = raw_sfile_tell;
-			ras_stream_CxFile.getc_ = raw_sfile_getc;
-			ras_stream_CxFile.scanf_ = raw_sfile_scanf;
+	protected:
+		class CxFileRaw
+		{
+		public:
+			inline CxFileRaw(CxFile* pFile, DCRAW* stream)
+			{
+				stream->obj_ = pFile;
 
-			stream->ops_ = &ras_stream_CxFile;
+				ras_stream_CxFile.read_		= raw_sfile_read;
+				ras_stream_CxFile.write_	= raw_sfile_write;
+				ras_stream_CxFile.seek_		= raw_sfile_seek;
+				ras_stream_CxFile.close_	= raw_sfile_close;
+				ras_stream_CxFile.gets_		= raw_sfile_gets;
+				ras_stream_CxFile.eof_		= raw_sfile_eof;
+				ras_stream_CxFile.tell_		= raw_sfile_tell;
+				ras_stream_CxFile.getc_		= raw_sfile_getc;
+				ras_stream_CxFile.scanf_	= raw_sfile_scanf;
 
-		}
+				stream->ops_ = &ras_stream_CxFile;
 
-		static int32_t raw_sfile_read(dcr_stream_obj *obj, void *buf, int32_t size, int32_t cnt)
-		{	return ((CxFile*)obj)->Read(buf,size,cnt); }
+			}
 
-		static int32_t raw_sfile_write(dcr_stream_obj *obj, void *buf, int32_t size, int32_t cnt)
-		{	return ((CxFile*)obj)->Write(buf,size,cnt); }
+			static inline int32_t raw_sfile_read(dcr_stream_obj *obj, void *buf, int32_t size, int32_t cnt)
+			{
+				return ((CxFile*)obj)->Read(buf,size,cnt);
+			}
 
-		static long raw_sfile_seek(dcr_stream_obj *obj, long offset, int32_t origin)
-		{	return ((CxFile*)obj)->Seek(offset,origin); }
+			static inline int32_t raw_sfile_write(dcr_stream_obj* obj, void* buf, int32_t size, int32_t cnt)
+			{
+				return (static_cast<CxFile*>(obj))->Write(buf, size, cnt);
+			}
 
-		static int32_t raw_sfile_close(dcr_stream_obj *obj)
-		{	return 1; /*((CxFile*)obj)->Close();*/ }
+			static inline long raw_sfile_seek(dcr_stream_obj *obj, long offset, int32_t origin)
+			{
+				return ((CxFile*)obj)->Seek(offset,origin);
+			}
 
-		static char* raw_sfile_gets(dcr_stream_obj *obj, char *string, int32_t n)
-		{	return ((CxFile*)obj)->GetS(string,n); }
+			static inline int32_t raw_sfile_close(dcr_stream_obj *obj)
+			{
+				return 1; /*((CxFile*)obj)->Close();*/
+			}
 
-		static int32_t   raw_sfile_eof(dcr_stream_obj *obj)
-		{	return ((CxFile*)obj)->Eof(); }
+			static inline char* raw_sfile_gets(dcr_stream_obj *obj, char *string, int32_t n)
+			{
+				return ((CxFile*)obj)->GetS(string,n);
+			}
 
-		static long  raw_sfile_tell(dcr_stream_obj *obj)
-		{	return ((CxFile*)obj)->Tell(); }
+			static inline int32_t raw_sfile_eof(dcr_stream_obj *obj)
+			{
+				return ((CxFile*)obj)->Eof();
+			}
 
-		static int32_t   raw_sfile_getc(dcr_stream_obj *obj)
-		{	return ((CxFile*)obj)->GetC(); }
+			static inline long raw_sfile_tell(dcr_stream_obj *obj)
+			{
+				return ((CxFile*)obj)->Tell();
+			}
 
-		static int32_t   raw_sfile_scanf(dcr_stream_obj *obj,const char *format, void* output)
-		{	return ((CxFile*)obj)->Scanf(format, output); }
+			static inline int32_t raw_sfile_getc(dcr_stream_obj *obj)
+			{
+				return ((CxFile*)obj)->GetC();
+			}
 
-	private:
-		dcr_stream_ops ras_stream_CxFile;
+			static inline int32_t raw_sfile_scanf(dcr_stream_obj *obj, const char* format, void* output)
+			{
+				return ((CxFile*)obj)->Scanf(format, output);
+			}
+
+		private:
+			dcr_stream_ops ras_stream_CxFile;
+		};
 	};
-};
+}
+
+namespace CppImage
+{
+	inline bool CxImageRAW::Encode(FILE* hFile)
+	{
+		CxIOFile file(hFile);
+		return Encode(&file);
+	}
+}
 
 #endif
 
-#endif

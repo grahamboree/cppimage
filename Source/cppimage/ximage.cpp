@@ -19,7 +19,7 @@ namespace CppImage
 		ppLayers = ppFrames = NULL;
 		//init structures
 		memset(&head, 0, sizeof(BitmapInfoHeader));
-		memset(&info, 0, sizeof(CXIMAGEINFO));
+		memset(&info, 0, sizeof(tagCxImageInfo));
 		//init default attributes
 		info.dwType = imagetype;
 		info.fQuality = 90.0f;
@@ -134,7 +134,7 @@ namespace CppImage
 		}
 
 		//copy the attributes
-		memcpy(&info, &src.info, sizeof(CXIMAGEINFO));
+		memcpy(&info, &src.info, sizeof(tagCxImageInfo));
 		memcpy(&head, &src.head, sizeof(BitmapInfoHeader)); // [andy] - fix for bitmap header DPI
 		//rebuild the image
 		Create(src.GetWidth(), src.GetHeight(), src.GetBpp(), src.GetType());
@@ -172,7 +172,7 @@ namespace CppImage
 	{
 		if (pDib == NULL)
 		{
-			memcpy(&info, &src.info, sizeof(CXIMAGEINFO));
+			memcpy(&info, &src.info, sizeof(tagCxImageInfo));
 		}
 	}
 
@@ -374,7 +374,7 @@ namespace CppImage
 			return false;
 
 		memcpy(&head, &from.head, sizeof(BitmapInfoHeader));
-		memcpy(&info, &from.info, sizeof(CXIMAGEINFO));
+		memcpy(&info, &from.info, sizeof(tagCxImageInfo));
 
 		pDib 		= from.pDib;
 		pSelection 	= from.pSelection;
@@ -382,7 +382,7 @@ namespace CppImage
 		ppLayers 	= from.ppLayers;
 
 		memset(&from.head, 0, sizeof(BitmapInfoHeader));
-		memset(&from.info, 0, sizeof(CXIMAGEINFO));
+		memset(&from.info, 0, sizeof(tagCxImageInfo));
 		from.pDib = from.pSelection = from.pAlpha = NULL;
 		from.ppLayers = NULL;
 
@@ -406,7 +406,7 @@ namespace CppImage
 		if (from)
 		{
 			memcpy(&head, &from->head, sizeof(BitmapInfoHeader));
-			memcpy(&info, &from->info, sizeof(CXIMAGEINFO));
+			memcpy(&info, &from->info, sizeof(tagCxImageInfo));
 			pDib 		= from->pDib;
 			pSelection 	= from->pSelection;
 			pAlpha 		= from->pAlpha;

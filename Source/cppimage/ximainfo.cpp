@@ -805,7 +805,7 @@ namespace CppImage
 	uint32_t CxImage::DumpSize()
 	{
 		uint32_t n;
-		n = sizeof(BitmapInfoHeader) + sizeof(CXIMAGEINFO) + GetSize();
+		n = sizeof(BitmapInfoHeader) + sizeof(tagCxImageInfo) + GetSize();
 
 	#if CXIMAGE_SUPPORT_ALPHA
 		if (pAlpha){
@@ -847,8 +847,8 @@ namespace CppImage
 		memcpy(dst,&head,sizeof(BitmapInfoHeader));
 		dst += sizeof(BitmapInfoHeader);
 
-		memcpy(dst,&info,sizeof(CXIMAGEINFO));
-		dst += sizeof(CXIMAGEINFO);
+		memcpy(dst,&info,sizeof(tagCxImageInfo));
+		dst += sizeof(tagCxImageInfo);
 
 		memcpy(dst,pDib,GetSize());
 		dst += GetSize();
@@ -914,8 +914,8 @@ namespace CppImage
 		memcpy(&head,src,sizeof(BitmapInfoHeader));
 		n += sizeof(BitmapInfoHeader);
 
-		memcpy(&info,&src[n],sizeof(CXIMAGEINFO));
-		n += sizeof(CXIMAGEINFO);
+		memcpy(&info,&src[n],sizeof(tagCxImageInfo));
+		n += sizeof(tagCxImageInfo);
 
 		if (!Create(head.biWidth, head.biHeight, head.biBitCount, info.dwType))
 			return 0;

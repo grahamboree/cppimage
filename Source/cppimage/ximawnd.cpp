@@ -564,7 +564,7 @@ namespace CppImage
 			bi.bmiHeader.biClrUsed = 0;
 			bi.bmiHeader.biClrImportant = 0;
 
-			COLORREF* pCrBits = NULL;
+			ColorRef* pCrBits = NULL;
 			HBITMAP hbmp = CreateDIBSection (
 				hMemDC, &bi, DIB_RGB_COLORS, (void **)&pCrBits,
 				NULL, NULL);
@@ -1500,8 +1500,8 @@ namespace CppImage
 				RGBQuad rgbBG;
 				if (head.biBitCount<24) rgbBG = GetPaletteColor((uint8_t)info.nBkgndIndex);
 				else rgbBG = info.nBkgndColor;
-				COLORREF crColour = RGB(rgbBG.rgbRed, rgbBG.rgbGreen, rgbBG.rgbBlue);
-				COLORREF crOldBack = SetBkColor(dcImage,crColour);
+				ColorRef crColour = RGB(rgbBG.rgbRed, rgbBG.rgbGreen, rgbBG.rgbBlue);
+				ColorRef crOldBack = SetBkColor(dcImage,crColour);
 				BitBlt(dcTrans,0, 0, nWidth, nHeight, dcImage, 0, 0, SRCCOPY);
 
 				// Do the work - True Mask method - cool if not actual display
@@ -1661,7 +1661,7 @@ namespace CppImage
 	}
 	////////////////////////////////////////////////////////////////////////////////
 	// <VATI>
-	int32_t CxImage::DrawStringEx(HDC hdc, int32_t x, int32_t y, CXTEXTINFO *pTextType, bool bSetAlpha )
+	int32_t CxImage::DrawStringEx(HDC hdc, int32_t x, int32_t y, tagCxTextInfo *pTextType, bool bSetAlpha )
 	{
 		if (!IsValid())
 			return -1;
@@ -1840,10 +1840,10 @@ namespace CppImage
 	}
 
 	//////////////////////////////////////////////////////////////////////////////
-	void CxImage::InitTextInfo( CXTEXTINFO *txt )
+	void CxImage::InitTextInfo( tagCxTextInfo *txt )
 	{
 
-		memset( txt, 0, sizeof(CXTEXTINFO));
+		memset( txt, 0, sizeof(tagCxTextInfo));
 		
 		// LOGFONT defaults
 		txt->lfont.lfHeight        = -36; 

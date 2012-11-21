@@ -13,14 +13,14 @@
 namespace CppImage
 {
 	////////////////////////////////////////////////////////////////////////////////
-	CxImageJPG::CxExifInfo::CxExifInfo(EXIFINFO* info)
+	CxImageJPG::CxExifInfo::CxExifInfo(ExifInfo* info)
 	{
 		if (info) {
 			m_exifinfo = info;
 			freeinfo = false;
 		} else {
-			m_exifinfo = new EXIFINFO;
-			memset(m_exifinfo,0,sizeof(EXIFINFO));
+			m_exifinfo = new ExifInfo;
+			memset(m_exifinfo,0,sizeof(ExifInfo));
 			freeinfo = true;
 		}
 
@@ -386,8 +386,8 @@ namespace CppImage
 	/*--------------------------------------------------------------------------
 	   Process one of the nested EXIF directories.
 	--------------------------------------------------------------------------*/
-	bool CxImageJPG::CxExifInfo::ProcessExifDir(uint8_t * DirStart, uint8_t * OffsetBase, unsigned ExifLength,
-							   EXIFINFO * const m_exifinfo, uint8_t ** const LastExifRefdP, int32_t NestingLevel)
+	bool CxImageJPG::CxExifInfo::ProcessExifDir(uint8_t* DirStart, uint8_t* OffsetBase, unsigned ExifLength,
+							   ExifInfo* const m_exifinfo, uint8_t** const LastExifRefdP, int32_t NestingLevel)
 	{
 		int32_t de;
 		int32_t a;

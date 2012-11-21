@@ -46,7 +46,7 @@ namespace CppImage
 		}
 	}
 	////////////////////////////////////////////////////////////////////////////////
-	void CxImage::SetPaletteColor(uint8_t idx, COLORREF cr)
+	void CxImage::SetPaletteColor(uint8_t idx, ColorRef cr)
 	{
 		if ((pDib)&&(head.biClrUsed)){
 			uint8_t* iDst = (uint8_t*)(pDib) + sizeof(BitmapInfoHeader);
@@ -277,7 +277,7 @@ namespace CppImage
 		}
 	}
 	////////////////////////////////////////////////////////////////////////////////
-	void CxImage::SetPixelColor(int32_t x,int32_t y,COLORREF cr)
+	void CxImage::SetPixelColor(int32_t x,int32_t y,ColorRef cr)
 	{
 		SetPixelColor(x,y,RGBtoRGBQUAD(cr));
 	}
@@ -408,7 +408,7 @@ namespace CppImage
 		}
 	}
 	////////////////////////////////////////////////////////////////////////////////
-	RGBQuad CxImage::RGBtoRGBQUAD(COLORREF cr)
+	RGBQuad CxImage::RGBtoRGBQUAD(ColorRef cr)
 	{
 		RGBQuad c;
 		c.rgbRed = GetRValue(cr);	/* get R, G, and B out of uint32_t */
@@ -418,7 +418,7 @@ namespace CppImage
 		return c;
 	}
 	////////////////////////////////////////////////////////////////////////////////
-	COLORREF CxImage::RGBQUADtoRGB (RGBQuad c)
+	ColorRef CxImage::RGBQUADtoRGB (RGBQuad c)
 	{
 		return RGB(c.rgbRed,c.rgbGreen,c.rgbBlue);
 	}
@@ -492,7 +492,7 @@ namespace CppImage
 	 * Colorize the palette.
 	 * \sa Colorize
 	 */
-	void CxImage::BlendPalette(COLORREF cr,int32_t perc)
+	void CxImage::BlendPalette(ColorRef cr,int32_t perc)
 	{
 		if ((pDib==NULL)||(head.biClrUsed==0)) return;
 		uint8_t* iDst = (uint8_t*)(pDib) + sizeof(BitmapInfoHeader);
@@ -693,7 +693,7 @@ namespace CppImage
 		return 0;
 	}
 	////////////////////////////////////////////////////////////////////////////////
-	void CxImage::DrawLine(int32_t StartX, int32_t EndX, int32_t StartY, int32_t EndY, COLORREF cr)
+	void CxImage::DrawLine(int32_t StartX, int32_t EndX, int32_t StartY, int32_t EndY, ColorRef cr)
 	{
 		DrawLine(StartX, EndX, StartY, EndY, RGBtoRGBQUAD(cr));
 	}

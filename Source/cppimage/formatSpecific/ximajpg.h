@@ -104,9 +104,9 @@ namespace CppImage
 	} Section_t;
 
 	public:
-		EXIFINFO* m_exifinfo;
+		ExifInfo* m_exifinfo;
 		char m_szLastError[256];
-		CxExifInfo(EXIFINFO* info = NULL);
+		CxExifInfo(ExifInfo* info = NULL);
 		~CxExifInfo();
 		bool DecodeExif(CxFile * hFile, int32_t nReadMode = EXIF_READ_EXIF);
 		bool EncodeExif(CxFile * hFile);
@@ -122,7 +122,7 @@ namespace CppImage
 		double ConvertAnyFormat(void * ValuePtr, int32_t Format);
 		void* FindSection(int32_t SectionType);
 		bool ProcessExifDir(uint8_t * DirStart, uint8_t * OffsetBase, unsigned ExifLength,
-							   EXIFINFO * const pInfo, uint8_t ** const LastExifRefdP, int32_t NestingLevel=0);
+							   ExifInfo * const pInfo, uint8_t ** const LastExifRefdP, int32_t NestingLevel=0);
 		int32_t ExifImageWidth;
 		int32_t MotorolaOrder;
 		Section_t Sections[MAX_SECTIONS];
