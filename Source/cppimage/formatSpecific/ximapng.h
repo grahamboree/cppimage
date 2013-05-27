@@ -39,7 +39,7 @@ namespace CppImage
 	class CxImagePNG: public CxImage
 	{
 	public:
-		CxImagePNG(): CxImage(CXIMAGE_FORMAT_PNG) {}
+		inline CxImagePNG(): CxImage(CXIMAGE_FORMAT_PNG) {}
 
 	//	bool Load(const TCHAR * imageFileName){ return CxImage::Load(imageFileName,CXIMAGE_FORMAT_PNG);}
 	//	bool Save(const TCHAR * imageFileName){ return CxImage::Save(imageFileName,CXIMAGE_FORMAT_PNG);}

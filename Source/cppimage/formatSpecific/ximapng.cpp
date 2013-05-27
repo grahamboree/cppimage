@@ -10,7 +10,7 @@
 
 #if CXIMAGE_SUPPORT_PNG
 
-#include "CImageIterator.h"
+#	include "CImageIterator.h"
 namespace CppImage
 {
 	////////////////////////////////////////////////////////////////////////////////
@@ -20,7 +20,7 @@ namespace CppImage
 		longjmp(png_ptr->png_jmpbuf, 1);
 	}
 	////////////////////////////////////////////////////////////////////////////////
-	#if CXIMAGE_SUPPORT_DECODE
+#	if CXIMAGE_SUPPORT_DECODE
 	////////////////////////////////////////////////////////////////////////////////
 	void CxImagePNG::expand2to4bpp(uint8_t* prow)
 	{
@@ -178,11 +178,11 @@ namespace CppImage
 
 		int32_t alpha_present = (channels - 1) % 2;
 		if (alpha_present){
-	#if CXIMAGE_SUPPORT_ALPHA	// <vho>
+#		if CXIMAGE_SUPPORT_ALPHA	// <vho>
 			AlphaCreate();
-	#else
+#		else
 			png_set_strip_alpha(png_ptr);
-	#endif //CXIMAGE_SUPPORT_ALPHA
+#		endif //CXIMAGE_SUPPORT_ALPHA
 		}
 
 		// <vho> - flip the RGB pixels to BGR (or RGBA to BGRA)
@@ -216,7 +216,7 @@ namespace CppImage
 				// <vho> - handle cancel
 				if (info.nEscape) longjmp(png_ptr->png_jmpbuf, 1);
 
-	#if CXIMAGE_SUPPORT_ALPHA	// <vho>
+#		if CXIMAGE_SUPPORT_ALPHA	// <vho>
 				if (AlphaIsValid()) {
 
 					//compute the correct position of the line
@@ -259,7 +259,7 @@ namespace CppImage
 						}
 					}
 				} else
-	#endif // CXIMAGE_SUPPORT_ALPHA		// vho
+#		endif // CXIMAGE_SUPPORT_ALPHA		// vho
 				{
 					//recover data from previous scan
 					if (info_ptr->interlace_type && pass>0){
@@ -311,10 +311,9 @@ namespace CppImage
 		/* that's it */
 		return true;
 	}
-	////////////////////////////////////////////////////////////////////////////////
-	#endif //CXIMAGE_SUPPORT_DECODE
-	////////////////////////////////////////////////////////////////////////////////
-	#if CXIMAGE_SUPPORT_ENCODE
+#	endif //CXIMAGE_SUPPORT_DECODE
+	
+#	if CXIMAGE_SUPPORT_ENCODE
 	////////////////////////////////////////////////////////////////////////////////
 	bool CxImagePNG::Encode(CxFile *hFile)
 	{
@@ -396,23 +395,29 @@ namespace CppImage
 
 		bool bGrayScale = IsGrayScale();
 
-		if (GetNumColors()){
-			if (bGrayScale){
+		if (GetNumColors())
+		{
+			if (bGrayScale)
+			{
 				info_ptr->color_type = PNG_COLOR_TYPE_GRAY;
-			} else {
+			}
+			else
+			{
 				info_ptr->color_type = PNG_COLOR_TYPE_PALETTE;
 			}
-		} else {
+		}
+		else
+		{
 			info_ptr->color_type = PNG_COLOR_TYPE_RGB;
 		}
-	#if CXIMAGE_SUPPORT_ALPHA
+#		if CXIMAGE_SUPPORT_ALPHA
 		if (AlphaIsValid()){
 			info_ptr->color_type |= PNG_COLOR_MASK_ALPHA;
 			info_ptr->channels++;
 			info_ptr->bit_depth = 8;
 			info_ptr->pixel_depth += 8;
 		}
-	#endif
+#		endif
 
 		/* set background */
 		png_color_16 image_background={ 0, 255, 255, 255, 0 };
@@ -471,16 +476,21 @@ namespace CppImage
 				GetPaletteColor(i, &info_ptr->palette[i].red, &info_ptr->palette[i].green, &info_ptr->palette[i].blue);
 		}  
 
-	#if CXIMAGE_SUPPORT_ALPHA	// <vho>
+#	if CXIMAGE_SUPPORT_ALPHA	// <vho>
 		//Merge the transparent color with the alpha channel
-		if (AlphaIsValid() && head.biBitCount==24 && info.nBkgndIndex>=0){
-			for(int32_t y=0; y < head.biHeight; y++){
-				for(int32_t x=0; x < head.biWidth ; x++){
+		if (AlphaIsValid() && head.biBitCount == 24 && info.nBkgndIndex >= 0)
+		{
+			for(int32_t y=0; y < head.biHeight; y++)
+			{
+				for(int32_t x=0; x < head.biWidth ; x++)
+				{
 					RGBQuad c=GetPixelColor(x,y,false);
 					if (*(int32_t*)&c==*(int32_t*)&tc)
 						AlphaSet(x,y,0);
-		}	}	}
-	#endif // CXIMAGE_SUPPORT_ALPHA	// <vho>
+				}
+			}
+		}
+#	endif // CXIMAGE_SUPPORT_ALPHA	// <vho>
 
 		int32_t row_size = max(info.dwEffWidth, info_ptr->width*info_ptr->channels*(info_ptr->bit_depth/8));
 		info_ptr->rowbytes = row_size;
@@ -496,7 +506,7 @@ namespace CppImage
 			iter.Upset();
 			int32_t ay=head.biHeight-1;
 			do	{
-	#if CXIMAGE_SUPPORT_ALPHA	// <vho>
+#		if CXIMAGE_SUPPORT_ALPHA	// <vho>
 				RGBQuad c;
 				if (AlphaIsValid()){
 					for (int32_t ax=head.biWidth-1; ax>=0;ax--){
@@ -513,7 +523,7 @@ namespace CppImage
 					ay--;
 				}
 				else
-	#endif //CXIMAGE_SUPPORT_ALPHA	// <vho>
+#		endif //CXIMAGE_SUPPORT_ALPHA	// <vho>
 				{
 					iter.GetRow(row_pointers, row_size);
 					if (info_ptr->color_type == PNG_COLOR_TYPE_RGB) //HACK BY OP
@@ -550,7 +560,7 @@ namespace CppImage
 		return true;
 	}
 	////////////////////////////////////////////////////////////////////////////////
-	#endif // CXIMAGE_SUPPORT_ENCODE
+#	endif // CXIMAGE_SUPPORT_ENCODE
 }
 ////////////////////////////////////////////////////////////////////////////////
 #endif // CXIMAGE_SUPPORT_PNG

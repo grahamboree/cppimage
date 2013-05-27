@@ -24,15 +24,15 @@ extern	char* realloc();
 #	include "CxImage.h"
 #	include "CxFile.h"
 
-#ifndef UNICODE
-#	define DbgPrint		wvsprintf
-#	define DbgPrint2 	wsprintf
-#	define DbgMsgBox 	MessageBox
-#else
-#	define DbgPrint 	wvsprintfA
-#	define DbgPrint2 	wsprintfA
-#	define DbgMsgBox 	MessageBoxA
-#endif
+#	ifndef UNICODE
+#		define DbgPrint		wvsprintf
+#		define DbgPrint2 	wsprintf
+#		define DbgMsgBox 	MessageBox
+#	else
+#		define DbgPrint 	wvsprintfA
+#		define DbgPrint2 	wsprintfA
+#		define DbgMsgBox 	MessageBoxA
+#	endif
 
 namespace CppImage
 {
@@ -167,8 +167,8 @@ namespace CppImage
 	//////////////////////////////////////////////////////////////////////////
 	static void Win32WarningHandler(const char* module, const char* fmt, va_list ap)
 	{
-#ifdef _DEBUG
-#	if (!defined(_CONSOLE) && !defined(_WIN32_WCE) && defined(WIN32))
+#	ifdef _DEBUG
+#		if (!defined(_CONSOLE) && !defined(_WIN32_WCE) && defined(WIN32))
 		LPSTR szTitle;
 		LPSTR szTmp;
 		LPCSTR szTitleText = "%s Warning";
@@ -183,14 +183,14 @@ namespace CppImage
 		DbgMsgBox(GetFocus(), szTmp, szTitle, MB_OK | MB_ICONINFORMATION);
 		LocalFree(szTitle);
 		return;
-#	else
+#		else
 		if (module != NULL)
 			fprintf(stderr, "%s: ", module);
 		fprintf(stderr, "Warning, ");
 		vfprintf(stderr, fmt, ap);
 		fprintf(stderr, ".\n");
+#		endif
 #	endif
-#endif
 	}
 
 	//////////////////////////////////////////////////////////////////////////
@@ -199,8 +199,8 @@ namespace CppImage
 	//////////////////////////////////////////////////////////////////////////
 	static void Win32ErrorHandler(const char* module, const char* fmt, va_list ap)
 	{
-#ifdef _DEBUG
-#	if (!defined(_CONSOLE) && !defined(_WIN32_WCE) && defined(WIN32))
+#	ifdef _DEBUG
+#		if (!defined(_CONSOLE) && !defined(_WIN32_WCE) && defined(WIN32))
 		LPSTR szTitle;
 		LPSTR szTmp;
 		LPCSTR szTitleText = "%s Error";
@@ -215,13 +215,13 @@ namespace CppImage
 		DbgMsgBox(GetFocus(), szTmp, szTitle, MB_OK | MB_ICONEXCLAMATION);
 		LocalFree(szTitle);
 		return;
-#	else
+#		else
 		if (module != NULL)
 			fprintf(stderr, "%s: ", module);
 		vfprintf(stderr, fmt, ap);
 		fprintf(stderr, ".\n");
+#		endif
 #	endif
-#endif
 	}
 
 	//////////////////////////////////////////////////////////////////////////

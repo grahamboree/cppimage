@@ -9,10 +9,10 @@
 
 #if CXIMAGE_SUPPORT_BMP
 
-#include "CImageIterator.h"
+#	include "CImageIterator.h"
 
 ////////////////////////////////////////////////////////////////////////////////
-#if CXIMAGE_SUPPORT_ENCODE
+#	if CXIMAGE_SUPPORT_ENCODE
 namespace CppImage
 {
 	////////////////////////////////////////////////////////////////////////////////
@@ -33,7 +33,7 @@ namespace CppImage
 		hdr.bfSize = m_ntohl(hdr.bfSize); 
 		hdr.bfOffBits = m_ntohl(hdr.bfOffBits); 
 
-#if CXIMAGE_SUPPORT_ALPHA
+#		if CXIMAGE_SUPPORT_ALPHA
 		if (GetNumColors() == 0 && AlphaIsValid())
 		{
 			BitmapInfoHeader  infohdr;
@@ -66,7 +66,7 @@ namespace CppImage
 			}
 		}
 		else
-#endif //CXIMAGE_SUPPORT_ALPHA
+#		endif //CXIMAGE_SUPPORT_ALPHA
 		{
 			// Write the file header
 			hFile->Write(&hdr, min(14, (int)sizeof(BitmapFileHeader)), 1);
@@ -79,10 +79,9 @@ namespace CppImage
 		}
 		return true;
 	}
-	////////////////////////////////////////////////////////////////////////////////
-#endif //CXIMAGE_SUPPORT_ENCODE
-	////////////////////////////////////////////////////////////////////////////////
-#if CXIMAGE_SUPPORT_DECODE
+#	endif //CXIMAGE_SUPPORT_ENCODE
+	
+#	if CXIMAGE_SUPPORT_DECODE
 	////////////////////////////////////////////////////////////////////////////////
 	bool CxImageBMP::Decode(CxFile * hFile)
 	{
@@ -193,7 +192,7 @@ namespace CppImage
 					{
 						hFile->Read(buff32, imagesize, 1); // read in the pixels
 
-#if CXIMAGE_SUPPORT_ALPHA
+#		if CXIMAGE_SUPPORT_ALPHA
 						if (dwCompression == BI_RGB)
 						{
 							AlphaCreate();
@@ -217,7 +216,7 @@ namespace CppImage
 									AlphaInvert();
 							}
 						}
-#endif //CXIMAGE_SUPPORT_ALPHA
+#		endif //CXIMAGE_SUPPORT_ALPHA
 
 						Bitfield2RGB(buff32, bfmask[0], bfmask[1], bfmask[2], 32);
 						free(buff32);
@@ -524,6 +523,6 @@ namespace CppImage
 
 		return true;
 	}
-#endif //CXIMAGE_SUPPORT_DECODE
+#	endif //CXIMAGE_SUPPORT_DECODE
 }
 #endif 	// CXIMAGE_SUPPORT_BMP

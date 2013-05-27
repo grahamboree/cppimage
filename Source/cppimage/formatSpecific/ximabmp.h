@@ -14,8 +14,7 @@
  * ==========================================================
  */
 
-#if !defined(__ximaBMP_h)
-#define __ximaBMP_h
+#pragma once
 
 #include "CxImage.h"
 
@@ -25,10 +24,10 @@ const int32_t RLE_ENDOFBITMAP = 1;
 const int32_t RLE_DELTA       = 2;
 
 #if !defined(BI_RLE8)
- #define BI_RLE8  1L
+#	define BI_RLE8  1L
 #endif
 #if !defined(BI_RLE4)
- #define BI_RLE4  2L
+#	define BI_RLE4  2L
 #endif
 
 #if CXIMAGE_SUPPORT_BMP
@@ -42,25 +41,25 @@ namespace CppImage
 		bool Decode(CxFile * hFile);
 		bool Decode(FILE *hFile) { CxIOFile file(hFile); return Decode(&file); }
 
-	#if CXIMAGE_SUPPORT_ENCODE
+#	if CXIMAGE_SUPPORT_ENCODE
 		bool Encode(CxFile * hFile);
 		bool Encode(FILE *hFile) { CxIOFile file(hFile); return Encode(&file); }
-	#endif // CXIMAGE_SUPPORT_ENCODE
+#	endif // CXIMAGE_SUPPORT_ENCODE
 
 	protected:
 		bool DibReadBitmapInfo(CxFile* fh, BitmapInfoHeader *pdib);
 	};
 }
 
-#define BFT_ICON   0x4349   /* 'IC' */
-#define BFT_BITMAP 0x4d42   /* 'BM' */
-#define BFT_CURSOR 0x5450   /* 'PT' */
+#	define BFT_ICON   0x4349   /* 'IC' */
+#	define BFT_BITMAP 0x4d42   /* 'BM' */
+#	define BFT_CURSOR 0x5450   /* 'PT' */
 
-#ifndef WIDTHBYTES
-#define WIDTHBYTES(i)           ((unsigned)((i+31)&(~31))/8)  /* ULONG aligned ! */
-#endif
+#	ifndef WIDTHBYTES
+#		define WIDTHBYTES(i)           ((unsigned)((i+31)&(~31))/8)  /* ULONG aligned ! */
+#	endif
 
-#endif
+#endif // CXIMAGE_SUPPORT_BMP
 
 #define DibWidthBytesN(lpbi, n) (uint32_t)WIDTHBYTES((uint32_t)(lpbi)->biWidth * (uint32_t)(n))
 #define DibWidthBytes(lpbi)     DibWidthBytesN(lpbi, (lpbi)->biBitCount)
@@ -77,5 +76,3 @@ namespace CppImage
 												(lpbi)->biSizeImage = DibSizeImage(lpbi); \
                                 if ((lpbi)->biClrUsed == 0)                   \
                                     (lpbi)->biClrUsed = DibNumColors(lpbi);   \
-
-#endif

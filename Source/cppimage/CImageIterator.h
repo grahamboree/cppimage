@@ -154,15 +154,6 @@ namespace CppImage
 	inline bool CImageIterator::ItOK()
 	{
 		return (mImage != NULL) && mImage->IsInside(Itx, Ity);
-		/*
-		if (mImage)
-		{
-			return mImage->IsInside(Itx, Ity);
-		}
-		else
-		{
-			return false;
-		}*/
 	}
 
 	/////////////////////////////////////////////////////////////////////
@@ -186,7 +177,8 @@ namespace CppImage
 	/////////////////////////////////////////////////////////////////////
 	inline bool CImageIterator::NextRow()
 	{
-		if (++Ity >= (int32_t)mImage->GetHeight())
+		++Ity;
+		if (Ity >= static_cast<int32_t>(mImage->GetHeight()))
 			return 0;
 		IterImage += mImage->GetEffWidth();
 		return 1;
@@ -195,7 +187,8 @@ namespace CppImage
 	/////////////////////////////////////////////////////////////////////
 	inline bool CImageIterator::PrevRow()
 	{
-		if (--Ity < 0)
+		--Ity;
+		if (Ity < 0)
 			return false;
 		IterImage -= mImage->GetEffWidth();
 		return true;
@@ -205,36 +198,31 @@ namespace CppImage
 	/* AD - for interlace */
 	inline void CImageIterator::SetY(int32_t y)
 	{
-		if ((y < 0) || (y > (int32_t)mImage->GetHeight()))
+		if ((y < 0) || (y > static_cast<int32_t>(mImage->GetHeight())))
 			return;
 		Ity = y;
-		IterImage = mImage->GetBits() + mImage->GetEffWidth()*y;
+		IterImage = mImage->GetBits() + mImage->GetEffWidth() * y;
 	}
 
 	/////////////////////////////////////////////////////////////////////
 	inline void CImageIterator::SetRow(uint8_t *buf, int32_t n)
 	{
-		if (n<0)
-		{
-			n = (int32_t)mImage->GetEffWidth();
-		}
-		else
-		{
-			n = min(n, (int32_t)mImage->GetEffWidth());
-		}
+		int32_t effWidth = static_cast<int32_t>(mImage->GetEffWidth());
+		
+		n = (n < 0) ? effWidth : min(n, effWidth);
 
-		if ((IterImage!=NULL)&&(buf!=NULL)&&(n>0))
+		if ((IterImage != NULL) && (buf != NULL) && (n > 0))
 		{
-			memcpy(IterImage,buf,n);
+			memcpy(IterImage, buf, n);
 		}
 	}
 
 	/////////////////////////////////////////////////////////////////////
 	inline void CImageIterator::GetRow(uint8_t *buf, int32_t n)
 	{
-		if ((IterImage!=NULL)&&(buf!=NULL)&&(n>0))
+		if ((IterImage != NULL) && (buf != NULL) && (n > 0))
 		{
-			memcpy(buf,IterImage,min(n,(int32_t)mImage->GetEffWidth()));
+			memcpy(buf, IterImage, min(n, static_cast<int32_t>(mImage->GetEffWidth())));
 		}
 	}
 
@@ -254,13 +242,14 @@ namespace CppImage
 	/////////////////////////////////////////////////////////////////////
 	inline bool CImageIterator::NextByte()
 	{
-		if (++Itx < (int32_t)mImage->GetEffWidth())
+		++Itx;
+		if (Itx < static_cast<int32_t>(mImage->GetEffWidth()))
 		{
 			return 1;
 		}
 		else
 		{
-			if (++Ity < (int32_t)mImage->GetHeight())
+			if (++Ity < static_cast<int32_t>(mImage->GetHeight()))
 			{
 				IterImage += mImage->GetEffWidth();
 				Itx = 0;
@@ -299,14 +288,14 @@ namespace CppImage
 	inline bool CImageIterator::NextStep()
 	{
 		Itx += Stepx;
-		if (Itx < (int32_t)mImage->GetEffWidth())
+		if (Itx < static_cast<int32_t>(mImage->GetEffWidth()))
 		{
 			return 1;
 		}
 		else
 		{
 			Ity += Stepy;
-			if (Ity < (int32_t)mImage->GetHeight())
+			if (Ity < static_cast<int32_t>(mImage->GetHeight()))
 			{
 				IterImage += mImage->GetEffWidth();
 				Itx = 0;
@@ -330,7 +319,7 @@ namespace CppImage
 		else
 		{       
 			Ity -= Stepy;
-			if (Ity >= 0 && Ity < (int32_t)mImage->GetHeight())
+			if (Ity >= 0 && Ity < static_cast<int32_t>(mImage->GetHeight()))
 			{
 				IterImage -= mImage->GetEffWidth();
 				Itx = 0;
@@ -354,7 +343,7 @@ namespace CppImage
 		}
 		uint32_t h = mImage->GetHeight();
 		//uint32_t line = mImage->GetEffWidth();
-		uint8_t bytes = (uint8_t)(mImage->GetBpp() >> 3);
+		uint8_t bytes = static_cast<uint8_t>(mImage->GetBpp() >> 3);
 		uint8_t* pSrc;
 		for (uint32_t y = 0; y < h; y++)
 		{

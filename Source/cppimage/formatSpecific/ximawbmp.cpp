@@ -9,11 +9,11 @@
 
 #if CXIMAGE_SUPPORT_WBMP
 
-#include "CImageIterator.h"
+#	include "CImageIterator.h"
 
 namespace CppImage
 {
-	#if CXIMAGE_SUPPORT_DECODE
+#	if CXIMAGE_SUPPORT_DECODE
 	////////////////////////////////////////////////////////////////////////////////
 	bool CxImageWBMP::Decode(CxFile *hFile)
 	{
@@ -80,10 +80,9 @@ namespace CppImage
 		} while ((c&0x80)!=0);
 		return true;
 	}
-	////////////////////////////////////////////////////////////////////////////////
-	#endif //CXIMAGE_SUPPORT_DECODE
-	////////////////////////////////////////////////////////////////////////////////
-	#if CXIMAGE_SUPPORT_ENCODE
+#	endif //CXIMAGE_SUPPORT_DECODE
+	
+#	if CXIMAGE_SUPPORT_ENCODE
 	////////////////////////////////////////////////////////////////////////////////
 	bool CxImageWBMP::Encode(CxFile * hFile)
 	{
@@ -131,7 +130,7 @@ namespace CppImage
 		return true;
 	}
 	////////////////////////////////////////////////////////////////////////////////
-	#endif // CXIMAGE_SUPPORT_ENCODE
+#	endif // CXIMAGE_SUPPORT_ENCODE
 }
 #endif // CXIMAGE_SUPPORT_WBMP
 
