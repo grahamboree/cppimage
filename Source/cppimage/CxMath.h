@@ -36,11 +36,11 @@ namespace CppImage
 		Rect2(float inBotLeftX, float inBotLeftY, float inTopRightX, float inTopRightY);
 		Rect2(const Point2& inBottomLeft, const Point2& inTopRight);
 
-		float 	Area() const;
-		Rect2 	CrossSection(const Rect2& inRect2) const;
-		Point2 	Center() const;
-		float	Width() const;
-		float 	Height() const;
+		float  Area() const;
+		Rect2  CrossSection(const Rect2& inRect2) const;
+		Point2 Center() const;
+		float  Width() const;
+		float  Height() const;
 
 		Point2 botLeft;
 		Point2 topRight;
@@ -49,14 +49,13 @@ namespace CppImage
 	typedef Rect2 CxRect2;
 }
 
-
 namespace CppImage
 {
 	//////////////////////////////////////////////////////////////////////////
 	/// Default constructs a point at the origin.
 	inline Point2::Point2()
-	: x(0.0f)
-	, y(0.0f)
+	: x(0)
+	, y(0)
 	{
 	}
 
@@ -74,7 +73,7 @@ namespace CppImage
 	/// @returns The distance between this point and the other point.
 	inline float Point2::Distance(const Point2& p2) const
 	{
-		return (float)sqrt((x - p2.x) * (x - p2.x) + (y - p2.y) * (y - p2.y));
+		return sqrtf((x - p2.x) * (x - p2.x) + (y - p2.y) * (y - p2.y));
 	}
 
 	//////////////////////////////////////////////////////////////////////////
@@ -83,7 +82,7 @@ namespace CppImage
 	/// @returns The distance between this and the other point.
 	inline float Point2::Distance(const float inX, const float inY) const
 	{
-		return (float)sqrt((x - inX) * (x - inX) + (y - inY) * (y - inY));
+		return sqrt((x - inX) * (x - inX) + (y - inY) * (y - inY));
 	}
 
 	//////////////////////////////////////////////////////////////////////////
@@ -110,7 +109,7 @@ namespace CppImage
 	/// @returns The area of the rectangle.
 	inline float Rect2::Area() const
 	{
-	  return (topRight.x - botLeft.x) * (topRight.y - botLeft.y);
+		return (topRight.x - botLeft.x) * (topRight.y - botLeft.y);
 	}
 
 	//////////////////////////////////////////////////////////////////////////

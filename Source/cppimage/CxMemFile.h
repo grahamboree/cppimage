@@ -22,29 +22,29 @@ namespace CppImage
 		bool Open();
 		uint8_t* GetBuffer(bool inbDetachBuffer = true);
 
-		virtual bool	Close();
-		virtual size_t	Read(void* inBuffer, size_t inSize, size_t inCount);
-		virtual size_t	Write(const void* buffer, size_t size, size_t count);
-		virtual bool	Seek(int32_t offset, int32_t origin);
-		virtual int32_t	Tell();
-		virtual int32_t	Size();
-		virtual bool	Flush();
-		virtual bool	Eof();
-		virtual int32_t	Error();
-		virtual bool	PutC(uint8_t c);
-		virtual int32_t	GetC();
-		virtual char*	GetS(char* string, int32_t n);
-		virtual int32_t	Scanf(const char* format, void* output);
+		virtual bool Close();
+		virtual size_t Read(void* inBuffer, size_t inSize, size_t inCount);
+		virtual size_t Write(const void* buffer, size_t size, size_t count);
+		virtual bool Seek(int32_t offset, int32_t origin);
+		virtual int32_t Tell();
+		virtual int32_t Size();
+		virtual bool Flush();
+		virtual bool Eof();
+		virtual int32_t Error();
+		virtual bool PutC(uint8_t c);
+		virtual int32_t GetC();
+		virtual char* GetS(char* string, int32_t n);
+		virtual int32_t Scanf(const char* format, void* output);
 
 	protected:
 		bool Alloc(uint32_t nBytes);
 		void Free();
 
-		uint8_t*	mBuffer;
-		uint32_t	mSize;
-		bool		mbFreeOnClose;
-		int32_t		mPosition;	//current position
-		int32_t		mEdge;		//buffer size
-		bool		mbEOF;
+		uint8_t* mBuffer;
+		uint32_t mSize;
+		bool     mbFreeOnClose;
+		int32_t  mPosition;  //current position
+		int32_t  mEdge;  //buffer size
+		bool     mbEOF;
 	};
 }

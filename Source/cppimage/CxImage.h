@@ -186,7 +186,7 @@ namespace CppImage
 	public: //public structures
 		struct rgb_color
 		{
-			uint8_t r,g,b;
+			uint8_t r, g, b;
 		};
 
 #if CXIMAGE_SUPPORT_WINDOWS
@@ -235,15 +235,15 @@ namespace CppImage
 		//@}
 
 		/** \addtogroup Initialization */ //@{
-		void	Clear(uint8_t bval = 0);
-		void	Copy(const CxImage& src, bool copypixels = true, bool copyselection = true, bool copyalpha = true);
-		void*	Create(uint32_t dwWidth, uint32_t dwHeight, uint32_t wBpp, uint32_t imagetype = 0);
-		bool	CreateFromArray(uint8_t* pArray, uint32_t dwWidth, uint32_t dwHeight, uint32_t dwBitsperpixel, uint32_t dwBytesperline, bool bFlipImage);
-		bool	CreateFromMatrix(uint8_t** ppMatrix, uint32_t dwWidth, uint32_t dwHeight, uint32_t dwBitsperpixel, uint32_t dwBytesperline, bool bFlipImage);
-		bool	Destroy();
-		bool	DestroyFrames();
-		void	FreeMemory(void* memblock);
-		bool	Transfer(CxImage& from, bool bTransferFrames = true);
+		void  Clear(uint8_t bval = 0);
+		void  Copy(const CxImage& src, bool copypixels = true, bool copyselection = true, bool copyalpha = true);
+		void* Create(uint32_t dwWidth, uint32_t dwHeight, uint32_t wBpp, uint32_t imagetype = 0);
+		bool  CreateFromArray(uint8_t* pArray, uint32_t dwWidth, uint32_t dwHeight, uint32_t dwBitsperpixel, uint32_t dwBytesperline, bool bFlipImage);
+		bool  CreateFromMatrix(uint8_t** ppMatrix, uint32_t dwWidth, uint32_t dwHeight, uint32_t dwBitsperpixel, uint32_t dwBytesperline, bool bFlipImage);
+		bool  Destroy();
+		bool  DestroyFrames();
+		void  FreeMemory(void* memblock);
+		bool  Transfer(CxImage& from, bool bTransferFrames = true);
 
 		uint32_t Dump(uint8_t* dst);
 		uint32_t DumpSize();
@@ -251,33 +251,33 @@ namespace CppImage
 		//@}
 
 		/** \addtogroup Attributes */ //@{
-		int32_t		GetSize();
-		uint8_t*	GetBits(uint32_t row = 0);
-		uint8_t		GetColorType();
-		void*		GetDIB() const;
-		uint32_t	GetHeight() const;
-		uint32_t	GetWidth() const;
-		uint32_t	GetEffWidth() const;
-		uint32_t	GetNumColors() const;
-		uint16_t	GetBpp() const;
-		uint32_t	GetType() const;
-		const char*	GetLastError();
+		int32_t  GetSize();
+		uint8_t* GetBits(uint32_t row = 0);
+		uint8_t  GetColorType();
+		void*    GetDIB() const;
+		uint32_t GetHeight() const;
+		uint32_t GetWidth() const;
+		uint32_t GetEffWidth() const;
+		uint32_t GetNumColors() const;
+		uint16_t GetBpp() const;
+		uint32_t GetType() const;
+		const char* GetLastError();
 		static const TCHAR* GetVersion();
 		static const float GetVersionNumber();
 
-		uint32_t	GetFrameDelay() const;
-		void		SetFrameDelay(uint32_t d);
+		uint32_t GetFrameDelay() const;
+		void     SetFrameDelay(uint32_t d);
 
-		void	GetOffset(int32_t* x,int32_t* y);
-		void	SetOffset(int32_t x,int32_t y);
+		void GetOffset(int32_t* x,int32_t* y);
+		void SetOffset(int32_t x,int32_t y);
 
-		uint8_t	GetJpegQuality() const;
-		void	SetJpegQuality(uint8_t q);
-		float	GetJpegQualityF() const;
-		void	SetJpegQualityF(float q);
+		uint8_t GetJpegQuality() const;
+		void  SetJpegQuality(uint8_t q);
+		float GetJpegQualityF() const;
+		void  SetJpegQualityF(float q);
 
-		uint8_t	GetJpegScale() const;
-		void	SetJpegScale(uint8_t q);
+		uint8_t GetJpegScale() const;
+		void SetJpegScale(uint8_t q);
 
 #if CXIMAGE_SUPPORT_EXIF
 		ExifInfo* 	GetExifInfo() {return &info.ExifInfo; }
